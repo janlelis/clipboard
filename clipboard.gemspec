@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{clipboard}
-  s.version = "0.1.0"
+  s.version = "0.6.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jan Lelis"]
@@ -19,17 +19,49 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     "Gemfile",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "clipboard.gemspec",
+     "doc/Clipboard||= Module.new.html",
+     "doc/README_rdoc.html",
+     "doc/created.rid",
+     "doc/images/brick.png",
+     "doc/images/brick_link.png",
+     "doc/images/bug.png",
+     "doc/images/bullet_black.png",
+     "doc/images/bullet_toggle_minus.png",
+     "doc/images/bullet_toggle_plus.png",
+     "doc/images/date.png",
+     "doc/images/find.png",
+     "doc/images/loadingAnimation.gif",
+     "doc/images/macFFBgHack.png",
+     "doc/images/package.png",
+     "doc/images/page_green.png",
+     "doc/images/page_white_text.png",
+     "doc/images/page_white_width.png",
+     "doc/images/plugin.png",
+     "doc/images/ruby.png",
+     "doc/images/tag_green.png",
+     "doc/images/wrench.png",
+     "doc/images/wrench_orange.png",
+     "doc/images/zoom.png",
+     "doc/index.html",
+     "doc/js/darkfish.js",
+     "doc/js/jquery.js",
+     "doc/js/quicksearch.js",
+     "doc/js/thickbox-compressed.js",
+     "doc/lib/clipboard_rb.html",
+     "doc/rdoc.css",
      "lib/clipboard.rb",
-     "lib/rubygems_plugin.rb"
+     "version.rb"
   ]
   s.homepage = %q{http://github.com/janlelis/clipboard}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.requirements = ["To use this gem on linux (or other X), you need xclip"]
+  s.requirements = ["To use this gem on linux (or other X), you need xclip", "To use this gem on windows, you need the win32-clipboard gem"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Access the clipboard on all systems}
 
