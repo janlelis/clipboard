@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'rake'
-# require 'bundler'
 
 begin
   require 'jeweler'
@@ -12,11 +11,10 @@ begin
     gem.homepage = "http://github.com/janlelis/clipboard"
     gem.authors = ["Jan Lelis"]
     gem.add_development_dependency "jeweler", ">= 0"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
     gem.add_dependency('zucker', '>= 4')
-    gem.requirements << 'To use this gem on linux (or other X), you need xclip'
-    gem.requirements << 'To use this gem on windows, you need the win32-clipboard gem'
-#    gem.add_bundler_dependencies
+    gem.requirements << 'on linux (or other X), you need xclip'
+    gem.requirements << 'on windows, you need the win32-clipboard gem'
+        
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

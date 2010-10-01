@@ -16,10 +16,8 @@ Have fun ;)
 * +Zucker+ gem
 
 === TODO
-* Automatically require the <tt>win32-clipboard</tt> gem - but only on windows!
 * Don't depend on +xclip+
 * Don't depend on the <tt>win32-clipboard</tt> gem (or fix the 1.9 issues with the gem)
-* Error management?
 
 Feel free to report bugs or to implement one of the above features ;)
 
