@@ -1,17 +1,27 @@
 = clipboard
+Access the clipboard and do not care if the OS is linux, mac or windows.
 
-Description goes here.
+=== Usage
+You have <tt>Clipboard.write</tt> [+copy+],
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+<tt>Clipboard.read</tt> [+paste+] and
+
+<tt>Clipboard.clear</tt>
+
+Have fun ;)
+
+=== Requirements
+* *Linux*: +xclip+ (you can install it on ubuntu with <tt>sudo apt-get install xclip</tt>)
+* *Windows*: <tt>win32-clipboard</tt> gem
+* +Zucker+ gem
+
+=== TODO
+* Automatically require the <tt>win32-clipboard</tt> gem - but only on windows!
+* Don't depend on +xclip+
+* Don't depend on the <tt>win32-clipboard</tt> gem (or fix the 1.9 issues with the gem)
+* Error management?
+
+Feel free to report bugs or to implement one of the above features ;)
 
 == Copyright
-
-Copyright (c) 2010 Jan Lelis. See LICENSE for details.
+Copyright (c) 2010 Jan Lelis, http://rbjl.net, released under the MIT license
