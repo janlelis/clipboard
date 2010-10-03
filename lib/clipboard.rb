@@ -26,16 +26,16 @@ module Clipboard
     # inspired by segment7.net and http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
     # does not work on 1.9, has probably something to do with utf8 strings ?
     def self.paste(_=nil)
-    data = ""
+      data = ""
       if 0 != @open[ 0 ]
-      hclip = @get[ CF_TEXT ]
+        hclip = @get[ CF_TEXT ]
         if 0 != hclip
-        if 0 != data = @lock[ hclip ]
+          if 0 != data = @lock[ hclip ]
             @unlock[            hclip ]
+          end
         end
-    end
         @close[]
-    end
+      end
       data || ""
     end
 
@@ -52,18 +52,22 @@ module Clipboard
       WriteCommands = ['pbcopy']
       ReadCommand  = 'pbpaste'
     else # linuX
-      Clipboards   = %w[clipboard primary secondary]
-      WriteCommands = Clipboards.map{|cb| 'xclip -selection ' + cb }
+      CLIPBOARDS   = %w[clipboard primary secondary]
+      WriteCommands = CLIPBOARDS.map{|cb| 'xclip -selection ' + cb }
       ReadCommand  = 'xclip -o'
 
       # catch dependency errors
-      Open3.popen3( "xclip -version" ){ |_, _, error|
-        unless error.read  =~ /^xclip version/
-          raise "clipboard -\n" +
-                "Could not find required prgram xclip\n" +
-                "You can install it (on debian/ubuntu) with sudo apt-get install xclip"
-        end
-      }
+      begin
+        Open3.popen3( "xclip -version" ){ |_, _, error|
+          unless error.read  =~ /^xclip version/
+            raise LoadError
+          end
+        }
+      rescue Exception
+        raise LoadError, "clipboard -\n" +
+              "Could not find required prgram xclip\n" +
+              "You can install it (on debian/ubuntu) with sudo apt-get install xclip"
+      end
     end
 
     def self.paste(which = nil)
@@ -80,6 +84,7 @@ module Clipboard
     end
   end
 
+  # copy for all platforms
   def self.copy(data)
     WriteCommands.each{ |cmd|
       IO.popen( cmd, 'w' ){ |input| input << data }
