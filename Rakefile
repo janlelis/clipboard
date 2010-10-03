@@ -13,7 +13,6 @@ begin
     gem.add_development_dependency "jeweler", ">= 0"
     gem.add_dependency('zucker', '>= 4')
     gem.requirements << 'on linux (or other X), you need xclip'
-    gem.requirements << 'on windows, you need the win32-clipboard gem'
         
   end
   Jeweler::GemcutterTasks.new

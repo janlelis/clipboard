@@ -1,20 +1,13 @@
 require 'zucker/os'
 require 'zucker/alias_for'
 require 'stringio'
-
 require File.expand_path '../../version', __FILE__
 
-  def capture_stderr
-    capture = StringIO.new
-    restore, $stderr = $stderr, capture
-    yield
-    $stderr = restore
-    capture.string
-  end
-
-class << Clipboard ||= Module.new
+module Clipboard
+end
+class << Clipboard
   case # OS
-  when OS.linux? || OS.mac? || OS.bsd? || OS.posix?
+  when OS.linux? || OS.mac? || OS.bsd? #|| OS.posix?
     require 'open3'
 
     if OS.mac?
@@ -27,18 +20,11 @@ class << Clipboard ||= Module.new
       # catch dependency errors
       Open3.popen3( "xclip -version" ){ |_, _, error|
         unless error.read  =~ /^xclip version/
-          raise "clipboard -\n" + 
-                "Could not find required prgram xclip\n" + 
+          raise "clipboard -\n" +
+                "Could not find required prgram xclip\n" +
                 "You can install it (on debian/ubuntu) with sudo apt-get install xclip"
         end
       }
-    end
-
-    def write(data)
-      Open3.popen3( WriteCommand ){ |input, _, _|
-        input << data
-      }
-      read # or true or nil?
     end
 
     def read
@@ -48,43 +34,72 @@ class << Clipboard ||= Module.new
     def clear
       write ''
     end
-  when OS.windows?
-    begin
-      require 'win32/clipboard'
-    rescue LoadError
-      raise "clipboard -\n" +
-            "Could not load the required win32-clipboard gem\n"
-            "You can install it with gem install win32-clipboard"
-    end
+  when OS.windows? # inspired by segment7.net and http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
+    WriteCommand = 'clip'
+    require 'Win32API'
+  CF_TEXT = 1
 
-    def write(data)
-      Win32::Clipboard.set_data( data )
-      Win32::Clipboard.data
+    def read # does not work on 1.9, has probably something to do with utf8 strings ?
+    data = ""
+      if 0 != @open[ 0 ]
+      hclip = @get[ CF_TEXT ]
+        if 0 != hclip
+        if 0 != data = @lock[ hclip ]
+            @unlock[            hclip ]
+        end
     end
-
-    def read
-      Win32::Clipboard.data
+        @close[]
+    end
+      data || ""
     end
 
     def clear
-      Win32::Clipboard.empty
-      Win32::Clipboard.data
+      @open[0]
+      @empty[]
+      @close[]
+      read
     end
-  end#case
 
+  end#case OS
+
+   def write(data)
+      IO.popen( WriteCommand, 'w' ){ |input| input << data }
+      read # or true or nil?
+    end
+
+  
+  # handier aliases
   alias_for :write, :copy
   alias_for :read,  :paste
+end
 
-#  private
-
-  def capture_stdout
-      capture = StringIO.new
-        restore, $stdout = $stdout, capture
-          yield
-            $stdout = restore
-              capture.string
-  end
-
+module Clipboard
+    # init api handlers
+  if OS.windows?
+    @open   = Win32API.new("user32", "OpenClipboard",['L'],'L')
+    @close  = Win32API.new("user32", "CloseClipboard",[],'L')
+    @empty  = Win32API.new("user32", "EmptyClipboard",[],'L')
+    @get    = Win32API.new("user32", "GetClipboardData", ['L'], 'L')
+    @lock   = Win32API.new("kernel32", "GlobalLock", ['L'], 'P')
+    @unlock = Win32API.new("kernel32", "GlobalUnlock", ['L'], 'L')
+    instance_variables.each{ |handler|
+      instance_variable_get(handler).instance_eval do
+        alias [] call
+      end
+    }
+end
 end
 
 # J-_-L
+
+def cp(o='jammi')
+  Clipboard.copy o
+  end
+  
+  def ps
+    Clipboard.paste
+  end
+  
+  def lll
+  3000.times{|i|p i;ps;cp}
+  end
