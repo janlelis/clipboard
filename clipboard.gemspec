@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{clipboard}
-  s.version = "0.7.0"
+  s.version = "0.8.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jan Lelis"]
-  s.date = %q{2010-10-01}
-  s.description = %q{Access the clipboard on all systems (Clipboard.write & Clipboard.read)}
+  s.date = %q{2010-10-03}
+  s.description = %q{Access the clipboard on all systems (Clipboard.copy & Clipboard.paste)}
   s.email = %q{mail@janlelis.de}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "clipboard.gemspec",
-     "doc/Clipboard||= Module.new.html",
+     "doc/Clipboard.html",
      "doc/README_rdoc.html",
      "doc/created.rid",
      "doc/images/brick.png",
@@ -61,7 +61,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/janlelis/clipboard}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.requirements = ["on linux (or other X), you need xclip", "on windows, you need the win32-clipboard gem"]
+  s.requirements = ["on linux (or other X), you need xclip"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Access the clipboard on all systems}
 
