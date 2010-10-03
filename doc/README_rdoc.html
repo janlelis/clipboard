@@ -63,8 +63,6 @@
 				
 					<li><a href="./Clipboard.html">Clipboard</a></li>
 				
-					<li><a href="./Object.html">Object</a></li>
-				
 				</ul>
 				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
 			</div>
@@ -76,14 +74,14 @@
 	<div id="documentation">
 		<h1>clipboard</h1>
 <p>
-Access the clipboard and do not care if the OS is linux, mac or windows.
+Access the clipboard and do not care if the OS is Linux, MacOS or Windows.
 </p>
 <h3>Usage</h3>
 <p>
-You have <tt>Clipboard.write</tt> [<tt>copy</tt>],
+You have <tt>Clipboard.copy</tt>,
 </p>
 <p>
-<tt>Clipboard.read</tt> [<tt>paste</tt>] and
+<tt>Clipboard.paste</tt> and
 </p>
 <p>
 <tt>Clipboard.clear</tt>
@@ -91,41 +89,47 @@ You have <tt>Clipboard.write</tt> [<tt>copy</tt>],
 <p>
 Have fun ;)
 </p>
-<h3>Requirements</h3>
+<h4>Multiple clipboards</h4>
+<p>
+On Linux, you can choose, from which clipboard you want to <tt>paste</tt>,
+default is PRIMARY.
+</p>
+<p>
+<tt>copy</tt> copies to all clipboards in Clipboard::CLIPBOARDS.
+</p>
+<h3>Non-gem requirements</h3>
 <ul>
 <li><p>
-<b>Linux</b>: <tt>xclip</tt> (you can install it on ubuntu with <tt>sudo
-apt-get install xclip</tt>)
+<b>Linux</b>: <tt>xclip</tt> (you can install it on debian/ubuntu with
+<tt>sudo apt-get install xclip</tt>)
 </p>
 </li>
 <li><p>
-<b>Windows</b>: <tt>win32-clipboard</tt> gem
-</p>
-</li>
-<li><p>
-<tt>Zucker</tt> gem
+<b>Windows</b>: <tt>clip</tt> (installed by default since Vista)
 </p>
 </li>
 </ul>
-<h3>TODO</h3>
+<h3>Bugs / TODO</h3>
 <ul>
 <li><p>
-Don&#8217;t depend on <tt>xclip</tt>
+Fix 1.9 and Encoding issues on Windows
 </p>
 </li>
 <li><p>
-Don&#8217;t depend on the <tt>win32-clipboard</tt> gem (or fix the 1.9
-issues with the gem)
+Don&#8217;t depend on <tt>xclip</tt> ?
 </p>
 </li>
 </ul>
 <p>
-Feel free to report bugs or to implement one of the above features ;)
+Feel free to report bugs or to implement one of the TODO entries ;)
 </p>
-<h2>Copyright</h2>
+<h3>Copyright</h3>
 <p>
 Copyright &#169; 2010 Jan Lelis, <a href="http://rbjl.net">rbjl.net</a>,
 released under the MIT license
+</p>
+<p>
+J-_-L
 </p>
 
 	</div>

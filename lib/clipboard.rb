@@ -4,42 +4,28 @@ require 'stringio'
 require File.expand_path '../../version', __FILE__
 
 module Clipboard
-end
-class << Clipboard
-  case # OS
-  when OS.linux? || OS.mac? || OS.bsd? #|| OS.posix?
-    require 'open3'
+  if OS.windows?
+    WriteCommands = ['clip']
+    CF_TEXT = 1
 
-    if OS.mac?
-      WriteCommand = 'pbcopy'
-      ReadCommand  = 'pbpaste'
-    else # linuX
-      WriteCommand = 'xclip'
-      ReadCommand  = 'xclip -o'
-
-      # catch dependency errors
-      Open3.popen3( "xclip -version" ){ |_, _, error|
-        unless error.read  =~ /^xclip version/
-          raise "clipboard -\n" +
-                "Could not find required prgram xclip\n" +
-                "You can install it (on debian/ubuntu) with sudo apt-get install xclip"
-        end
-      }
-    end
-
-    def read
-      %x[#{ ReadCommand }]
-    end
-
-    def clear
-      write ''
-    end
-  when OS.windows? # inspired by segment7.net and http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
-    WriteCommand = 'clip'
     require 'Win32API'
-  CF_TEXT = 1
+    # init api handlers
+    @open   = Win32API.new("user32", "OpenClipboard",['L'],'L')
+    @close  = Win32API.new("user32", "CloseClipboard",[],'L')
+    @empty  = Win32API.new("user32", "EmptyClipboard",[],'L')
+    @get    = Win32API.new("user32", "GetClipboardData", ['L'], 'L')
+    @lock   = Win32API.new("kernel32", "GlobalLock", ['L'], 'P')
+    @unlock = Win32API.new("kernel32", "GlobalUnlock", ['L'], 'L')
+    instance_variables.each{ |handler|
+      instance_variable_get(handler).instance_eval do
+        alias [] call
+      end
+    }
 
-    def read # does not work on 1.9, has probably something to do with utf8 strings ?
+    # paste & clear
+    # inspired by segment7.net and http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
+    # does not work on 1.9, has probably something to do with utf8 strings ?
+    def self.paste(_=nil)
     data = ""
       if 0 != @open[ 0 ]
       hclip = @get[ CF_TEXT ]
@@ -53,53 +39,53 @@ class << Clipboard
       data || ""
     end
 
-    def clear
+    def self.clear
       @open[0]
       @empty[]
       @close[]
-      read
+      paste
+    end
+  else #non-windows
+    require 'open3'
+
+    if OS.mac?
+      WriteCommands = ['pbcopy']
+      ReadCommand  = 'pbpaste'
+    else # linuX
+      Clipboards   = %w[clipboard primary secondary]
+      WriteCommands = Clipboards.map{|cb| 'xclip -selection ' + cb }
+      ReadCommand  = 'xclip -o'
+
+      # catch dependency errors
+      Open3.popen3( "xclip -version" ){ |_, _, error|
+        unless error.read  =~ /^xclip version/
+          raise "clipboard -\n" +
+                "Could not find required prgram xclip\n" +
+                "You can install it (on debian/ubuntu) with sudo apt-get install xclip"
+        end
+      }
     end
 
-  end#case OS
-
-   def write(data)
-      IO.popen( WriteCommand, 'w' ){ |input| input << data }
-      read # or true or nil?
-    end
-
-  
-  # handier aliases
-  alias_for :write, :copy
-  alias_for :read,  :paste
-end
-
-module Clipboard
-    # init api handlers
-  if OS.windows?
-    @open   = Win32API.new("user32", "OpenClipboard",['L'],'L')
-    @close  = Win32API.new("user32", "CloseClipboard",[],'L')
-    @empty  = Win32API.new("user32", "EmptyClipboard",[],'L')
-    @get    = Win32API.new("user32", "GetClipboardData", ['L'], 'L')
-    @lock   = Win32API.new("kernel32", "GlobalLock", ['L'], 'P')
-    @unlock = Win32API.new("kernel32", "GlobalUnlock", ['L'], 'L')
-    instance_variables.each{ |handler|
-      instance_variable_get(handler).instance_eval do
-        alias [] call
+    def self.paste(which = nil)
+      selection_string = if Clipboards.include?(which.to_s)
+        " -selection #{which}"
+      else
+        ''
       end
+      %x[#{ ReadCommand + selection_string }]
+    end
+
+    def self.clear
+      copy ''
+    end
+  end
+
+  def self.copy(data)
+    WriteCommands.each{ |cmd|
+      IO.popen( cmd, 'w' ){ |input| input << data }
     }
-end
+    paste
+  end
 end
 
 # J-_-L
-
-def cp(o='jammi')
-  Clipboard.copy o
-  end
-  
-  def ps
-    Clipboard.paste
-  end
-  
-  def lll
-  3000.times{|i|p i;ps;cp}
-  end

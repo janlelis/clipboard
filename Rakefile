@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "clipboard"
     gem.summary = %Q{Access the clipboard on all systems}
-    gem.description = %Q{Access the clipboard on all systems (Clipboard.write & Clipboard.read)}
+    gem.description = %Q{Access the clipboard on all systems (Clipboard.copy & Clipboard.paste)}
     gem.email = "mail@janlelis.de"
     gem.homepage = "http://github.com/janlelis/clipboard"
     gem.authors = ["Jan Lelis"]

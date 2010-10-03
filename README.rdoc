@@ -1,25 +1,31 @@
 = clipboard
-Access the clipboard and do not care if the OS is linux, mac or windows.
+Access the clipboard and do not care if the OS is Linux, MacOS or Windows.
 
 === Usage
-You have <tt>Clipboard.write</tt> [+copy+],
+You have <tt>Clipboard.copy</tt>,
 
-<tt>Clipboard.read</tt> [+paste+] and
+<tt>Clipboard.paste</tt> and
 
 <tt>Clipboard.clear</tt>
 
 Have fun ;)
 
-=== Requirements
-* *Linux*: +xclip+ (you can install it on ubuntu with <tt>sudo apt-get install xclip</tt>)
-* *Windows*: <tt>win32-clipboard</tt> gem
-* +Zucker+ gem
+==== Multiple clipboards
+On Linux, you can choose, from which clipboard you want to +paste+, default is PRIMARY.
 
-=== TODO
-* Don't depend on +xclip+
-* Don't depend on the <tt>win32-clipboard</tt> gem (or fix the 1.9 issues with the gem)
++copy+ copies to all clipboards in Clipboard::CLIPBOARDS.
 
-Feel free to report bugs or to implement one of the above features ;)
+=== Non-gem requirements
+* *Linux*: +xclip+ (you can install it on debian/ubuntu with <tt>sudo apt-get install xclip</tt>)
+* *Windows*: +clip+ (installed by default since Vista)
 
-== Copyright
+=== Bugs / TODO
+* Fix 1.9 and Encoding issues on Windows
+* Don't depend on +xclip+ ?
+
+Feel free to report bugs or to implement one of the TODO entries ;)
+
+=== Copyright
 Copyright (c) 2010 Jan Lelis, http://rbjl.net, released under the MIT license
+
+J-_-L
