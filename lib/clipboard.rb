@@ -71,7 +71,7 @@ module Clipboard
     end
 
     def self.paste(which = nil)
-      selection_string = if Clipboards.include?(which.to_s)
+      selection_string = if CLIPBOARDS.include?(which.to_s)
         " -selection #{which}"
       else
         ''

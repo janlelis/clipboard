@@ -11,8 +11,8 @@ begin
     gem.homepage = "http://github.com/janlelis/clipboard"
     gem.authors = ["Jan Lelis"]
     gem.add_development_dependency "jeweler", ">= 0"
-    gem.add_dependency('zucker', '>= 4')
-    gem.requirements << 'on linux (or other X), you need xclip'
+    gem.add_dependency('zucker', '>= 7')
+    gem.requirements << 'on linux (or other X), you need xclip. Install it on debian/ubuntu with sudo apt-get install xclip'
         
   end
   Jeweler::GemcutterTasks.new
