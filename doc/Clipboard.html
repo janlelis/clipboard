@@ -141,6 +141,11 @@
 				<dd class="description"></dd>
 				
 			
+				<dt><a name="CLIPBOARDS">CLIPBOARDS</a></dt>
+				
+				<dd class="description"></dd>
+				
+			
 				<dt><a name="WriteCommands">WriteCommands</a></dt>
 				
 				<dd class="description"></dd>
@@ -199,10 +204,10 @@
 					<div class="method-source-code"
 						id="clear-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/clipboard.rb, line 82</span>
-82:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">clear</span>
-83:       <span class="ruby-identifier">copy</span> <span class="ruby-value str">''</span>
-84:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/clipboard.rb, line 83</span>
+83:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">clear</span>
+84:       <span class="ruby-identifier">copy</span> <span class="ruby-value str">''</span>
+85:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -272,13 +277,13 @@ copy for all platforms
 					<div class="method-source-code"
 						id="copy-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/clipboard.rb, line 88</span>
-88:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">copy</span>(<span class="ruby-identifier">data</span>)
-89:     <span class="ruby-constant">WriteCommands</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">cmd</span><span class="ruby-operator">|</span>
-90:       <span class="ruby-constant">IO</span>.<span class="ruby-identifier">popen</span>( <span class="ruby-identifier">cmd</span>, <span class="ruby-value str">'w'</span> ){ <span class="ruby-operator">|</span><span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-identifier">input</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">data</span> }
-91:     }
-92:     <span class="ruby-identifier">paste</span>
-93:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/clipboard.rb, line 89</span>
+89:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">copy</span>(<span class="ruby-identifier">data</span>)
+90:     <span class="ruby-constant">WriteCommands</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">cmd</span><span class="ruby-operator">|</span>
+91:       <span class="ruby-constant">IO</span>.<span class="ruby-identifier">popen</span>( <span class="ruby-identifier">cmd</span>, <span class="ruby-value str">'w'</span> ){ <span class="ruby-operator">|</span><span class="ruby-identifier">input</span><span class="ruby-operator">|</span> <span class="ruby-identifier">input</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">data</span> }
+92:     }
+93:     <span class="ruby-identifier">paste</span>
+94:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -309,15 +314,15 @@ copy for all platforms
 					<div class="method-source-code"
 						id="paste-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/clipboard.rb, line 73</span>
-73:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">paste</span>(<span class="ruby-identifier">which</span> = <span class="ruby-keyword kw">nil</span>)
-74:       <span class="ruby-identifier">selection_string</span> = <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Clipboards</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">which</span>.<span class="ruby-identifier">to_s</span>)
-75:         <span class="ruby-node">&quot; -selection #{which}&quot;</span>
-76:       <span class="ruby-keyword kw">else</span>
-77:         <span class="ruby-value str">''</span>
-78:       <span class="ruby-keyword kw">end</span>
-79:       <span class="ruby-node">%[#{ ReadCommand + selection_string }]</span>
-80:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/clipboard.rb, line 74</span>
+74:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">paste</span>(<span class="ruby-identifier">which</span> = <span class="ruby-keyword kw">nil</span>)
+75:       <span class="ruby-identifier">selection_string</span> = <span class="ruby-keyword kw">if</span> <span class="ruby-constant">CLIPBOARDS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">which</span>.<span class="ruby-identifier">to_s</span>)
+76:         <span class="ruby-node">&quot; -selection #{which}&quot;</span>
+77:       <span class="ruby-keyword kw">else</span>
+78:         <span class="ruby-value str">''</span>
+79:       <span class="ruby-keyword kw">end</span>
+80:       <span class="ruby-node">%[#{ ReadCommand + selection_string }]</span>
+81:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

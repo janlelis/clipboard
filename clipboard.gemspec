@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{clipboard}
-  s.version = "0.8.2"
+  s.version = "0.8.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jan Lelis"]
@@ -61,7 +61,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/janlelis/clipboard}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.requirements = ["on linux (or other X), you need xclip"]
+  s.requirements = ["on linux (or other X), you need xclip. Install it on debian/ubuntu with sudo apt-get install xclip"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Access the clipboard on all systems}
 
@@ -71,14 +71,14 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<jeweler>, [">= 0"])
-      s.add_runtime_dependency(%q<zucker>, [">= 4"])
+      s.add_runtime_dependency(%q<zucker>, [">= 7"])
     else
       s.add_dependency(%q<jeweler>, [">= 0"])
-      s.add_dependency(%q<zucker>, [">= 4"])
+      s.add_dependency(%q<zucker>, [">= 7"])
     end
   else
     s.add_dependency(%q<jeweler>, [">= 0"])
-    s.add_dependency(%q<zucker>, [">= 4"])
+    s.add_dependency(%q<zucker>, [">= 7"])
   end
 end
 

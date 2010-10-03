@@ -49,6 +49,7 @@ module Clipboard
     require 'open3'
 
     if OS.mac?
+      CLIPBOARDS    = []
       WriteCommands = ['pbcopy']
       ReadCommand  = 'pbpaste'
     else # linuX
