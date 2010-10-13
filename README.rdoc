@@ -15,15 +15,19 @@ On Linux, you can choose, from which clipboard you want to +paste+, default is P
 
 +copy+ copies to all clipboards in Clipboard::CLIPBOARDS.
 
+==== Windows Encoding note
+In you use 1.9, the Clipboard encoding will be translated into UTF-8 and then to your Encoding.default_external
+If you use 1.8, it will fallback to CP850 encoding
+
 === Non-gem requirements
 * *Linux*: +xclip+ (you can install it on debian/ubuntu with <tt>sudo apt-get install xclip</tt>)
 * *Windows*: +clip+ (installed by default since Vista)
 
-=== Bugs / TODO
-* Fix 1.9 and Encoding issues on Windows
-* Don't depend on +xclip+ ?
+=== Todo
+* Don't depend on +clip+
+* Don't depend on +xclip+
 
-Feel free to report bugs or to implement one of the TODO entries ;)
+Feel free to report bugs or to implement one of the Todo entries ;)
 
 === Copyright
 Copyright (c) 2010 Jan Lelis, http://rbjl.net, released under the MIT license

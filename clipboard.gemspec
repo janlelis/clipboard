@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jan Lelis"]
-  s.date = %q{2010-10-03}
+  s.date = %q{2010-10-13}
   s.description = %q{Access the clipboard on all systems (Clipboard.copy & Clipboard.paste)}
   s.email = %q{mail@janlelis.de}
   s.extra_rdoc_files = [

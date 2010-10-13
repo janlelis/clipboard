@@ -1,4 +1,5 @@
 require 'zucker/os'
+require 'zucker/version'
 require 'zucker/alias_for'
 require 'stringio'
 require File.expand_path '../../version', __FILE__
@@ -7,42 +8,66 @@ module Clipboard
   if OS.windows?
     WriteCommands = ['clip']
     CF_TEXT = 1
+    CF_UNICODETEXT = 13
 
-    require 'Win32API'
-    # init api handlers
-    @open   = Win32API.new("user32", "OpenClipboard",['L'],'L')
-    @close  = Win32API.new("user32", "CloseClipboard",[],'L')
-    @empty  = Win32API.new("user32", "EmptyClipboard",[],'L')
-    @get    = Win32API.new("user32", "GetClipboardData", ['L'], 'L')
-    @lock   = Win32API.new("kernel32", "GlobalLock", ['L'], 'P')
-    @unlock = Win32API.new("kernel32", "GlobalUnlock", ['L'], 'L')
-    instance_variables.each{ |handler|
-      instance_variable_get(handler).instance_eval do
-        alias [] call
-      end
-    }
+    # get ffi function handlers
+    require 'ffi'
 
-    # paste & clear
-    # inspired by segment7.net and http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
-    # does not work on 1.9, has probably something to do with utf8 strings ?
-    def self.paste(_=nil)
-      data = ""
-      if 0 != @open[ 0 ]
-        hclip = @get[ CF_TEXT ]
-        if 0 != hclip
-          if 0 != data = @lock[ hclip ]
-            @unlock[            hclip ]
-          end
-        end
-        @close[]
-      end
-      data || ""
+    module User32
+      extend FFI::Library
+      ffi_lib "user32"
+      ffi_convention :stdcall
+
+      attach_function :open,  :OpenClipboard,    [ :long ], :long
+      attach_function :close, :CloseClipboard,   [       ], :long
+      attach_function :empty, :EmptyClipboard,   [       ], :long
+      attach_function :get,   :GetClipboardData, [ :long ], :long
     end
 
+    module Kernel32
+      extend FFI::Library
+      ffi_lib 'kernel32'
+      ffi_convention :stdcall
+  
+      attach_function :lock,   :GlobalLock,   [ :long ], :pointer
+      attach_function :unlock, :GlobalUnlock, [ :long ], :long
+    end
+   
+    # paste & clear
+    # see http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
+    def self.paste(_=nil)
+      ret = ""
+        if 0 != User32.open( 0 )
+          hclip = User32.get( CF_UNICODETEXT )
+          if hclip && 0 != hclip
+            pointer_to_data = Kernel32.lock( hclip )
+            data = ""
+            # Windows Unicode is ended by to null bytes, so get the whole string
+            current_byte = 0
+            until data.size >= 2 && data[-1].ord == 0 && data[-2].ord == 0
+              data << pointer_to_data.get_bytes( current_byte, 1 )
+              current_byte += 1
+            end
+            if RubyVersion >= 1.9
+              ret = data.chop.force_encoding("UTF-16LE").encode('UTF-8').encode(Encoding.default_external) # TODO check if direct translation is possible
+            else # 1.8: fallback to simple CP850 encoding
+              require 'iconv'
+              utf8 = Iconv.iconv( "UTF-8", "UTF-16LE", data.chop)[0]
+              ret = Iconv.iconv( "CP850", "UTF-8", utf8)[0]
+            end
+          if data && 0 != data
+            Kernel32.unlock( hclip )
+          end
+        end
+        User32.close( )
+      end
+      ret || ""
+    end
+ 
     def self.clear
-      @open[0]
-      @empty[]
-      @close[]
+      User32.open( 0 )
+      User32.empty( )
+      User32.close( )
       paste
     end
   else #non-windows
