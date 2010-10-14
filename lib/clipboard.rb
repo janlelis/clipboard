@@ -1,14 +1,13 @@
 require 'zucker/os'
 require 'zucker/version'
-require 'zucker/alias_for'
-require 'stringio'
+
 require File.expand_path '../../version', __FILE__
 
 module Clipboard
   if OS.windows?
-    WriteCommands = ['clip']
     CF_TEXT = 1
     CF_UNICODETEXT = 13
+    GMEM_MOVEABLE = 2
 
     # get ffi function handlers
     require 'ffi'
@@ -22,6 +21,7 @@ module Clipboard
       attach_function :close, :CloseClipboard,   [       ], :long
       attach_function :empty, :EmptyClipboard,   [       ], :long
       attach_function :get,   :GetClipboardData, [ :long ], :long
+      attach_function :set,   :SetClipboardData, [ :long, :long ], :long
     end
 
     module Kernel32
@@ -31,9 +31,9 @@ module Clipboard
   
       attach_function :lock,   :GlobalLock,   [ :long ], :pointer
       attach_function :unlock, :GlobalUnlock, [ :long ], :long
+      attach_function :alloc,  :GlobalAlloc,  [ :long, :long ], :long
     end
    
-    # paste & clear
     # see http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
     def self.paste(_=nil)
       ret = ""
@@ -49,7 +49,7 @@ module Clipboard
               current_byte += 1
             end
             if RubyVersion >= 1.9
-              ret = data.chop.force_encoding("UTF-16LE").encode('UTF-8').encode(Encoding.default_external) # TODO check if direct translation is possible
+              ret = data.chop.force_encoding("UTF-16LE").encode(Encoding.default_external) # TODO catch bad encodings
             else # 1.8: fallback to simple CP850 encoding
               require 'iconv'
               utf8 = Iconv.iconv( "UTF-8", "UTF-16LE", data.chop)[0]
@@ -65,11 +65,29 @@ module Clipboard
     end
  
     def self.clear
-      User32.open( 0 )
-      User32.empty( )
-      User32.close( )
+      if 0 != User32.open( 0 )
+        User32.empty( )
+        User32.close( )
+      end
       paste
     end
+  
+  def self.copy(data_to_copy)
+    if RubyVersion >= 1.9 && 0 != User32.open( 0 )
+      User32.empty( )
+      data = data_to_copy.encode("UTF-16LE") # TODO catch bad encodings
+      data << 0 << 0
+      handler = Kernel32.alloc( GMEM_MOVEABLE, data.bytesize )
+      pointer_to_data = Kernel32.lock( handler )
+      pointer_to_data.put_bytes( 0, data, 0, data.bytesize )
+      Kernel32.unlock( handler )
+      User32.set( CF_UNICODETEXT, handler )
+      User32.close( )
+    else # don't touch anything
+      IO.popen( 'clip', 'w' ){ |input| input << data_to_copy } # depends on clip (available by default since Vista)
+    end
+    paste
+  end
   else #non-windows
     require 'open3'
 
@@ -108,14 +126,13 @@ module Clipboard
     def self.clear
       copy ''
     end
-  end
 
-  # copy for all platforms
-  def self.copy(data)
-    WriteCommands.each{ |cmd|
-      IO.popen( cmd, 'w' ){ |input| input << data }
-    }
-    paste
+    def self.copy(data)
+      WriteCommands.each{ |cmd|
+        IO.popen( cmd, 'w' ){ |input| input << data }
+      }
+      paste
+    end
   end
 end
 
