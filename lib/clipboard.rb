@@ -4,6 +4,8 @@ require 'zucker/version'
 require File.expand_path '../../version', __FILE__
 
 module Clipboard
+  extend self
+
   if OS.windows?
     CF_TEXT = 1
     CF_UNICODETEXT = 13
@@ -35,7 +37,7 @@ module Clipboard
     end
    
     # see http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
-    def self.paste(_=nil)
+    def paste(_=nil)
       ret = ""
         if 0 != User32.open( 0 )
           hclip = User32.get( CF_UNICODETEXT )
@@ -64,30 +66,30 @@ module Clipboard
       ret || ""
     end
  
-    def self.clear
+    def clear
       if 0 != User32.open( 0 )
         User32.empty( )
         User32.close( )
       end
       paste
     end
-  
-  def self.copy(data_to_copy)
-    if RubyVersion >= 1.9 && 0 != User32.open( 0 )
-      User32.empty( )
-      data = data_to_copy.encode("UTF-16LE") # TODO catch bad encodings
-      data << 0 << 0
-      handler = Kernel32.alloc( GMEM_MOVEABLE, data.bytesize )
-      pointer_to_data = Kernel32.lock( handler )
-      pointer_to_data.put_bytes( 0, data, 0, data.bytesize )
-      Kernel32.unlock( handler )
-      User32.set( CF_UNICODETEXT, handler )
-      User32.close( )
-    else # don't touch anything
-      IO.popen( 'clip', 'w' ){ |input| input << data_to_copy } # depends on clip (available by default since Vista)
+    
+    def copy(data_to_copy)
+      if RubyVersion >= 1.9 && 0 != User32.open( 0 )
+        User32.empty( )
+        data = data_to_copy.encode("UTF-16LE") # TODO catch bad encodings
+        data << 0 << 0
+        handler = Kernel32.alloc( GMEM_MOVEABLE, data.bytesize )
+        pointer_to_data = Kernel32.lock( handler )
+        pointer_to_data.put_bytes( 0, data, 0, data.bytesize )
+        Kernel32.unlock( handler )
+        User32.set( CF_UNICODETEXT, handler )
+        User32.close( )
+      else # don't touch anything
+        IO.popen( 'clip', 'w' ){ |input| input << data_to_copy } # depends on clip (available by default since Vista)
+      end
+      paste
     end
-    paste
-  end
   else #non-windows
     require 'open3'
 
@@ -114,7 +116,7 @@ module Clipboard
       end
     end
 
-    def self.paste(which = nil)
+    def paste(which = nil)
       selection_string = if CLIPBOARDS.include?(which.to_s)
         " -selection #{which}"
       else
@@ -123,11 +125,11 @@ module Clipboard
       %x[#{ ReadCommand + selection_string }]
     end
 
-    def self.clear
+    def clear
       copy ''
     end
 
-    def self.copy(data)
+    def copy(data)
       WriteCommands.each{ |cmd|
         IO.popen( cmd, 'w' ){ |input| input << data }
       }
