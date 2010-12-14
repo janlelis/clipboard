@@ -12,7 +12,11 @@ module Clipboard
     GMEM_MOVEABLE = 2
 
     # get ffi function handlers
-    require 'ffi'
+    begin
+      require 'ffi'
+    rescue LoadError
+      raise LoadError, 'Could not load the required ffi gem, install it with: gem install ffi'
+    end
 
     module User32
       extend FFI::Library

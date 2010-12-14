@@ -1,29 +1,35 @@
-require 'rubygems'
 require 'rake'
+require 'rake/rdoctask'
+require 'fileutils'
 
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "clipboard"
-    gem.summary = %Q{Access the clipboard on all systems}
-    gem.description = %Q{Access the clipboard on all systems (Clipboard.copy & Clipboard.paste)}
-    gem.email = "mail@janlelis.de"
-    gem.homepage = "http://github.com/janlelis/clipboard"
-    gem.authors = ["Jan Lelis"]
-    gem.add_development_dependency "jeweler", ">= 0"
-    gem.add_dependency('zucker', '>= 8')
-    gem.add_dependency('ffi')
-    gem.requirements << 'on linux (or other X), you need xclip. Install it on debian/ubuntu with sudo apt-get install xclip'
-        
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
+def gemspec
+  @gemspec ||= eval(File.read('clipboard.gemspec'), binding, 'clipboard.gemspec')
 end
 
-require 'rake/rdoctask'
+desc "Build the gem"
+task :gem=>:gemspec do
+  sh "gem build clipboard.gemspec"
+  FileUtils.mkdir_p 'pkg'
+  FileUtils.mv "#{gemspec.name}-#{gemspec.version}.gem", 'pkg'
+end
+
+desc "Install the gem locally (without docs)"
+task :install => :gem do
+  sh %{gem install pkg/#{gemspec.name}-#{gemspec.version} --no-rdoc --no-ri}
+end
+
+desc "Generate the gemspec"
+task :generate do
+  puts gemspec.to_ruby
+end
+
+desc "Validate the gemspec"
+task :gemspec do
+  gemspec.validate
+end
+
 Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+  version = File.exist?('VERSION') ? File.read('VERSION').chomp : ""
 
   rdoc.rdoc_dir = 'doc'
   rdoc.title = "clipboard #{version}"
