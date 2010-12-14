@@ -1,10 +1,9 @@
 require 'zucker/os'
 require 'zucker/version'
 
-require File.expand_path '../../version', __FILE__
-
 module Clipboard
   extend self
+  VERSION = File.read( (File.dirname(__FILE__) + '/../VERSION') ).chomp
 
   if OS.windows?
     CF_TEXT = 1
