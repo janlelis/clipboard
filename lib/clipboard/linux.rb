@@ -1,3 +1,5 @@
+require 'open3'
+
 module Clipboard
   CLIPBOARDS   = %w[clipboard primary secondary]
   WriteCommands = CLIPBOARDS.map{|cb| 'xclip -selection ' + cb }

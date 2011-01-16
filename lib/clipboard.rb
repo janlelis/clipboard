@@ -1,18 +1,18 @@
-require 'zucker/os'
-require 'zucker/version'
-
 module Clipboard
   extend self
   VERSION = File.read( (File.dirname(__FILE__) + '/../VERSION') ).chomp
 
-  if OS.windows?
-    require 'clipboard/windows'
-  else
-    require 'open3'
-    if OS.mac?
-      require 'clipboard/mac'
+  def self.os
+    case RbConfig::CONFIG['host_os']
+    when /mac|darwin/ then 'mac'
+    when /linux|cygwin/ then 'linux'
+    when /mswin|mingw/ then 'windows'
+#    when /bsd/ then 'bsd'
+#    when /solaris|sunos/ then 'solaris'
     else
-      require 'clipboard/linux'
+      raise "You OS is not supported -> fork me"
     end
   end
+
+  require "clipboard/#{os}"
 end

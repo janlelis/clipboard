@@ -1,3 +1,5 @@
+require 'open3'
+
 module Clipboard
   def self.paste(_=nil)
     `pbpaste`
