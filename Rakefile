@@ -2,6 +2,12 @@ require 'rake'
 require 'rake/rdoctask'
 require 'fileutils'
 
+task :default => :spec
+require "rspec/core/rake_task"
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.rspec_opts = '--backtrace --color'
+end
+
 def gemspec
   @gemspec ||= eval(File.read('clipboard.gemspec'), binding, 'clipboard.gemspec')
 end

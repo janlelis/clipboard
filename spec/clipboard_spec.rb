@@ -1,0 +1,12 @@
+require File.expand_path('spec/spec_helper')
+
+describe Clipboard do
+  it "has a VERSION" do
+    Clipboard::VERSION.should =~ /^\d+\.\d+\.\d+$/
+  end
+
+  it "can copy & paste" do
+    Clipboard.copy("FOO\nBAR")
+    Clipboard.paste.should == "FOO\nBAR"
+  end
+end
