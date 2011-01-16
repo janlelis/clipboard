@@ -11,7 +11,7 @@ You have <tt>Clipboard.copy</tt>,
 Have fun ;)
 
 ==== Multiple clipboards
-On Linux, you can choose, from which clipboard you want to +paste+, default is PRIMARY.
+On Linux, you can choose, from which clipboard you want to +paste+, default is CLIPBOARD.
 
 +copy+ copies to all clipboards in Clipboard::CLIPBOARDS.
 
@@ -29,7 +29,14 @@ Copying with 1.8 will fallback to the +clip+ utility, which is installed by defa
 
 Feel free to report bugs or to implement one of the Todo entries ;)
 
+=== blip
+
+Copy and paste from the commandline (like xclip, pbpaste/pbcopy), but even easier? {blip}[http://rubygems.org/gems/blip]!
+
 === Copyright
-Copyright (c) 2010 Jan Lelis, http://rbjl.net, released under the MIT license
+Copyright (c) 2010-2011 Jan Lelis, http://rbjl.net, released under the MIT license
+
+Contributions by
+* Michael Grosser
 
 J-_-L

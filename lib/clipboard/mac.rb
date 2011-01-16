@@ -1,11 +1,9 @@
-require 'open3'
-
 module Clipboard
-  def self.paste(_=nil)
+  def paste(_ = nil)
     `pbpaste`
   end
 
-  def self.copy(data)
+  def copy(data)
     IO.popen('pbcopy', 'w'){|input| input << data }
     paste
   end
