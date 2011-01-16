@@ -1,21 +1,13 @@
-require 'open3'
-
 module Clipboard
   CLIPBOARDS   = %w[clipboard primary secondary]
   WriteCommands = CLIPBOARDS.map{|cb| 'xclip -selection ' + cb }
   ReadCommand  = 'xclip -o'
 
   # catch dependency errors
-  begin
-    Open3.popen3( "xclip -version" ){ |_, _, error|
-      unless error.read  =~ /^xclip version/
-        raise LoadError
-      end
-    }
-  rescue Exception
-    raise LoadError, "clipboard -\n" +
+  if `which xclip`.empty?
+    raise LoadError, "clipboard:\n" +
           "Could not find required prgram xclip\n" +
-          "You can install it (on debian/ubuntu) with sudo apt-get install xclip"
+          "On debian/ubuntu, you can install it with: sudo apt-get install xclip"
   end
 
   def paste(which = nil)
