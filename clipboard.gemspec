@@ -23,5 +23,4 @@ Gem::Specification.new do |s|
     lib/clipboard.rb
   ]
   s.extra_rdoc_files = %w[LICENSE README.rdoc]
-  s.add_dependency 'zucker', '>= 8'
 end
