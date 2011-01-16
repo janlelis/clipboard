@@ -9,4 +9,8 @@ describe Clipboard do
     Clipboard.copy("FOO\nBAR")
     Clipboard.paste.should == "FOO\nBAR"
   end
+
+  it "returns data on copy" do
+    Clipboard.copy('xxx').should == 'xxx'
+  end
 end
