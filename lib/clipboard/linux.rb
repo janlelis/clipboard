@@ -19,12 +19,8 @@ module Clipboard
   end
 
   def paste(which = nil)
-    selection_string = if CLIPBOARDS.include?(which.to_s)
-      " -selection #{which}"
-    else
-      ''
-    end
-    `#{ReadCommand}#{selection_string}`
+    which ||= CLIPBOARDS.first
+    `#{ReadCommand} -selection #{which}`
   end
 
   def clear
