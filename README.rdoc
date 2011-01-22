@@ -21,22 +21,28 @@ If you paste with 1.9, the Clipboard encoding will be translated to your <tt>Enc
 If you paste with 1.8, it will fallback to CP850 encoding.
 Copying with 1.8 will fallback to the +clip+ utility, which is installed by default since Vista
 
+==== SSH note
+To you use the clipboard through ssh, you need to install <tt>xauth</tt> on your server and connect via <tt>ssh -X</tt> or <tt>ssh -Y</tt>.
+
 === Non-gem requirements
 * *Linux*: +xclip+, you can install it on debian/ubuntu with <tt>sudo apt-get install xclip</tt>
 
 === Todo
 * Don't depend on +xclip+
 
-Feel free to report bugs or to implement one of the Todo entries ;)
+...if there is enough demand or motivation for me °_°
+
+==== Planned for 0.9.5
+* Fallback to <tt>~/.clipboard</tt> if the real clipboard can't be accessed.
+* Also check for +xsel+ on linux
 
 === blip
-
 Copy and paste from the commandline (like xclip, pbpaste/pbcopy), but even easier? {blip}[http://rubygems.org/gems/blip]!
 
 === Copyright
 Copyright (c) 2010-2011 Jan Lelis, http://rbjl.net, released under the MIT license
 
-Contributions by
+Contributions by and thanks to
 * Michael Grosser
 
 J-_-L
