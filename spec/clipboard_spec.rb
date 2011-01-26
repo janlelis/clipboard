@@ -42,7 +42,6 @@ describe Clipboard do
 
   describe 'Clipboard::File' do
     before :all do
-      require 'clipboard/file'
       Clipboard.implementation = Clipboard::File
       cache = Clipboard::File::FILE
       FileUtils.rm cache if File.exist?(cache)
@@ -65,6 +64,10 @@ describe Clipboard do
   end
 
   describe :detect_os do
+    before do
+      $VERBOSE = true
+    end
+
     it "does not warn on normal detection" do
       $stderr.should_not_receive(:puts)
       Clipboard.detect_os
@@ -73,6 +76,14 @@ describe Clipboard do
     it "warns when OS is unknown" do
       RbConfig::CONFIG['host_os'] = 'Fooo OS'
       $stderr.should_receive(:puts)
+      Clipboard.detect_os
+      Clipboard.implementation.should == Clipboard::File
+    end
+
+    it "does not warn when $VERBOSE is false" do
+      $VERBOSE = false
+      RbConfig::CONFIG['host_os'] = 'Fooo OS'
+      $stderr.should_not_receive(:puts)
       Clipboard.detect_os
     end
   end

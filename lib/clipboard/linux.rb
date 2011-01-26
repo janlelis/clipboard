@@ -3,10 +3,10 @@ class Clipboard::Linux
   WriteCommands = CLIPBOARDS.map{|cb| 'xclip -selection ' + cb }
   ReadCommand  = 'xclip -o'
 
-  # catch dependency errors
-  if `which xclip`.empty?
-    raise LoadError, "clipboard:\n" +
-          "Could not find required prgram xclip\n" +
+  #catch dependency errors
+  if not system('which xclip')
+    raise Clipboard::ClipboardLoadError, "clipboard:\n" +
+          "Could not find required program xclip\n" +
           "On debian/ubuntu, you can install it with: sudo apt-get install xclip"
   end
 

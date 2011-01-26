@@ -1,4 +1,7 @@
 module Clipboard
+  class ClipboardLoadError < Exception
+  end
+
   extend self
   VERSION = File.read( (File.dirname(__FILE__) + '/../VERSION') ).chomp
   class << self
@@ -13,12 +16,15 @@ module Clipboard
     when /bsd/ then 'linux'
     # when /solaris|sunos/ then 'linux' # needs testing..
     else
-      $stderr.puts "Your OS(#{os}) is not supported, using file-based clipboard"
-      'file'
+      raise ClipboardLoadError, "Your OS(#{os}) is not supported, using file-based clipboard"
     end
 
     require "clipboard/#{os}"
     self.implementation = eval("Clipboard::#{os.capitalize}")
+  rescue ClipboardLoadError => e
+    $stderr.puts e.message if $VERBOSE
+    require "clipboard/file"
+    self.implementation = eval("Clipboard::File")
   end
 
   def paste(*args)
