@@ -1,6 +1,12 @@
 require File.expand_path('spec/spec_helper')
 
+$os = RbConfig::CONFIG['host_os']
+
 describe Clipboard do
+  before do
+    RbConfig::CONFIG['host_os'] = $os
+  end
+
   it "has a VERSION" do
     Clipboard::VERSION.should =~ /^\d+\.\d+\.\d+$/
   end
@@ -34,12 +40,40 @@ describe Clipboard do
     end
   end
 
+  describe 'Clipboard::File' do
+    before :all do
+      require 'clipboard/file'
+      Clipboard.implementation = Clipboard::File
+      cache = Clipboard::File::FILE
+      FileUtils.rm cache if File.exist?(cache)
+    end
+
+    it "can paste with empty file" do
+      Clipboard.paste.should == ''
+    end
+
+    it "can copy & paste" do
+      Clipboard.copy('xxx').should == 'xxx'
+      Clipboard.paste.should == 'xxx'
+    end
+
+    it "can clear" do
+      Clipboard.copy('xxx').should == 'xxx'
+      Clipboard.clear
+      Clipboard.paste.should == ''
+    end
+  end
+
   describe :detect_os do
-    it "raises when os is unknown" do
+    it "does not warn on normal detection" do
+      $stderr.should_not_receive(:puts)
+      Clipboard.detect_os
+    end
+
+    it "warns when OS is unknown" do
       RbConfig::CONFIG['host_os'] = 'Fooo OS'
-      lambda{
-        Clipboard.detect_os
-      }.should raise_error
+      $stderr.should_receive(:puts)
+      Clipboard.detect_os
     end
   end
 end
