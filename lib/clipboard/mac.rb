@@ -1,14 +1,14 @@
-module Clipboard
-  def paste(_ = nil)
+class Clipboard::Mac
+  def self.paste(_ = nil)
     `pbpaste`
   end
 
-  def copy(data)
+  def self.copy(data)
     IO.popen('pbcopy', 'w'){|input| input << data }
     paste
   end
 
-  def clear
+  def self.clear
     copy ''
   end
 end

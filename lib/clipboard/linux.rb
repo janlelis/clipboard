@@ -1,4 +1,4 @@
-module Clipboard
+class Clipboard::Linux
   CLIPBOARDS   = %w[clipboard primary secondary]
   WriteCommands = CLIPBOARDS.map{|cb| 'xclip -selection ' + cb }
   ReadCommand  = 'xclip -o'
@@ -10,16 +10,16 @@ module Clipboard
           "On debian/ubuntu, you can install it with: sudo apt-get install xclip"
   end
 
-  def paste(which = nil)
+  def self.paste(which = nil)
     which ||= CLIPBOARDS.first
     `#{ReadCommand} -selection #{which}`
   end
 
-  def clear
+  def self.clear
     copy ' ' # impossible to copy nothing ?
   end
 
-  def copy(data)
+  def self.copy(data)
     WriteCommands.each{ |cmd|
       IO.popen( cmd, 'w' ){ |input| input << data }
     }

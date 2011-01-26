@@ -33,4 +33,13 @@ describe Clipboard do
       a.send(:paste).strip.should == ''
     end
   end
+
+  describe :detect_os do
+    it "raises when os is unknown" do
+      RbConfig::CONFIG['host_os'] = 'Fooo OS'
+      lambda{
+        Clipboard.detect_os
+      }.should raise_error
+    end
+  end
 end
