@@ -13,4 +13,10 @@ describe Clipboard do
   it "returns data on copy" do
     Clipboard.copy('xxx').should == 'xxx'
   end
+
+  it "can clear" do
+    Clipboard.copy('xxx')
+    Clipboard.clear
+    Clipboard.paste.strip.should == ''
+  end
 end

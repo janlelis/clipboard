@@ -16,7 +16,7 @@ module Clipboard
   end
 
   def clear
-    copy ''
+    copy ' ' # impossible to copy nothing ?
   end
 
   def copy(data)
