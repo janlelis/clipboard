@@ -19,4 +19,18 @@ describe Clipboard do
     Clipboard.clear
     Clipboard.paste.strip.should == ''
   end
+
+  describe "when included" do
+    class A
+      include Clipboard
+    end
+
+    it "can copy & paste & clear" do
+      a = A.new
+      a.send(:copy, "XXX").should == 'XXX'
+      a.send(:paste).should == "XXX"
+      a.send(:clear)
+      a.send(:paste).strip.should == ''
+    end
+  end
 end
