@@ -1,3 +1,5 @@
+require 'open3'
+
 module Clipboard; end
 
 module Clipboard::Linux
@@ -25,7 +27,7 @@ module Clipboard::Linux
 
   def copy(data)
     WriteCommands.each{ |cmd|
-      IO.popen( cmd, 'w' ){ |input| input << data }
+      Open3.popen3( cmd ){ |input,_,_| input << data }
     }
     paste
   end

@@ -1,3 +1,5 @@
+require 'open3'
+
 module Clipboard; end
 
 module Clipboard::Mac
@@ -8,7 +10,7 @@ module Clipboard::Mac
   end
 
   def copy(data)
-    IO.popen('pbcopy', 'w'){|input| input << data }
+    Open3.popen3( 'pbcopy' ){ |input,_,_| input << data }
     paste
   end
 

@@ -1,3 +1,5 @@
+require 'open3'
+
 module Clipboard; end
 
 module Clipboard::Windows
@@ -86,7 +88,7 @@ module Clipboard::Windows
       User32.set( CF_UNICODETEXT, handler )
       User32.close( )
     else # don't touch anything
-      IO.popen( 'clip', 'w' ){ |input| input << data_to_copy } # depends on clip (available by default since Vista)
+      Open3.popen3( 'clip' ){ |input,_,_| input << data_to_copy } # depends on clip (available by default since Vista)
     end
     paste
   end
