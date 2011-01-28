@@ -1,0 +1,8 @@
+== 0.9.5
+* Fallback to Clipboard::File, if no other clipboard is available
+* Also check for xsel if using linux implementation
+* Fix for jruby copying
+* You can directly use a specific implementation, e.g.: require 'clipboard/file' # gives you Clipboard::File
+
+== < 0.9.4
+See https://github.com/janlelis/clipboard/commits/0.9.4
