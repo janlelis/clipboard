@@ -1,4 +1,8 @@
-class Clipboard::Windows
+module Clipboard; end
+
+module Clipboard::Windows
+  extend self
+
   CF_TEXT = 1
   CF_UNICODETEXT = 13
   GMEM_MOVEABLE = 2
@@ -33,7 +37,7 @@ class Clipboard::Windows
   end
 
   # see http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
-  def self.paste(_=nil)
+  def paste(_ = nil)
     ret = ""
       if 0 != User32.open( 0 )
         hclip = User32.get( CF_UNICODETEXT )
@@ -62,7 +66,7 @@ class Clipboard::Windows
     ret || ""
   end
 
-  def self.clear
+  def clear
     if 0 != User32.open( 0 )
       User32.empty( )
       User32.close( )
@@ -70,7 +74,7 @@ class Clipboard::Windows
     paste
   end
 
-  def self.copy(data_to_copy)
+  def copy(data_to_copy)
     if RubyVersion >= 1.9 && 0 != User32.open( 0 )
       User32.empty( )
       data = data_to_copy.encode("UTF-16LE") # TODO catch bad encodings

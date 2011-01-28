@@ -1,16 +1,20 @@
-class Clipboard::File
+module Clipboard; end
+
+module Clipboard::File
+  extend self
+
   FILE = File.expand_path("~/.clipboard")
 
-  def self.copy(text)
-    File.open(FILE,'w'){|f| f.write(text) }
-    text
+  def copy(text)
+    File.open(FILE,'w'){|f| f.write(text) } rescue ''
+    paste
   end
 
-  def self.paste(_=nil)
+  def paste(_ = nil)
     File.read(FILE) rescue ''
   end
 
-  def self.clear
-    copy('')
+  def clear
+    copy ''
   end
 end

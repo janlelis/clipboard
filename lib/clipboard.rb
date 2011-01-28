@@ -1,30 +1,36 @@
 module Clipboard
+  extend self
+
+  VERSION = File.read( (File.dirname(__FILE__) + '/../VERSION') ).chomp
+
   class ClipboardLoadError < Exception
   end
 
-  extend self
-  VERSION = File.read( (File.dirname(__FILE__) + '/../VERSION') ).chomp
-  class << self
-    attr_accessor :implementation
-  end
+  autoload :Linux,   'clipboard/linux'
+  autoload :Mac,     'clipboard/mac'
+  autoload :Windows, 'clipboard/windows'
+  autoload :File,    'clipboard/file'
 
-  def self.detect_os
+  def self.implementation
+  return @implementation if @implementation
+
     os = case RbConfig::CONFIG['host_os']
-    when /mac|darwin/ then 'mac'
-    when /linux|cygwin/ then 'linux'
-    when /mswin|mingw/ then 'windows'
-    when /bsd/ then 'linux'
-    # when /solaris|sunos/ then 'linux' # needs testing..
+    when /mac|darwin/        then :Mac
+    when /linux|bsd|cygwin/  then :Linux
+    when /mswin|mingw/       then :Windows
+    # when /solaris|sunos/     then :Linux # needs testing..
     else
-      raise ClipboardLoadError, "Your OS(#{os}) is not supported, using file-based clipboard"
+      raise ClipboardLoadError, "Your OS(#{ RbConfig::CONFIG['host_os'] }) is not supported, using file-based (fake) clipboard"
     end
 
-    require "clipboard/#{os}"
-    self.implementation = eval("Clipboard::#{os.capitalize}")
+    @implementation = Clipboard.const_get os
   rescue ClipboardLoadError => e
     $stderr.puts e.message if $VERBOSE
-    require "clipboard/file"
-    self.implementation = eval("Clipboard::File")
+    @implementation = Clipboard::File
+  end
+
+  def self.implementation=(val)
+    @implementation = val
   end
 
   def paste(*args)
@@ -40,4 +46,4 @@ module Clipboard
   end
 end
 
-Clipboard.detect_os
+Clipboard.implementation # TODO remove this?

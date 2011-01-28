@@ -23,7 +23,7 @@ describe Clipboard do
   it "can clear" do
     Clipboard.copy('xxx')
     Clipboard.clear
-    Clipboard.paste.strip.should == ''
+    Clipboard.paste.should == ''
   end
 
   describe "when included" do
@@ -36,7 +36,7 @@ describe Clipboard do
       a.send(:copy, "XXX").should == 'XXX'
       a.send(:paste).should == "XXX"
       a.send(:clear)
-      a.send(:paste).strip.should == ''
+      a.send(:paste).should == ''
     end
   end
 
@@ -63,20 +63,20 @@ describe Clipboard do
     end
   end
 
-  describe :detect_os do
+  describe :implementation do
     before do
       $VERBOSE = true
+      Clipboard.implementation = nil
     end
 
     it "does not warn on normal detection" do
       $stderr.should_not_receive(:puts)
-      Clipboard.detect_os
+      Clipboard.implementation
     end
 
     it "warns when OS is unknown" do
       RbConfig::CONFIG['host_os'] = 'Fooo OS'
       $stderr.should_receive(:puts)
-      Clipboard.detect_os
       Clipboard.implementation.should == Clipboard::File
     end
 
@@ -84,7 +84,7 @@ describe Clipboard do
       $VERBOSE = false
       RbConfig::CONFIG['host_os'] = 'Fooo OS'
       $stderr.should_not_receive(:puts)
-      Clipboard.detect_os
+      Clipboard.implementation
     end
   end
 end
