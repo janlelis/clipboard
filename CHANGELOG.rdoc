@@ -1,3 +1,6 @@
+== 0.9.6
+* support rubygems-test
+
 == 0.9.5
 * Fallback to Clipboard::File, if no other clipboard is available
 * Also check for xsel if using linux implementation
