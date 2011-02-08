@@ -1,5 +1,5 @@
-== 0.9.6
-* support rubygems-test
+== 0.9.6 / 0.9.7
+* Support rubygems-test ("gem test clipboard" if rubygems-test is installed)
 
 == 0.9.5
 * Fallback to Clipboard::File, if no other clipboard is available
