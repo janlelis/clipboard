@@ -32,6 +32,7 @@ end
 
 desc "Validate the gemspec"
 task :gemspec do
+  require 'rubygems/user_interaction' # rubygems 1.5.0
   gemspec.validate
 end
 
