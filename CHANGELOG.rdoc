@@ -1,3 +1,6 @@
+== 0.9.8
+* Fix a Windows bug
+
 == 0.9.6 / 0.9.7
 * Support rubygems-test ("gem test clipboard" if rubygems-test is installed)
 

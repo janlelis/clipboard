@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    clipboard (0.9.7)
+    clipboard (0.9.8)
 
 GEM
   remote: http://rubygems.org/
