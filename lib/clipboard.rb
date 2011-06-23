@@ -6,8 +6,10 @@ module Clipboard
   class ClipboardLoadError < Exception
   end
 
-  autoload :Linux,   'clipboard/linux'
-  autoload :Mac,     'clipboard/mac'
+  unless defined? Ocra # see gh#9
+    autoload :Linux,   'clipboard/linux'
+    autoload :Mac,     'clipboard/mac'
+  end
   autoload :Windows, 'clipboard/windows'
   autoload :File,    'clipboard/file'
 
