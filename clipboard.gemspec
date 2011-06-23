@@ -6,15 +6,25 @@ Gem::Specification.new do |s|
   s.version = File.read('VERSION').chomp
 
   s.authors = ["Jan Lelis"]
-  s.date = '2011-02-08'
-  s.summary = 'Access the clipboard on all systems.'
-  s.description = 'Access the clipboard on all systems (Clipboard.copy & Clipboard.paste).'
+  s.date = '2011-06-23'
+  s.summary = 'Access the clipboard on Linux, MacOS and Windows.'
+  s.description = 'Access the clipboard on Linux, MacOS and Windows (Clipboard.copy & Clipboard.paste).'
   s.email = 'mail@janlelis.de'
   s.homepage = %q{http://github.com/janlelis/clipboard}
   s.required_rubygems_version = ">= 1.3.6"
-  s.requirements =  ["On Linux (or other X), you need xclip. Install it on debian/ubuntu with sudo apt-get install xclip"]
+  s.requirements =  ["On Linux (or other X), you need xclip. You can install it on debian/ubuntu with sudo apt-get install xclip"]
   s.requirements += ["On Windows, you need the ffi gem."]
   s.files = Dir.glob(%w[{lib,spec}/**/*.rb [A-Z]* [A-Z]*.rdoc]) + %w{clipboard.gemspec .gemtest}
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '>=2'
+
+  len = s.homepage.size
+  s.post_install_message = \
+   ("       ┌── " + "info ".ljust(len-2,'%')            + "─┐\n" +
+    " J-_-L │ "   + s.homepage                          + " │\n" +
+    "       ├── " + "usage ".ljust(len-2,'%')           + "─┤\n" +
+    "       │ "   + "require 'clipboard'".ljust(len,' ')     + " │\n" +
+    "       │ "   + "Clipboard.copy '42'".ljust(len,' ')     + " │\n" +
+    "       │ "   + "Clipboard.paste #=> 42".ljust(len,' ')  + " │\n" +
+    "       └─"   + '─'*len                             + "─┘").gsub('%', '─') # 1.8 workaround
 end
