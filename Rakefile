@@ -2,6 +2,7 @@ require 'rake'
 require 'rake/rdoctask'
 require 'fileutils'
 
+task :test => :spec
 task :default => :spec
 require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:spec) do |t|
@@ -13,7 +14,7 @@ def gemspec
 end
 
 desc "Build the gem"
-task :gem=>:gemspec do
+task :gem => :gemspec do
   sh "gem build clipboard.gemspec"
   FileUtils.mkdir_p 'pkg'
   FileUtils.mv "#{gemspec.name}-#{gemspec.version}.gem", 'pkg'
@@ -31,6 +32,7 @@ end
 
 desc "Validate the gemspec"
 task :gemspec do
+  require 'rubygems/user_interaction' # rubygems 1.5.0
   gemspec.validate
 end
 

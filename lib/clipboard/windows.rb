@@ -52,7 +52,7 @@ module Clipboard::Windows
             data << pointer_to_data.get_bytes( current_byte, 1 )
             current_byte += 1
           end
-          if RubyVersion >= 1.9
+          if RUBY_VERSION >= '1.9'
             ret = data.chop.force_encoding("UTF-16LE").encode(Encoding.default_external) # TODO catch bad encodings
           else # 1.8: fallback to simple CP850 encoding
             require 'iconv'
@@ -77,7 +77,7 @@ module Clipboard::Windows
   end
 
   def copy(data_to_copy)
-    if RubyVersion >= 1.9 && 0 != User32.open( 0 )
+    if ( RUBY_VERSION >= '1.9' ) && 0 != User32.open( 0 )
       User32.empty( )
       data = data_to_copy.encode("UTF-16LE") # TODO catch bad encodings
       data << 0 << 0

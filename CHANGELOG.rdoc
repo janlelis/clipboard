@@ -1,3 +1,12 @@
+== 0.9.9
+* Allow Ocra packing
+
+== 0.9.8
+* Fix a Windows bug
+
+== 0.9.6 / 0.9.7
+* Support rubygems-test ("gem test clipboard" if rubygems-test is installed)
+
 == 0.9.5
 * Fallback to Clipboard::File, if no other clipboard is available
 * Also check for xsel if using linux implementation

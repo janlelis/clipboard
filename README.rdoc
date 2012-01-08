@@ -25,19 +25,16 @@ Copying with 1.8 will fallback to the +clip+ utility, which is installed by defa
 To you use the clipboard through ssh, you need to install <tt>xauth</tt> on your server and connect via <tt>ssh -X</tt> or <tt>ssh -Y</tt>.
 
 === Non-gem requirements
-* *Linux*: +xclip+, you can install it on debian/ubuntu with <tt>sudo apt-get install xclip</tt>
+* *Linux*: +xclip+ or +xsel+, you can install it on debian/ubuntu with <tt>sudo apt-get install xclip</tt>
 
 === Todo
-* Don't depend on +xclip+
+* Don't depend on +xclip+/+xsel+
+* Maybe a java implementation
 
 ...if there is enough demand or motivation for me °_°
 
-==== Planned for 0.9.5
-* Fallback to <tt>~/.clipboard</tt> if the real clipboard can't be accessed.
-* Also check for +xsel+ on linux
-
 === blip
-Copy and paste from the commandline (like xclip, pbpaste/pbcopy), but even easier? {blip}[http://rubygems.org/gems/blip]!
+Want to access the clipboard form the commandline? Try {blip}[http://rubygems.org/gems/blip]!
 
 === Copyright
 Copyright (c) 2010-2011 Jan Lelis, http://rbjl.net, released under the MIT license
