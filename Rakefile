@@ -1,10 +1,9 @@
 require 'rake'
-require 'rake/rdoctask'
 require 'fileutils'
+require "rspec/core/rake_task"
 
 task :test => :spec
 task :default => :spec
-require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:spec) do |t|
   t.rspec_opts = '--backtrace --color'
 end
@@ -36,11 +35,3 @@ task :gemspec do
   gemspec.validate
 end
 
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION').chomp : ""
-
-  rdoc.rdoc_dir = 'doc'
-  rdoc.title = "clipboard #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end

@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.version = File.read('VERSION').chomp
 
   s.authors = ["Jan Lelis"]
-  s.summary = 'Easy access the clipboard on Linux, MacOS and Windows.'
-  s.description = 'Easy access the clipboard on Linux, MacOS and Windows (Clipboard.copy & Clipboard.paste).'
+  s.summary = 'Easy access to the clipboard on Linux, MacOS and Windows.'
+  s.description = 'Easy access to the clipboard on Linux, MacOS and Windows (Clipboard.copy & Clipboard.paste).'
   s.email = 'mail@janlelis.de'
   s.homepage = %q{http://github.com/janlelis/clipboard}
   s.requirements =  ["On Linux (or other X), you need xclip. You can install it on debian/ubuntu with: sudo apt-get install xclip"]

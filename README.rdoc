@@ -1,5 +1,5 @@
 = clipboard
-Access the clipboard and do not care if the OS is Linux, MacOS or Windows.
+Access the clipboard and do not care if the OS is Linux, MacOS or Windows. http://travis-ci.org/janlelis/clipboard.png
 
 === Usage
 You have <tt>Clipboard.copy</tt>,
@@ -24,20 +24,22 @@ Copying with 1.8 will fallback to the +clip+ utility, which is installed by defa
 ==== SSH note
 To you use the clipboard through ssh, you need to install <tt>xauth</tt> on your server and connect via <tt>ssh -X</tt> or <tt>ssh -Y</tt>.
 
+==== Java note
+There is a java implementation included (<tt>Clipboard::Java</tt>) as an option for JRuby. However, on Linux, it always operates (only) on the CLIPBOARD clipboard.
+
 === Non-gem requirements
 * *Linux*: +xclip+ or +xsel+, you can install it on debian/ubuntu with <tt>sudo apt-get install xclip</tt>
 
 === Todo
 * Don't depend on +xclip+/+xsel+
-* Maybe a java implementation
 
 ...if there is enough demand or motivation for me °_°
 
 === blip
-Want to access the clipboard form the commandline? Try {blip}[http://rubygems.org/gems/blip]!
+Want to access the clipboard form the command line? Try {blip}[http://rubygems.org/gems/blip]!
 
 === Copyright
-Copyright (c) 2010-2011 Jan Lelis, http://rbjl.net, released under the MIT license
+Copyright (c) 2010-2012 Jan Lelis, http://rbjl.net, released under the MIT license
 
 Contributions by and thanks to
 * Michael Grosser
