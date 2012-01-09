@@ -9,6 +9,7 @@ module Clipboard
   unless defined? Ocra # see gh#9
     autoload :Linux,   'clipboard/linux'
     autoload :Mac,     'clipboard/mac'
+    autoload :Java,    'clipboard/java'
   end
   autoload :Windows, 'clipboard/windows'
   autoload :File,    'clipboard/file'
