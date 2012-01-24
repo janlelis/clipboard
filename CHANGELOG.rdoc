@@ -1,3 +1,6 @@
+== 1.0.1
+* Fix permissions in packaged rubygem
+
 == 1.0.0
 * Add basic java clipboard support
 
