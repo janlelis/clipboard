@@ -2,21 +2,22 @@
 Access the clipboard and do not care if the OS is Linux, MacOS or Windows.
 
 === Usage
-You have <tt>Clipboard.copy</tt>,
+* <tt>Clipboard.copy</tt>
+* <tt>Clipboard.paste</tt>
+* <tt>Clipboard.clear</tt>
 
-<tt>Clipboard.paste</tt> and
-
-<tt>Clipboard.clear</tt>
-
-Have fun ;)
+== Remarks
 
 ==== Multiple clipboards
-On Linux, you can choose, from which clipboard you want to +paste+, default is CLIPBOARD.
+On Linux, you can choose from which clipboard you want to +paste+ by supplying an argumument, the default is CLIPBOARD.
 
 +copy+ copies to all clipboards in Clipboard::CLIPBOARDS.
 
+==== ffi dependency
+This gem depends on the ffi gem to support the Windows clipboard. However, since ffi is not plain Ruby, it cannot be installed in every Ruby environment and therefore, ffi is not a hard dependency of this gem. To ensure Windows compatibility, you can put the ffi gem in your Gemfile.
+
 ==== Windows Encoding note
-If you paste with 1.9, the Clipboard encoding will be translated to your <tt>Encoding.default_external</tt>.
+If you paste with 1.9, the clipboard encoding will be translated to your <tt>Encoding.default_external</tt>.
 
 If you paste with 1.8, it will fallback to CP850 encoding.
 Copying with 1.8 will fallback to the +clip+ utility, which is installed by default since Vista
