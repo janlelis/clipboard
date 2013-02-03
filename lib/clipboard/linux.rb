@@ -8,11 +8,11 @@ module Clipboard::Linux
   CLIPBOARDS   = %w[clipboard primary secondary]
 
   # check which backend to use
-  if !`which xclip`.empty?
+  if system('which xclip 2>/dev/null')
     WriteCommand = 'xclip'
     ReadCommand  = 'xclip -o'
     Selection    = proc{|x| "-selection #{x}"}
-  elsif !`which xsel`.empty?
+  elsif system('which xsel 2>/dev/null')
     WriteCommand = 'xsel'
     ReadCommand  = 'xsel -o'
     Selection    = {'clipboard' => '-b', 'primary' => '-p', 'secondary' => '-s'}
