@@ -1,4 +1,4 @@
-= clipboard
+= clipboard {<img src="https://travis-ci.org/janlelis/clipboard.png" />}[https://travis-ci.org/janlelis/clipboard]
 Access the clipboard and do not care if the OS is Linux, MacOS or Windows.
 
 === Usage

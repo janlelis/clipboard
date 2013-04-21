@@ -1,5 +1,7 @@
-== 1.0.2 (master)
+== 1.0.2
 * Add missing require 'rbconfig'
+* File backend: File only accessible by owner
+* Small tweaks
 
 == 1.0.1
 * Fix permissions in packaged rubygem
