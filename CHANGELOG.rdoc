@@ -1,3 +1,6 @@
+== 1.0.2 (master)
+* Add missing require 'rbconfig'
+
 == 1.0.1
 * Fix permissions in packaged rubygem
 

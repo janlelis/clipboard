@@ -1,3 +1,5 @@
+require 'rbconfig'
+
 module Clipboard
   extend self
 
@@ -49,4 +51,4 @@ module Clipboard
   end
 end
 
-Clipboard.implementation # TODO remove this?
+Clipboard.implementation
