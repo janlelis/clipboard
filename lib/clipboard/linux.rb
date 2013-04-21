@@ -8,17 +8,16 @@ module Clipboard::Linux
   CLIPBOARDS   = %w[clipboard primary secondary]
 
   # check which backend to use
-  if system('which xclip &>/dev/null')
+  if system('which xclip >/dev/null 2>&1')
     WriteCommand = 'xclip'
     ReadCommand  = 'xclip -o'
     Selection    = proc{|x| "-selection #{x}"}
-  elsif system('which xsel &>/dev/null')
+  elsif system('which xsel >/dev/null 2>&1')
     WriteCommand = 'xsel'
     ReadCommand  = 'xsel -o'
     Selection    = {'clipboard' => '-b', 'primary' => '-p', 'secondary' => '-s'}
   else
-    raise Clipboard::ClipboardLoadError, "clipboard:\n" \
-          "Could not find required program xclip (or xsel)\n" \
+    raise Clipboard::ClipboardLoadError, "clipboard: Could not find required program xclip or xsel\n" \
           "On debian/ubuntu, you can install it with: sudo apt-get install xclip"
   end
 
