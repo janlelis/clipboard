@@ -8,39 +8,37 @@ Access the clipboard and do not care if the OS is Linux, MacOS or Windows.
 
 == Remarks
 
-==== Multiple clipboards
+==== Multiple Clipboards
 On Linux, you can choose from which clipboard you want to +paste+ by supplying an argumument, the default is CLIPBOARD.
 
 +copy+ copies to all clipboards in Clipboard::CLIPBOARDS.
 
-==== ffi dependency
+==== ffi Dependency
 This gem depends on the ffi gem to support the Windows clipboard. However, since ffi is not plain Ruby, it cannot be installed in every Ruby environment and therefore, ffi is not a hard dependency of this gem. To ensure Windows compatibility, you can put the ffi gem in your Gemfile.
 
-==== Windows Encoding note
+==== Windows Encoding
 If you paste with 1.9, the clipboard encoding will be translated to your <tt>Encoding.default_external</tt>.
 
 If you paste with 1.8, it will fallback to CP850 encoding.
 Copying with 1.8 will fallback to the +clip+ utility, which is installed by default since Vista
 
-==== SSH note
+==== SSH
 To use the clipboard through ssh, you need to install <tt>xauth</tt> on your server and connect via <tt>ssh -X</tt> or <tt>ssh -Y</tt>. However, some server settings restrict that feature, so don't rely on it, untested.
 
-==== Java note
+==== Java
 There is a java implementation included (<tt>Clipboard::Java</tt>) as an option for JRuby. However, on Linux, it always operates (only) on the CLIPBOARD clipboard.
 
-=== Non-gem requirements
+=== Non-gem Requirements
 * *Linux*: +xclip+ or +xsel+, you can install it on debian/ubuntu with <tt>sudo apt-get install xclip</tt>
 
-=== Todo
-* Don't depend on +xclip+/+xsel+
-
-...if there is enough demand or motivation for me °_°
+=== TODO
+* Don't depend on +xclip+/+xsel+ (no plans to implement it, though)
 
 === blip
 Want to access the clipboard form the command line? Try {blip}[http://rubygems.org/gems/blip]!
 
 === Copyright
-Copyright (c) 2010-2012 Jan Lelis, http://rbjl.net, released under the MIT license
+Copyright (c) 2010-2013 Jan Lelis <http://happycode.org> released under the MIT license
 
 Contributions by and thanks to
 * Michael Grosser
