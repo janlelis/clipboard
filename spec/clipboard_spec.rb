@@ -72,7 +72,9 @@ describe Clipboard do
     end
 
     it "does not warn on normal detection" do
-      $stderr.should_not_receive(:puts)
+      if system('which xclip >/dev/null 2>&1') || system('which xsel >/dev/null 2>&1')
+        $stderr.should_not_receive(:puts)
+      end
       Clipboard.implementation
     end
 
