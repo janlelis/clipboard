@@ -1,4 +1,5 @@
 require 'rbconfig'
+require_relative 'clipboard/version'
 
 module Clipboard
   extend self

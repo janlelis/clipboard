@@ -1,3 +1,6 @@
+== 1.0.3
+* Don't load current version from file (gh#15)
+
 == 1.0.2
 * Add missing require 'rbconfig'
 * File backend: File only accessible by owner
