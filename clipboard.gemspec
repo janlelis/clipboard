@@ -1,9 +1,12 @@
 # -*- encoding: utf-8 -*-
 require 'rubygems' unless defined? Gem
 
+$:.unshift File.expand_path("../lib", __FILE__)
+require 'clipboard/version'
+
 Gem::Specification.new do |s|
   s.name = 'clipboard'
-  s.version = File.read('VERSION').chomp
+  s.version = Clipboard::VERSION
 
   s.authors = ["Jan Lelis"]
   s.summary = 'Easy access to the clipboard on Linux, MacOS and Windows.'
