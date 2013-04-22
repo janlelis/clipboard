@@ -3,8 +3,6 @@ require 'rbconfig'
 module Clipboard
   extend self
 
-  VERSION = File.read( (File.dirname(__FILE__) + '/../VERSION') ).chomp
-
   class ClipboardLoadError < Exception
   end
 
