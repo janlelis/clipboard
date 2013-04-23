@@ -1,3 +1,6 @@
+== 1.0.4
+* Restore 1.8 Support
+
 == 1.0.3
 * Don't load current version from file (gh#15)
 

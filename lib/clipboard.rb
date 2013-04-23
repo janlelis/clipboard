@@ -1,5 +1,5 @@
 require 'rbconfig'
-require_relative 'clipboard/version'
+require File.dirname(__FILE__) + '/clipboard/version'
 
 module Clipboard
   extend self
