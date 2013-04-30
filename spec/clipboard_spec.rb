@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Please note: cannot test, if it really accesses your platform clipboard.
 
 require File.expand_path('spec/spec_helper')
@@ -16,6 +17,12 @@ describe Clipboard do
   it "can copy & paste" do
     Clipboard.copy("FOO\nBAR")
     Clipboard.paste.should == "FOO\nBAR"
+  end
+
+  it "can copy & paste with multibyte char" do
+    Encoding.default_external = "utf-8"
+    Clipboard.copy("日本語")
+    Clipboard.paste.should == "日本語"
   end
 
   it "returns data on copy" do
