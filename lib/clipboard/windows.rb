@@ -35,6 +35,7 @@ module Clipboard::Windows
 
     attach_function :lock,   :GlobalLock,   [ :long ], :pointer
     attach_function :unlock, :GlobalUnlock, [ :long ], :long
+    attach_function :size,   :GlobalSize,   [ :long ], :long
     attach_function :alloc,  :GlobalAlloc,  [ :long, :long ], :long
   end
 
@@ -47,16 +48,13 @@ module Clipboard::Windows
           pointer_to_data = Kernel32.lock( hclip )
           data = ""
           # Windows Unicode is ended by to null bytes, so get the whole string
-          current_byte = 0
-          until data.size >= 2 && data[-1].ord == 0 && data[-2].ord == 0
-            data << pointer_to_data.get_bytes( current_byte, 1 )
-            current_byte += 1
-          end
+          size = Kernel32.size( hclip )
+          data << pointer_to_data.get_bytes( 0, size - 2 )
           if RUBY_VERSION >= '1.9'
-            ret = data.chop.force_encoding("UTF-16LE").encode(Encoding.default_external) # TODO catch bad encodings
+            ret = data.force_encoding("UTF-16LE").encode(Encoding.default_external) # TODO catch bad encodings
           else # 1.8: fallback to simple CP850 encoding
             require 'iconv'
-            utf8 = Iconv.iconv( "UTF-8", "UTF-16LE", data.chop)[0]
+            utf8 = Iconv.iconv( "UTF-8", "UTF-16LE", data)[0]
             ret = Iconv.iconv( "CP850", "UTF-8", utf8)[0]
           end
         if data && 0 != data
@@ -80,7 +78,7 @@ module Clipboard::Windows
     if ( RUBY_VERSION >= '1.9' ) && 0 != User32.open( 0 )
       User32.empty( )
       data = data_to_copy.encode("UTF-16LE") # TODO catch bad encodings
-      data << 0 << 0
+      data << 0
       handler = Kernel32.alloc( GMEM_MOVEABLE, data.bytesize )
       pointer_to_data = Kernel32.lock( handler )
       pointer_to_data.put_bytes( 0, data, 0, data.bytesize )
