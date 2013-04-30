@@ -19,10 +19,12 @@ describe Clipboard do
     Clipboard.paste.should == "FOO\nBAR"
   end
 
-  it "can copy & paste with multibyte char" do
-    Encoding.default_external = "utf-8"
-    Clipboard.copy("日本語")
-    Clipboard.paste.should == "日本語"
+  if RUBY_VERSION >= "1.9"
+    it "can copy & paste with multibyte char" do
+      Encoding.default_external = "utf-8"
+      Clipboard.copy("日本語")
+      Clipboard.paste.should == "日本語"
+    end
   end
 
   it "returns data on copy" do

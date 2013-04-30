@@ -1,3 +1,6 @@
+== 1.0.5
+* Windows 1.9 multibyte support
+
 == 1.0.4
 * Restore 1.8 Support
 
