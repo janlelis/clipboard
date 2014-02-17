@@ -13,7 +13,7 @@ module Clipboard::Linux
     ReadCommand  = 'xclip -o'
     Selection    = proc{|x| "-selection #{x}"}
   elsif system('which xsel >/dev/null 2>&1')
-    WriteCommand = 'xsel'
+    WriteCommand = 'xsel -i'
     ReadCommand  = 'xsel -o'
     Selection    = {'clipboard' => '-b', 'primary' => '-p', 'secondary' => '-s'}
   else
