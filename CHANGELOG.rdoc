@@ -1,3 +1,6 @@
+== 1.0.6
+* Improve Linux xsel support #17
+
 == 1.0.5
 * Windows 1.9 multibyte support
 

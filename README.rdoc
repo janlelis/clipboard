@@ -1,5 +1,5 @@
 = clipboard {<img src="https://travis-ci.org/janlelis/clipboard.png" />}[https://travis-ci.org/janlelis/clipboard]
-Access the clipboard and do not care if the OS is Linux, MacOS or Windows.
+Access the clipboard and do not care if you are on Linux, Mac OS or Windows.
 
 === Usage
 * <tt>Clipboard.copy</tt>
@@ -8,13 +8,16 @@ Access the clipboard and do not care if the OS is Linux, MacOS or Windows.
 
 == Remarks
 
+=== Non-gem Requirements
+* *Linux*: +xclip+ or +xsel+, you can install it on debian/ubuntu with <tt>sudo apt-get install xclip</tt>
+
+==== ffi Dependency
+This gem depends on the ffi gem to support the Windows clipboard. However, since ffi is not plain Ruby, it cannot be installed in every Ruby environment and therefore, ffi is not a hard dependency of this gem. To ensure Windows compatibility, you can put the ffi gem in your Gemfile.
+
 ==== Multiple Clipboards
 On Linux, you can choose from which clipboard you want to +paste+ by supplying an argumument, the default is CLIPBOARD.
 
 +copy+ copies to all clipboards in Clipboard::CLIPBOARDS.
-
-==== ffi Dependency
-This gem depends on the ffi gem to support the Windows clipboard. However, since ffi is not plain Ruby, it cannot be installed in every Ruby environment and therefore, ffi is not a hard dependency of this gem. To ensure Windows compatibility, you can put the ffi gem in your Gemfile.
 
 ==== Windows Encoding
 If you paste with 1.9, the clipboard encoding will be translated to your <tt>Encoding.default_external</tt>.
@@ -28,9 +31,6 @@ To use the clipboard through ssh, you need to install <tt>xauth</tt> on your ser
 ==== Java
 There is a java implementation included (<tt>Clipboard::Java</tt>) as an option for JRuby. However, on Linux, it always operates (only) on the CLIPBOARD clipboard.
 
-=== Non-gem Requirements
-* *Linux*: +xclip+ or +xsel+, you can install it on debian/ubuntu with <tt>sudo apt-get install xclip</tt>
-
 === TODO
 * Don't depend on +xclip+/+xsel+ (no plans to implement it, though)
 
@@ -38,11 +38,8 @@ There is a java implementation included (<tt>Clipboard::Java</tt>) as an option 
 Want to access the clipboard form the command line? Try {blip}[http://rubygems.org/gems/blip]!
 
 === Copyright
-Copyright (c) 2010-2013 Jan Lelis <http://happycode.org> released under the MIT license
-
-Contributions by and thanks to
+Copyright (c) 2010-2014 Jan Lelis <http://janlelis.de> released under the MIT license. Contributions by / thanks to
 * Michael Grosser
-
-See https://github.com/janlelis/clipboard/graphs/contributors for full list!
+* See https://github.com/janlelis/clipboard/graphs/contributors for full list!
 
 J-_-L
