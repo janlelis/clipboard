@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/janlelis/clipboard}
   s.requirements =  ["On Linux (or other X), you will need xclip. You can install it on debian/ubuntu with: sudo apt-get install xclip"]
   s.requirements += ["On Windows, you will need the ffi gem."]
-  s.files = Dir.glob(%w[{lib,spec}/**/*.rb [A-Z]* [A-Z]*.rdoc]) + %w{clipboard.gemspec .gemtest}
+  s.files = Dir.glob(%w[{lib,spec}/**/*.rb [A-Z]* [A-Z]*.rdoc]) + %w{clipboard.gemspec}
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '>=2'
 end
