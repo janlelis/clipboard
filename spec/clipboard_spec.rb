@@ -5,36 +5,37 @@ require File.expand_path('spec/spec_helper')
 
 $os = RbConfig::CONFIG['host_os']
 
+
 describe Clipboard do
   before do
     RbConfig::CONFIG['host_os'] = $os
   end
 
   it "has a VERSION" do
-    Clipboard::VERSION.should =~ /^\d+\.\d+\.\d+$/
+    expect( Clipboard::VERSION ).to match /^\d+\.\d+\.\d+$/
   end
 
   it "can copy & paste" do
     Clipboard.copy("FOO\nBAR")
-    Clipboard.paste.should == "FOO\nBAR"
+    expect( Clipboard.paste ).to eq "FOO\nBAR"
   end
 
   if RUBY_VERSION >= "1.9"
     it "can copy & paste with multibyte char" do
       Encoding.default_external = "utf-8"
       Clipboard.copy("日本語")
-      Clipboard.paste.should == "日本語"
+      expect( Clipboard.paste ).to eq "日本語"
     end
   end
 
   it "returns data on copy" do
-    Clipboard.copy('xxx').should == 'xxx'
+    expect( Clipboard.copy('xxx') ).to eq 'xxx'
   end
 
   it "can clear" do
     Clipboard.copy('xxx')
     Clipboard.clear
-    Clipboard.paste.should == ''
+    expect( Clipboard.paste ).to eq ''
   end
 
   describe "when included" do
@@ -44,10 +45,10 @@ describe Clipboard do
 
     it "can copy & paste & clear" do
       a = A.new
-      a.send(:copy, "XXX").should == 'XXX'
-      a.send(:paste).should == "XXX"
+      expect( a.send(:copy, "XXX") ).to eq 'XXX'
+      expect( a.send(:paste) ).to eq "XXX"
       a.send(:clear)
-      a.send(:paste).should == ''
+      expect( a.send(:paste) ).to eq ''
     end
   end
 
@@ -59,18 +60,18 @@ describe Clipboard do
     end
 
     it "can paste with empty file" do
-      Clipboard.paste.should == ''
+      expect( Clipboard.paste ).to eq ''
     end
 
     it "can copy & paste" do
-      Clipboard.copy('xxx').should == 'xxx'
-      Clipboard.paste.should == 'xxx'
+      expect( Clipboard.copy('xxx') ).to eq 'xxx'
+      expect( Clipboard.paste ).to eq 'xxx'
     end
 
     it "can clear" do
-      Clipboard.copy('xxx').should == 'xxx'
+      expect( Clipboard.copy('xxx') ).to eq 'xxx'
       Clipboard.clear
-      Clipboard.paste.should == ''
+      expect( Clipboard.paste ).to eq ''
     end
   end
 
@@ -82,21 +83,21 @@ describe Clipboard do
 
     it "does not warn on normal detection" do
       if system('which xclip >/dev/null 2>&1') || system('which xsel >/dev/null 2>&1')
-        $stderr.should_not_receive(:puts)
+        expect( $stderr ).not_to receive(:puts)
       end
       Clipboard.implementation
     end
 
     it "warns when OS is unknown" do
       RbConfig::CONFIG['host_os'] = 'Fooo OS'
-      $stderr.should_receive(:puts)
-      Clipboard.implementation.should == Clipboard::File
+      expect( $stderr ).to receive(:puts)
+      expect( Clipboard.implementation ).to eq Clipboard::File
     end
 
     it "does not warn when $VERBOSE is false" do
       $VERBOSE = false
       RbConfig::CONFIG['host_os'] = 'Fooo OS'
-      $stderr.should_not_receive(:puts)
+      expect( $stderr ).not_to receive(:puts)
       Clipboard.implementation
     end
   end
