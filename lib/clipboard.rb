@@ -1,5 +1,8 @@
 require 'rbconfig'
+$LOAD_PATH.unshift(File.dirname(__FILE__))
 require File.dirname(__FILE__) + '/clipboard/version'
+require File.dirname(__FILE__) + '/clipboard/string' if RUBY_VERSION > "2.0"
+
 
 module Clipboard
   extend self

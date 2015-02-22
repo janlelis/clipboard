@@ -5,8 +5,10 @@ require File.expand_path('spec/spec_helper')
 
 $os = RbConfig::CONFIG['host_os']
 
+using Clipboard::String if RUBY_VERSION > "2.0"
 
 describe Clipboard do
+
   before do
     RbConfig::CONFIG['host_os'] = $os
   end
@@ -25,6 +27,13 @@ describe Clipboard do
       Encoding.default_external = "utf-8"
       Clipboard.copy("日本語")
       expect( Clipboard.paste ).to eq "日本語"
+    end
+  end
+
+  if RUBY_VERSION >= "2.0"
+    it "can copy strings by #copy" do
+      "व्यक्तित्व स्ट्रीम नहीं होगा".copy
+      expect( Clipboard.paste).to eq "व्यक्तित्व स्ट्रीम नहीं होगा"
     end
   end
 
