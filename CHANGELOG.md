@@ -1,43 +1,45 @@
-== 1.0.7
+# CHANGELOG
+## 1.0.7
 * Support Cygwin's clipboard
 
-== 1.0.6
+## 1.0.6
 * Improve Linux xsel support #17
 
-== 1.0.5
+## 1.0.5
 * Windows 1.9 multibyte support
 
-== 1.0.4
+## 1.0.4
 * Restore 1.8 Support
 
-== 1.0.3
+## 1.0.3
 * Don't load current version from file (gh#15)
 
-== 1.0.2
+## 1.0.2
 * Add missing require 'rbconfig'
 * File backend: File only accessible by owner
 * Small tweaks
 
-== 1.0.1
+## 1.0.1
 * Fix permissions in packaged rubygem
 
-== 1.0.0
+## 1.0.0
 * Add basic java clipboard support
 
-== 0.9.9
+## 0.9.9
 * Allow Ocra packing
 
-== 0.9.8
+## 0.9.8
 * Fix a Windows bug
 
-== 0.9.6 / 0.9.7
+## 0.9.6 / 0.9.7
 * Support rubygems-test ("gem test clipboard" if rubygems-test is installed)
 
-== 0.9.5
+## 0.9.5
 * Fallback to Clipboard::File, if no other clipboard is available
 * Also check for xsel if using linux implementation
 * Fix for jruby copying
-* You can directly use a specific implementation, e.g.: require 'clipboard/file' # gives you Clipboard::File
+* You can directly use a specific implementation, e.g.: require
+  'clipboard/file' # gives you Clipboard::File
 
-== < 0.9.4
+## < 0.9.4
 See https://github.com/janlelis/clipboard/commits/0.9.4
