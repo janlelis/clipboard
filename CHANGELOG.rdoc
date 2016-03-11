@@ -1,3 +1,6 @@
+== 1.0.7
+* Support Cygwin's clipboard
+
 == 1.0.6
 * Improve Linux xsel support #17
 

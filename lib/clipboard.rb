@@ -11,6 +11,7 @@ module Clipboard
     autoload :Linux,   'clipboard/linux'
     autoload :Mac,     'clipboard/mac'
     autoload :Java,    'clipboard/java'
+    autoload :Cygwin,  'clipboard/cygwin'
   end
   autoload :Windows, 'clipboard/windows'
   autoload :File,    'clipboard/file'
@@ -20,8 +21,9 @@ module Clipboard
 
     os = case RbConfig::CONFIG['host_os']
     when /mac|darwin/        then :Mac
-    when /linux|bsd|cygwin/  then :Linux
+    when /linux|bsd/         then :Linux
     when /mswin|mingw/       then :Windows
+    when /cygwin/            then :Cygwin
     # when /solaris|sunos/     then :Linux # needs testing..
     else
       raise ClipboardLoadError, "Your OS(#{ RbConfig::CONFIG['host_os'] }) is not supported, using file-based (fake) clipboard"
