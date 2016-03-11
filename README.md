@@ -57,6 +57,6 @@ JRuby. However, on Linux, it always operates only on the CLIPBOARD clipboard.
 content to your clipboard: [blip](http://rubygems.org/gems/blip)!
 
 ### Copyright
-Copyright (c) 2010-2015 Jan Lelis <http://janlelis.de> released under the MIT
+Copyright (c) 2010-2016 Jan Lelis <http://janlelis.com> released under the MIT
 license. Contributions by and thanks to Michael Grosser and [all the other
 contributors!](https://github.com/janlelis/clipboard/graphs/contributors)
