@@ -1,5 +1,7 @@
 # CHANGELOG
-## 1.0.7
+
+## 1.1.0
+* Windows: Fix that the gem tries to convert encoding of pasted strings, leave this to user
 * Support Cygwin's clipboard
 
 ## 1.0.6

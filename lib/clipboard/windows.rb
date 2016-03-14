@@ -47,11 +47,11 @@ module Clipboard::Windows
         if hclip && 0 != hclip
           pointer_to_data = Kernel32.lock( hclip )
           data = ""
-          # Windows Unicode is ended by to null bytes, so get the whole string
+          # Windows Unicode is ended by two null bytes, so get the whole string
           size = Kernel32.size( hclip )
           data << pointer_to_data.get_bytes( 0, size - 2 )
           if RUBY_VERSION >= '1.9'
-            ret = data.force_encoding("UTF-16LE").encode(Encoding.default_external) # TODO catch bad encodings
+            ret = data.force_encoding("UTF-16LE")
           else # 1.8: fallback to simple CP850 encoding
             require 'iconv'
             utf8 = Iconv.iconv( "UTF-8", "UTF-16LE", data)[0]

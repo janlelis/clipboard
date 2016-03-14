@@ -30,8 +30,13 @@ it as an argumument. The default is CLIPBOARD.
 
 #### Windows Encoding
 
-If you paste with 1.9, the clipboard encoding will be translated to your
-`Encoding.default_external`.
+Windows uses [UTF-16LE](https://en.wikipedia.org/wiki/UTF-16) as its default encoding, so pasted strings will always come in UTF-16LE. You can manually convert them to your desired encoding (e.g. UTF-8) using the [String#encode](ruby-doc.org/core-2.3.0/String.html#method-i-encode) method:
+
+```ruby
+Clipboard.paste.encode('UTF-8')
+```
+
+##### Very Old Rubies
 
 If you paste with 1.8, it will fallback to CP850 encoding. Copying with 1.8
 will fallback to the `clip` utility, which is installed by default since Vista
