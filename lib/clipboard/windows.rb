@@ -41,29 +41,20 @@ module Clipboard::Windows
 
   # see http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
   def paste(_ = nil)
-    ret = ""
-      if 0 != User32.open( 0 )
-        hclip = User32.get( CF_UNICODETEXT )
-        if hclip && 0 != hclip
-          pointer_to_data = Kernel32.lock( hclip )
-          data = ""
-          # Windows Unicode is ended by two null bytes, so get the whole string
-          size = Kernel32.size( hclip )
-          data << pointer_to_data.get_bytes( 0, size - 2 )
-          if RUBY_VERSION >= '1.9'
-            ret = data.force_encoding("UTF-16LE")
-          else # 1.8: fallback to simple CP850 encoding
-            require 'iconv'
-            utf8 = Iconv.iconv( "UTF-8", "UTF-16LE", data)[0]
-            ret = Iconv.iconv( "CP850", "UTF-8", utf8)[0]
-          end
-        if data && 0 != data
-          Kernel32.unlock( hclip )
-        end
+    data = ""
+    if 0 != User32.open( 0 )
+      hclip = User32.get( CF_UNICODETEXT )
+      if hclip && 0 != hclip
+        pointer_to_data = Kernel32.lock( hclip )
+        # Windows Unicode is ended by two null bytes, so get the whole string
+        size = Kernel32.size( hclip )
+        data << pointer_to_data.get_bytes( 0, size - 2 )
+        data.force_encoding("UTF-16LE")
+        Kernel32.unlock( hclip )
       end
       User32.close( )
     end
-    ret || ""
+    data
   end
 
   def clear
@@ -75,7 +66,7 @@ module Clipboard::Windows
   end
 
   def copy(data_to_copy)
-    if ( RUBY_VERSION >= '1.9' ) && 0 != User32.open( 0 )
+    if 0 != User32.open( 0 )
       User32.empty( )
       data = data_to_copy.encode("UTF-16LE") # TODO catch bad encodings
       data << 0

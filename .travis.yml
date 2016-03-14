@@ -1,4 +1,5 @@
 language: ruby
+sudo: false
 
 rvm:
 - ruby-head
@@ -7,12 +8,8 @@ rvm:
 - 2.1
 - 2.0
 - 1.9.3
-- 1.9.2
-- 1.8.7
-- ree
 - rbx-2
 - jruby-head
 - jruby-9.0.5.0
 - jruby-19mode
-- jruby-18mode
 

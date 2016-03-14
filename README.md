@@ -39,11 +39,6 @@ convert them to your desired encoding (e.g. UTF-8) using the
 Clipboard.paste.encode('UTF-8')
 ```
 
-#### Very Old Rubies on Windows
-
-If you paste with 1.8, it will fallback to CP850 encoding. Copying with 1.8
-will fallback to the `clip` utility, which is installed by default since Vista
-
 ### SSH
 
 To use the clipboard through ssh, you need to install `xauth` on your server
