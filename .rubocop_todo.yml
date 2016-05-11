@@ -219,12 +219,3 @@ Style/SpaceInsideBrackets:
 # SupportedStyles: space, no_space
 Style/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
-
-# Offense count: 71
-# Cop supports --auto-correct.
-Style/SpaceInsideParens:
-  Exclude:
-    - 'lib/clipboard/linux.rb'
-    - 'lib/clipboard/mac.rb'
-    - 'lib/clipboard/windows.rb'
-    - 'spec/clipboard_spec.rb'
