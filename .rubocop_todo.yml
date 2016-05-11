@@ -80,11 +80,6 @@ Style/CommentAnnotation:
   Exclude:
     - 'lib/clipboard/windows.rb'
 
-# Offense count: 5
-Style/ConstantName:
-  Exclude:
-    - 'lib/clipboard/linux.rb'
-
 # Offense count: 14
 Style/Documentation:
   Exclude:
