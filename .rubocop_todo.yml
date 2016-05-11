@@ -243,10 +243,3 @@ Style/SpaceInsideStringInterpolation:
 # SupportedStyles: use_perl_names, use_english_names
 Style/SpecialGlobalVars:
   Enabled: false
-
-# Offense count: 42
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Enabled: false

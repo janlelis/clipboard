@@ -18,7 +18,7 @@ module Clipboard::Linux
     Selection    = {'clipboard' => '-b', 'primary' => '-p', 'secondary' => '-s'}
   else
     raise Clipboard::ClipboardLoadError, "clipboard: Could not find required program xclip or xsel\n" \
-          "On debian/ubuntu, you can install it with: sudo apt-get install xclip"
+          'On debian/ubuntu, you can install it with: sudo apt-get install xclip'
   end
 
   def paste(which = nil)

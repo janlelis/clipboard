@@ -18,7 +18,7 @@ module Clipboard::Windows
 
   module User32
     extend FFI::Library
-    ffi_lib "user32"
+    ffi_lib 'user32'
     ffi_convention :stdcall
 
     attach_function :open,  :OpenClipboard,    [ :long ], :long
@@ -41,7 +41,7 @@ module Clipboard::Windows
 
   # see http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
   def paste(_ = nil)
-    data = ""
+    data = ''
     if 0 != User32.open( 0 )
       hclip = User32.get( CF_UNICODETEXT )
       if hclip && 0 != hclip
@@ -49,7 +49,7 @@ module Clipboard::Windows
         # Windows Unicode is ended by two null bytes, so get the whole string
         size = Kernel32.size( hclip )
         data << pointer_to_data.get_bytes( 0, size - 2 )
-        data.force_encoding("UTF-16LE")
+        data.force_encoding('UTF-16LE')
         Kernel32.unlock( hclip )
       end
       User32.close( )
@@ -68,7 +68,7 @@ module Clipboard::Windows
   def copy(data_to_copy)
     if 0 != User32.open( 0 )
       User32.empty( )
-      data = data_to_copy.encode("UTF-16LE") # TODO catch bad encodings
+      data = data_to_copy.encode('UTF-16LE') # TODO catch bad encodings
       data << 0
       handler = Kernel32.alloc( GMEM_MOVEABLE, data.bytesize )
       pointer_to_data = Kernel32.lock( handler )

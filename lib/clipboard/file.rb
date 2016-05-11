@@ -3,7 +3,7 @@ module Clipboard; end
 module Clipboard::File
   extend self
 
-  FILE = File.expand_path("~/.clipboard")
+  FILE = File.expand_path('~/.clipboard')
 
   def copy(text)
     File.open(FILE, 'w', 0600) { |f| f.write(text) } rescue ''
