@@ -258,11 +258,3 @@ Style/StringLiterals:
 Style/TrailingBlankLines:
   Exclude:
     - 'Rakefile'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
-# SupportedStyles: comma, consistent_comma, no_comma
-Style/TrailingCommaInLiteral:
-  Exclude:
-    - 'clipboard.gemspec'
