@@ -26,7 +26,7 @@ module Clipboard
     when /cygwin/            then :Cygwin
     # when /solaris|sunos/     then :Linux # needs testing..
     else
-      raise ClipboardLoadError, "Your OS(#{ RbConfig::CONFIG['host_os'] }) is not supported, using file-based (fake) clipboard"
+      raise ClipboardLoadError, "Your OS(#{RbConfig::CONFIG['host_os']}) is not supported, using file-based (fake) clipboard"
     end
 
     @implementation = Clipboard.const_get os
