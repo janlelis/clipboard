@@ -3,7 +3,7 @@ require 'open3'
 module Clipboard; end
 
 module Clipboard::Mac
-  extend self
+  module_function
 
   def paste(_ = nil)
     `pbpaste`

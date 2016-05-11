@@ -2,7 +2,7 @@ require 'rbconfig'
 require File.dirname(__FILE__) + '/clipboard/version'
 
 module Clipboard
-  extend self
+  module_function
 
   class ClipboardLoadError < Exception
   end

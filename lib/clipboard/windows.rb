@@ -3,7 +3,7 @@ require 'open3'
 module Clipboard; end
 
 module Clipboard::Windows
-  extend self
+  module_function
 
   CF_TEXT = 1
   CF_UNICODETEXT = 13

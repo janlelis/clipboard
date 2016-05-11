@@ -3,7 +3,7 @@ require 'open3'
 module Clipboard; end
 
 module Clipboard::Linux
-  extend self
+  module_function
 
   CLIPBOARDS   = %w[clipboard primary secondary]
 

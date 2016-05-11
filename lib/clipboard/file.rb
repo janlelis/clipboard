@@ -1,7 +1,7 @@
 module Clipboard; end
 
 module Clipboard::File
-  extend self
+  module_function
 
   FILE = File.expand_path('~/.clipboard')
 

@@ -1,7 +1,7 @@
 module Clipboard; end
 
 module Clipboard::Cygwin
-  extend self
+  module_function
 
   def paste(_ = nil)
     File.read('/dev/clipboard')
