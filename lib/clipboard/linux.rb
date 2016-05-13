@@ -5,7 +5,7 @@ module Clipboard; end
 module Clipboard::Linux
   module_function
 
-  CLIPBOARDS = %w[clipboard primary secondary]
+  CLIPBOARDS = %w(clipboard primary secondary)
 
   # check which backend to use
   if system('which xclip >/dev/null 2>&1')

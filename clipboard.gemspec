@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
     'On Linux (or other X), you will need xclip. On debian/ubuntu this is: sudo apt-get install xclip',
     'On Windows, you will need the ffi gem.'
   ]
-  s.files = Dir.glob(%w[{lib,spec}/**/*.rb [A-Z]*.txt [A-Z]*.md]) + %w{clipboard.gemspec}
+  s.files = Dir.glob(%w({lib,spec}/**/*.rb [A-Z]*.txt [A-Z]*.md)) + %w(clipboard.gemspec)
 
   s.required_ruby_version = '>= 1.9.3'
   s.add_development_dependency 'rake'
