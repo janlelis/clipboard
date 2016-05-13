@@ -105,9 +105,3 @@ Style/EmptyLines:
 Style/ExtraSpacing:
   Exclude:
     - 'lib/clipboard/linux.rb'
-
-# Offense count: 2
-# Configuration parameters: AllowedVariables.
-Style/GlobalVars:
-  Exclude:
-    - 'spec/clipboard_spec.rb'
