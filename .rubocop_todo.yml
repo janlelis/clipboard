@@ -12,13 +12,6 @@ Lint/AmbiguousRegexpLiteral:
     - 'spec/clipboard_spec.rb'
 
 # Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AlignWith, SupportedStyles, AutoCorrect.
-# SupportedStyles: keyword, variable, start_of_line
-Lint/EndAlignment:
-  Enabled: false
-
-# Offense count: 1
 Lint/Eval:
   Exclude:
     - 'Rakefile'
