@@ -196,10 +196,3 @@ Style/SpaceInsideBlockBraces:
 Style/SpaceInsideBrackets:
   Exclude:
     - 'lib/clipboard/windows.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForEmptyBraces, SupportedStyles.
-# SupportedStyles: space, no_space
-Style/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: no_space
