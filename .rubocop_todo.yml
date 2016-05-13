@@ -161,11 +161,3 @@ Style/PercentLiteralDelimiters:
 Style/RescueModifier:
   Exclude:
     - 'lib/clipboard/file.rb'
-
-# Offense count: 6
-# Cop supports --auto-correct.
-Style/SpaceAfterComma:
-  Exclude:
-    - 'lib/clipboard/linux.rb'
-    - 'lib/clipboard/mac.rb'
-    - 'lib/clipboard/windows.rb'

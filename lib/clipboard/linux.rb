@@ -34,7 +34,7 @@ module Clipboard::Linux
 
   def copy(data)
     CLIPBOARDS.each{ |which|
-      Open3.popen3("#{WRITE_COMMAND} #{SELECTION[which.to_s.downcase]}") { |input,_,_| input << data }
+      Open3.popen3("#{WRITE_COMMAND} #{SELECTION[which.to_s.downcase]}") { |input, _, _| input << data }
     }
     paste
   end
