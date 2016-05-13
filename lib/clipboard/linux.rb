@@ -11,7 +11,7 @@ module Clipboard::Linux
   if system('which xclip >/dev/null 2>&1')
     WRITE_COMMAND = 'xclip'
     READ_COMMAND  = 'xclip -o'
-    SELECTION    = proc{|x| "-selection #{x}"}
+    SELECTION    = proc{ |x| "-selection #{x}" }
   elsif system('which xsel >/dev/null 2>&1')
     WRITE_COMMAND = 'xsel -i'
     READ_COMMAND  = 'xsel -o'
