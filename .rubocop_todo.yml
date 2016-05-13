@@ -139,10 +139,3 @@ Style/IndentationWidth:
 Style/MethodCallParentheses:
   Exclude:
     - 'lib/clipboard/windows.rb'
-
-# Offense count: 7
-# Cop supports --auto-correct.
-Style/MutableConstant:
-  Exclude:
-    - 'lib/clipboard/linux.rb'
-    - 'lib/clipboard/version.rb'
