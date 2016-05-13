@@ -2,8 +2,8 @@ require 'rake'
 require 'fileutils'
 require 'rspec/core/rake_task'
 
-task :test => :spec
-task :default => :spec
+task test: :spec
+task default: :spec
 RSpec::Core::RakeTask.new(:spec) do |t|
   t.rspec_opts = '--backtrace --color'
 end
@@ -13,14 +13,14 @@ def gemspec
 end
 
 desc 'Build the gem'
-task :gem => :gemspec do
+task gem: :gemspec do
   sh 'gem build clipboard.gemspec'
   FileUtils.mkdir_p 'pkg'
   FileUtils.mv "#{gemspec.name}-#{gemspec.version}.gem", 'pkg'
 end
 
 desc 'Install the gem locally (without docs)'
-task :install => :gem do
+task install: :gem do
   sh %(gem install pkg/#{gemspec.name}-#{gemspec.version}.gem --no-rdoc --no-ri)
 end
 
