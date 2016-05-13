@@ -190,9 +190,3 @@ Style/SpaceBeforeBlockBraces:
 # SupportedStyles: space, no_space
 Style/SpaceInsideBlockBraces:
   Enabled: false
-
-# Offense count: 16
-# Cop supports --auto-correct.
-Style/SpaceInsideBrackets:
-  Exclude:
-    - 'lib/clipboard/windows.rb'

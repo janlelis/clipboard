@@ -21,11 +21,11 @@ module Clipboard::Windows
     ffi_lib 'user32'
     ffi_convention :stdcall
 
-    attach_function :open,  :OpenClipboard,    [ :long ], :long
-    attach_function :close, :CloseClipboard,   [       ], :long
-    attach_function :empty, :EmptyClipboard,   [       ], :long
-    attach_function :get,   :GetClipboardData, [ :long ], :long
-    attach_function :set,   :SetClipboardData, [ :long, :long ], :long
+    attach_function :open,  :OpenClipboard,    [:long], :long
+    attach_function :close, :CloseClipboard,   [], :long
+    attach_function :empty, :EmptyClipboard,   [], :long
+    attach_function :get,   :GetClipboardData, [:long], :long
+    attach_function :set,   :SetClipboardData, [:long, :long], :long
   end
 
   module Kernel32
@@ -33,10 +33,10 @@ module Clipboard::Windows
     ffi_lib 'kernel32'
     ffi_convention :stdcall
 
-    attach_function :lock,   :GlobalLock,   [ :long ], :pointer
-    attach_function :unlock, :GlobalUnlock, [ :long ], :long
-    attach_function :size,   :GlobalSize,   [ :long ], :long
-    attach_function :alloc,  :GlobalAlloc,  [ :long, :long ], :long
+    attach_function :lock,   :GlobalLock,   [:long], :pointer
+    attach_function :unlock, :GlobalUnlock, [:long], :long
+    attach_function :size,   :GlobalSize,   [:long], :long
+    attach_function :alloc,  :GlobalAlloc,  [:long, :long], :long
   end
 
   # see http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
