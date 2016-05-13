@@ -2,7 +2,7 @@ module Clipboard; end
 
 # Basic java clipboard access (jruby). No fun to use on X.
 module Clipboard::Java
-  extend self
+  module_function
 
   FLAVOR = ::Java::JavaAwtDatatransfer::DataFlavor.stringFlavor
 

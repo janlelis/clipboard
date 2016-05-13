@@ -2,7 +2,7 @@ require 'rbconfig'
 require File.dirname(__FILE__) + '/clipboard/version'
 
 module Clipboard
-  extend self
+  module_function
 
   class ClipboardLoadError < Exception
   end
@@ -17,17 +17,17 @@ module Clipboard
   autoload :File,    'clipboard/file'
 
   def self.implementation
-  return @implementation if @implementation
+    return @implementation if @implementation
 
     os = case RbConfig::CONFIG['host_os']
-    when /mac|darwin/        then :Mac
-    when /linux|bsd/         then :Linux
-    when /mswin|mingw/       then :Windows
-    when /cygwin/            then :Cygwin
-    # when /solaris|sunos/     then :Linux # needs testing..
-    else
-      raise ClipboardLoadError, "Your OS(#{ RbConfig::CONFIG['host_os'] }) is not supported, using file-based (fake) clipboard"
-    end
+         when /mac|darwin/        then :Mac
+         when /linux|bsd/         then :Linux
+         when /mswin|mingw/       then :Windows
+         when /cygwin/            then :Cygwin
+         # when /solaris|sunos/     then :Linux # needs testing..
+         else
+           raise ClipboardLoadError, "Your OS(#{RbConfig::CONFIG['host_os']}) is not supported, using file-based (fake) clipboard"
+         end
 
     @implementation = Clipboard.const_get os
   rescue ClipboardLoadError => e

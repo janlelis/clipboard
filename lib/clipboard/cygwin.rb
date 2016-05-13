@@ -1,14 +1,14 @@
 module Clipboard; end
 
 module Clipboard::Cygwin
-  extend self
+  module_function
 
   def paste(_ = nil)
-    File.read("/dev/clipboard")
+    File.read('/dev/clipboard')
   end
 
   def copy(data)
-    File.open("/dev/clipboard", "w"){ |f| f.write(data) }
+    File.open('/dev/clipboard', 'w') { |f| f.write(data) }
     paste
   end
 
