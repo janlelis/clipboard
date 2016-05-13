@@ -155,9 +155,3 @@ Style/PercentLiteralDelimiters:
     - 'Rakefile'
     - 'clipboard.gemspec'
     - 'lib/clipboard/linux.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/RescueModifier:
-  Exclude:
-    - 'lib/clipboard/file.rb'
