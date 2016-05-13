@@ -126,10 +126,3 @@ Style/HashSyntax:
 Style/IndentationConsistency:
   Exclude:
     - 'lib/clipboard.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: Width.
-Style/IndentationWidth:
-  Exclude:
-    - 'lib/clipboard.rb'
