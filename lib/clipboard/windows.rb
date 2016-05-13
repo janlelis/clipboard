@@ -68,7 +68,7 @@ module Clipboard::Windows
   def copy(data_to_copy)
     if 0 != User32.open(0)
       User32.empty
-      data = data_to_copy.encode('UTF-16LE') # TODO catch bad encodings
+      data = data_to_copy.encode('UTF-16LE') # TODO: catch bad encodings
       data << 0
       handler = Kernel32.alloc(GMEM_MOVEABLE, data.bytesize)
       pointer_to_data = Kernel32.lock(handler)
