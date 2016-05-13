@@ -20,13 +20,13 @@ module Clipboard
     return @implementation if @implementation
 
     os = case RbConfig::CONFIG['host_os']
-    when /mac|darwin/        then :Mac
-    when /linux|bsd/         then :Linux
-    when /mswin|mingw/       then :Windows
-    when /cygwin/            then :Cygwin
-    # when /solaris|sunos/     then :Linux # needs testing..
-    else
-      raise ClipboardLoadError, "Your OS(#{RbConfig::CONFIG['host_os']}) is not supported, using file-based (fake) clipboard"
+         when /mac|darwin/        then :Mac
+         when /linux|bsd/         then :Linux
+         when /mswin|mingw/       then :Windows
+         when /cygwin/            then :Cygwin
+         # when /solaris|sunos/     then :Linux # needs testing..
+         else
+           raise ClipboardLoadError, "Your OS(#{RbConfig::CONFIG['host_os']}) is not supported, using file-based (fake) clipboard"
     end
 
     @implementation = Clipboard.const_get os

@@ -53,13 +53,6 @@ Style/BlockDelimiters:
   Exclude:
     - 'lib/clipboard/linux.rb'
 
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: SupportedStyles, IndentOneStep, IndentationWidth.
-# SupportedStyles: case, end
-Style/CaseIndentation:
-  IndentWhenRelativeTo: end
-
 # Offense count: 6
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: nested, compact
