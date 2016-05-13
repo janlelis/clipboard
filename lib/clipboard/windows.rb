@@ -52,22 +52,22 @@ module Clipboard::Windows
         data.force_encoding('UTF-16LE')
         Kernel32.unlock(hclip)
       end
-      User32.close()
+      User32.close
     end
     data
   end
 
   def clear
     if 0 != User32.open(0)
-      User32.empty()
-      User32.close()
+      User32.empty
+      User32.close
     end
     paste
   end
 
   def copy(data_to_copy)
     if 0 != User32.open(0)
-      User32.empty()
+      User32.empty
       data = data_to_copy.encode('UTF-16LE') # TODO catch bad encodings
       data << 0
       handler = Kernel32.alloc(GMEM_MOVEABLE, data.bytesize)
@@ -75,7 +75,7 @@ module Clipboard::Windows
       pointer_to_data.put_bytes(0, data, 0, data.bytesize)
       Kernel32.unlock(handler)
       User32.set(CF_UNICODETEXT, handler)
-      User32.close()
+      User32.close
     else # don't touch anything
       Open3.popen3('clip') { |input, _, _| input << data_to_copy } # depends on clip (available by default since Vista)
     end
