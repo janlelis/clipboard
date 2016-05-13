@@ -8,7 +8,7 @@ module Clipboard::Cygwin
   end
 
   def copy(data)
-    File.open('/dev/clipboard', 'w'){ |f| f.write(data) }
+    File.open('/dev/clipboard', 'w') { |f| f.write(data) }
     paste
   end
 

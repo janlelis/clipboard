@@ -11,7 +11,7 @@ module Clipboard::Linux
   if system('which xclip >/dev/null 2>&1')
     WRITE_COMMAND = 'xclip'
     READ_COMMAND  = 'xclip -o'
-    SELECTION    = proc{ |x| "-selection #{x}" }
+    SELECTION    = proc { |x| "-selection #{x}" }
   elsif system('which xsel >/dev/null 2>&1')
     WRITE_COMMAND = 'xsel -i'
     READ_COMMAND  = 'xsel -o'
@@ -34,7 +34,7 @@ module Clipboard::Linux
 
   def copy(data)
     CLIPBOARDS.each{ |which|
-      Open3.popen3("#{WRITE_COMMAND} #{SELECTION[which.to_s.downcase]}"){ |input,_,_| input << data }
+      Open3.popen3("#{WRITE_COMMAND} #{SELECTION[which.to_s.downcase]}") { |input,_,_| input << data }
     }
     paste
   end

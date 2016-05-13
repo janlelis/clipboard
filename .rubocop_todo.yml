@@ -176,10 +176,3 @@ Style/SpaceAfterComma:
 Style/SpaceAroundOperators:
   Exclude:
     - 'lib/clipboard/linux.rb'
-
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: space, no_space
-Style/SpaceBeforeBlockBraces:
-  Enabled: false
