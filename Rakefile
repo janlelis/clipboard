@@ -1,37 +1,37 @@
-require 'rake'
-require 'fileutils'
-require "rspec/core/rake_task"
+# # #
+# Get gemspec info
 
-task :test => :spec
-task :default => :spec
-RSpec::Core::RakeTask.new(:spec) do |t|
-  t.rspec_opts = '--backtrace --color'
-end
+gemspec_file = Dir['*.gemspec'].first
+gemspec = eval File.read(gemspec_file), binding, gemspec_file
+info = "#{gemspec.name} | #{gemspec.version} | " \
+       "#{gemspec.runtime_dependencies.size} dependencies | " \
+       "#{gemspec.files.size} files"
 
-def gemspec
-  @gemspec ||= eval(File.read('clipboard.gemspec'), binding, 'clipboard.gemspec')
-end
+# # #
+# Gem build and install task
 
-desc "Build the gem"
-task :gem => :gemspec do
-  sh "gem build clipboard.gemspec"
+desc info
+task :gem do
+  puts info + "\n\n"
+  print "  "; sh "gem build #{gemspec_file}"
   FileUtils.mkdir_p 'pkg'
   FileUtils.mv "#{gemspec.name}-#{gemspec.version}.gem", 'pkg'
+  puts; sh %{gem install --no-document pkg/#{gemspec.name}-#{gemspec.version}.gem}
 end
 
-desc "Install the gem locally (without docs)"
-task :install => :gem do
-  sh %{gem install pkg/#{gemspec.name}-#{gemspec.version}.gem --no-rdoc --no-ri}
+# # #
+# Start an IRB session with the gem loaded
+
+desc "#{gemspec.name} | IRB"
+task :irb do
+  sh "irb -I ./lib -r #{gemspec.name.tr '-', '/'}"
 end
 
-desc "Generate the gemspec"
-task :generate do
-  puts gemspec.to_ruby
-end
+# # #
+# Run Specs
 
-desc "Validate the gemspec"
-task :gemspec do
-  require 'rubygems/user_interaction' # rubygems 1.5.0
-  gemspec.validate
+desc "#{gemspec.name} | Spec"
+task :spec do
+  sh "rspec"
 end
-
+task default: :spec
