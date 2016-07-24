@@ -25,7 +25,7 @@ module Clipboard::Linux
     if !which || !CLIPBOARDS.include?(which.to_s.downcase)
       which = CLIPBOARDS.first
     end
-    `#{ReadCommand} #{Selection[which.to_s.downcase]}`
+    `#{ReadCommand} #{Selection[which.to_s.downcase]} 2> /dev/null`
   end
 
   def clear
