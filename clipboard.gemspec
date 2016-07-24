@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-require 'rubygems' unless defined? Gem
 
 $:.unshift File.expand_path("../lib", __FILE__)
 require 'clipboard/version'
