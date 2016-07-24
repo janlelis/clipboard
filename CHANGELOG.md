@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.1
+
+* Surpress 3rd party processes' STDERR, see #26
+
 ## 1.1.0
 * Remove support for 1.8
 * Windows: Fix that the gem tries to convert encoding of pasted strings, leave this to user
