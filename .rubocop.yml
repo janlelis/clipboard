@@ -1,2 +1,26 @@
 inherit_from:
 - http://relaxed.ruby.style/rubocop.yml
+
+Style/MethodCallParentheses:
+  Enabled: false
+
+Style/SpaceInsideBrackets:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/SpaceInsideStringInterpolation:
+  Enabled: false
+
+Lint/InheritException:
+  Enabled: false
+
+Style/CaseIndentation:
+  Enabled: false
+
+Lint/Eval:
+  Enabled: false
+
+Lint/EndAlignment:
+  Enabled: false

@@ -17,7 +17,7 @@ module Clipboard
   autoload :File,    'clipboard/file'
 
   def self.implementation
-  return @implementation if @implementation
+    return @implementation if @implementation
 
     os = case RbConfig::CONFIG['host_os']
     when /mac|darwin/        then :Mac

@@ -3,12 +3,11 @@
 
 require File.expand_path('spec/spec_helper')
 
-$os = RbConfig::CONFIG['host_os']
-
+os_to_restore = RbConfig::CONFIG['host_os']
 
 describe Clipboard do
   before do
-    RbConfig::CONFIG['host_os'] = $os
+    RbConfig::CONFIG['host_os'] = os_to_restore
   end
 
   it "has a VERSION" do

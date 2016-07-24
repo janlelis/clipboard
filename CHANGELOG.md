@@ -3,6 +3,7 @@
 ## 1.1.1
 
 * Surpress 3rd party processes' STDERR, see #26
+* Internal API changes to meet modified relaxed ruby style guidelines
 
 ## 1.1.0
 * Remove support for 1.8

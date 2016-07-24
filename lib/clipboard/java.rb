@@ -1,24 +1,24 @@
-module Clipboard; end
+module Clipboard
+  # Basic java clipboard access (jruby). No fun to use on X.
+  module Java
+    extend self
 
-# Basic java clipboard access (jruby). No fun to use on X.
-module Clipboard::Java
-  extend self
+    FLAVOR = ::Java::JavaAwtDatatransfer::DataFlavor.stringFlavor
 
-  FLAVOR = ::Java::JavaAwtDatatransfer::DataFlavor.stringFlavor
+    def copy(text)
+      selection_string = ::Java::JavaAwtDatatransfer::StringSelection.new text
+      ::Java::JavaAwt::Toolkit.default_toolkit.system_clipboard.set_contents selection_string, nil
+      paste
+    end
 
-  def copy(text)
-    selection_string = ::Java::JavaAwtDatatransfer::StringSelection.new text
-    ::Java::JavaAwt::Toolkit.default_toolkit.system_clipboard.set_contents selection_string, nil
-    paste
-  end
+    def paste(_ = nil)
+      ::Java::JavaAwt::Toolkit.default_toolkit.system_clipboard.get_data(FLAVOR)
+    rescue
+      ''
+    end
 
-  def paste(_ = nil)
-    ::Java::JavaAwt::Toolkit.default_toolkit.system_clipboard.get_data(FLAVOR)
-  rescue
-    ''
-  end
-
-  def clear
-    copy ''
+    def clear
+      copy ''
+    end
   end
 end
