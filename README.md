@@ -57,7 +57,7 @@ JRuby. On Linux, it always operates only on the CLIPBOARD clipboard.
 ### blip
 
 **blip** is a handy commandline wrapper that lets you quickly copy file
-content to your clipboard: [blip](http://rubygems.org/gems/blip)!
+content to your clipboard: [blip](https://gist.github.com/janlelis/781835)!
 
 ### Copyright
 
