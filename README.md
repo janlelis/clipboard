@@ -1,4 +1,4 @@
-# Ruby Clipboard [![version](https://badge.fury.io/rb/clipboard.svg)](https://badge.fury.io/rb/clipboard) [<img src="https://travis-ci.org/janlelis/clipboard.png" />](https://travis-ci.org/janlelis/clipboard)
+# Ruby Clipboard [![version](https://badge.fury.io/rb/clipboard.svg)](https://badge.fury.io/rb/clipboard) [<img src="https://travis-ci.org/janlelis/clipboard.svg" />](https://travis-ci.org/janlelis/clipboard)
 
 Lets you access the clipboard on Linux, MacOS, Windows and Cygwin.
 
@@ -24,7 +24,7 @@ this is: `sudo apt-get install xclip`
 ### Multiple Clipboards
 
 On Linux, you can choose from which clipboard you want to `paste` from by
-passing it as an argumument. The default is CLIPBOARD.
+passing it as an argument. The default is CLIPBOARD.
 
 `copy` copies to all clipboards in `Clipboard::Linux::CLIPBOARDS`.
 
