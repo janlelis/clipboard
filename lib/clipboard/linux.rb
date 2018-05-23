@@ -1,5 +1,7 @@
 require 'open3'
 
+require_relative 'utils'
+
 module Clipboard
   module Linux
     extend self
@@ -7,11 +9,11 @@ module Clipboard
     CLIPBOARDS = %w[clipboard primary secondary].freeze
 
     # check which backend to use
-    if system('which xclip >/dev/null 2>&1')
+    if Utils.installed?('xclip')
       WriteCommand = 'xclip'.freeze
       ReadCommand  = 'xclip -o'.freeze
       Selection    = proc{ |x| "-selection #{x}" }.freeze
-    elsif system('which xsel >/dev/null 2>&1')
+    elsif Utils.installed?('xsel')
       WriteCommand = 'xsel -i'.freeze
       ReadCommand  = 'xsel -o'.freeze
       Selection    = { 'clipboard' => '-b', 'primary' => '-p', 'secondary' => '-s' }.freeze
