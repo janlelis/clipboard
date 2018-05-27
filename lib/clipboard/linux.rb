@@ -9,11 +9,11 @@ module Clipboard
     CLIPBOARDS = %w[clipboard primary secondary].freeze
 
     # check which backend to use
-    if Utils.installed?('xclip')
+    if Utils.executable_installed?('xclip')
       WriteCommand = 'xclip'.freeze
       ReadCommand  = 'xclip -o'.freeze
       Selection    = proc{ |x| "-selection #{x}" }.freeze
-    elsif Utils.installed?('xsel')
+    elsif Utils.executable_installed?('xsel')
       WriteCommand = 'xsel -i'.freeze
       ReadCommand  = 'xsel -o'.freeze
       Selection    = { 'clipboard' => '-b', 'primary' => '-p', 'secondary' => '-s' }.freeze
