@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next
+## 1.1.2
 
 - linux: Replace calls to `which` with native check (thanks @woodruffw)
 
