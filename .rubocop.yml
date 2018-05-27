@@ -1,26 +1,56 @@
 inherit_from:
 - http://relaxed.ruby.style/rubocop.yml
 
-Style/MethodCallParentheses:
-  Enabled: false
-
-Style/SpaceInsideBrackets:
-  Enabled: false
-
-Style/RescueModifier:
-  Enabled: false
-
-Style/SpaceInsideStringInterpolation:
-  Enabled: false
-
-Lint/InheritException:
+Metrics/BlockLength:
   Enabled: false
 
 Style/CaseIndentation:
   Enabled: false
 
-Lint/Eval:
+Naming/ConstantName:
   Enabled: false
 
 Lint/EndAlignment:
+  Enabled: false
+
+Lint/Eval:
+  Enabled: false
+
+Style/ExpandPathArguments:
+  Enabled: false
+
+Lint/InheritException:
+  Enabled: false
+
+Style/MethodCallWithoutArgsParentheses:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/RescueStandardError:
+  Enabled: false
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+Style/SpaceInsideBrackets:
+  Enabled: false
+
+Style/StderrPuts:
+  Enabled: false
+
+Layout/SpaceInsideStringInterpolation:
+  Enabled: false
+
+Layout/SpaceInsideArrayLiteralBrackets:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Naming/UncommunicativeMethodParamName:
+  Enabled: false
+
+Style/YodaCondition:
   Enabled: false

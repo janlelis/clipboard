@@ -1,120 +1,141 @@
 # Relaxed.Ruby.Style
+## Version 2.2
 
 Style/Alias:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylealias
+  StyleGuide: https://relaxed.ruby.style/#stylealias
+
+Style/AsciiComments:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#styleasciicomments
 
 Style/BeginBlock:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylebeginblock
+  StyleGuide: https://relaxed.ruby.style/#stylebeginblock
 
 Style/BlockDelimiters:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#styleblockdelimiters
+  StyleGuide: https://relaxed.ruby.style/#styleblockdelimiters
+
+Style/CommentAnnotation:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#stylecommentannotation
 
 Style/Documentation:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#styledocumentation
+  StyleGuide: https://relaxed.ruby.style/#styledocumentation
 
-Style/DotPosition:
+Layout/DotPosition:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#styledotposition
+  StyleGuide: https://relaxed.ruby.style/#layoutdotposition
 
 Style/DoubleNegation:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#styledoublenegation
+  StyleGuide: https://relaxed.ruby.style/#styledoublenegation
 
 Style/EndBlock:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#styleendblock
+  StyleGuide: https://relaxed.ruby.style/#styleendblock
 
 Style/FormatString:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#styleformatstring
+  StyleGuide: https://relaxed.ruby.style/#styleformatstring
 
 Style/IfUnlessModifier:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#styleifunlessmodifier
+  StyleGuide: https://relaxed.ruby.style/#styleifunlessmodifier
 
 Style/Lambda:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylelambda
+  StyleGuide: https://relaxed.ruby.style/#stylelambda
 
 Style/ModuleFunction:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylemodulefunction
+  StyleGuide: https://relaxed.ruby.style/#stylemodulefunction
 
 Style/MultilineBlockChain:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylemultilineblockchain
+  StyleGuide: https://relaxed.ruby.style/#stylemultilineblockchain
 
 Style/NegatedIf:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylenegatedif
+  StyleGuide: https://relaxed.ruby.style/#stylenegatedif
 
 Style/NegatedWhile:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylenegatedwhile
+  StyleGuide: https://relaxed.ruby.style/#stylenegatedwhile
 
 Style/ParallelAssignment:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#styleparallelassignment
+  StyleGuide: https://relaxed.ruby.style/#styleparallelassignment
 
 Style/PercentLiteralDelimiters:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylepercentliteraldelimiters
+  StyleGuide: https://relaxed.ruby.style/#stylepercentliteraldelimiters
 
 Style/PerlBackrefs:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#styleperlbackrefs
+  StyleGuide: https://relaxed.ruby.style/#styleperlbackrefs
 
 Style/Semicolon:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylesemicolon
+  StyleGuide: https://relaxed.ruby.style/#stylesemicolon
 
 Style/SignalException:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylesignalexception
+  StyleGuide: https://relaxed.ruby.style/#stylesignalexception
 
 Style/SingleLineBlockParams:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylesinglelineblockparams
+  StyleGuide: https://relaxed.ruby.style/#stylesinglelineblockparams
 
 Style/SingleLineMethods:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylesinglelinemethods
+  StyleGuide: https://relaxed.ruby.style/#stylesinglelinemethods
 
-Style/SpaceBeforeBlockBraces:
+Layout/SpaceBeforeBlockBraces:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylespacebeforeblockbraces
+  StyleGuide: https://relaxed.ruby.style/#layoutspacebeforeblockbraces
 
-Style/SpaceInsideParens:
+Layout/SpaceInsideParens:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylespaceinsideparens
+  StyleGuide: https://relaxed.ruby.style/#layoutspaceinsideparens
 
 Style/SpecialGlobalVars:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylespecialglobalvars
+  StyleGuide: https://relaxed.ruby.style/#stylespecialglobalvars
 
 Style/StringLiterals:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylestringliterals
+  StyleGuide: https://relaxed.ruby.style/#stylestringliterals
 
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInArguments:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#styletrailingcommainliteral
+  StyleGuide: https://relaxed.ruby.style/#styletrailingcommainarguments
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#styletrailingcommainarrayliteral
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#styletrailingcommainhashliteral
 
 Style/WhileUntilModifier:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylewhileuntilmodifier
+  StyleGuide: https://relaxed.ruby.style/#stylewhileuntilmodifier
+
+Style/WordArray:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#stylewordarray
 
 Lint/AmbiguousRegexpLiteral:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#lintambiguousregexpliteral
+  StyleGuide: https://relaxed.ruby.style/#lintambiguousregexpliteral
 
 Lint/AssignmentInCondition:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#lintassignmentincondition
+  StyleGuide: https://relaxed.ruby.style/#lintassignmentincondition
 
 Metrics/AbcSize:
   Enabled: false

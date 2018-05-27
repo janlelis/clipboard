@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Please note: cannot test, if it really accesses your platform clipboard.
 
 require File.expand_path('spec/spec_helper')
