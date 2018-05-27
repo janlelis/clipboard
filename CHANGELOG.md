@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next
+
+- linux: Replace calls to `which` with native check (thanks @woodruffw)
+
 ## 1.1.1
 
 * Surpress 3rd party processes' STDERR, see #26
