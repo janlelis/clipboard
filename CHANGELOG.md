@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next
+## 1.2.0
 * Support WSL (Windows Subsystem for Linux)
 
 ## 1.1.2
