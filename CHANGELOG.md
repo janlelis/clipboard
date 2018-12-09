@@ -1,11 +1,12 @@
 # CHANGELOG
 
-## 1.1.2
+## Next
+* Support WSL (Windows Subsystem for Linux)
 
-- linux: Replace calls to `which` with native check (thanks @woodruffw)
+## 1.1.2
+* Linux: Replace calls to `which` with native check (thanks @woodruffw)
 
 ## 1.1.1
-
 * Surpress 3rd party processes' STDERR, see #26
 * Internal API changes to meet modified relaxed ruby style guidelines
 
