@@ -24,12 +24,19 @@ module Clipboard
     when /linux|bsd/         then :Linux
     when /mswin|mingw/       then :Windows
     when /cygwin/            then :Cygwin
-    # when /solaris|sunos/     then :Linux # needs testing..
     else
       raise ClipboardLoadError, "Your OS(#{ RbConfig::CONFIG['host_os'] }) is not supported, using file-based (fake) clipboard"
     end
 
-    @implementation = Clipboard.const_get os
+    # Running additional check to detect if running in Microsoft WSL
+    if os == :Linux
+      require "etc"
+      if Etc.uname[:release] =~ /Microsoft/
+        os = :Wsl
+      end
+    end
+
+    @implementation = Clipboard.const_get(os)
   rescue ClipboardLoadError => e
     $stderr.puts e.message if $VERBOSE
     @implementation = Clipboard::File
