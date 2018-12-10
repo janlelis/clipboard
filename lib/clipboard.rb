@@ -13,6 +13,7 @@ module Clipboard
     autoload :Java,    'clipboard/java'
     autoload :Cygwin,  'clipboard/cygwin'
     autoload :Wsl,     'clipboard/wsl'
+    autoload :Gtk,     'clipboard/gtk'
   end
   autoload :Windows, 'clipboard/windows'
   autoload :File,    'clipboard/file'

@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## Next
+* Add a GTK based clipboard
+
 ## 1.2.1
 * Add WSL to autoloaded constants
 
