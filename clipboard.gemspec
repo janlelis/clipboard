@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.summary = "Access to the clipboard on Linux, MacOS, Windows, and Cygwin."
   s.description = "Access to the clipboard on Linux, MacOS, Windows, and Cygwin: Clipboard.copy, Clipboard.paste, Clipboard.clear"
   s.email = "mail@janlelis.de"
-  s.homepage = "http://github.com/janlelis/clipboard"
+  s.homepage = "https://github.com/janlelis/clipboard"
   s.license = "MIT"
   s.requirements = [
     "On Linux (or other X), you will need xclip. On debian/ubuntu this is: sudo apt-get install xclip",
@@ -20,4 +20,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.3'
   s.add_development_dependency 'rake', '~> 11'
   s.add_development_dependency 'rspec', '~> 3'
+  # s.add_development_dependency 'ffi', '~> 1.9'
+  # s.add_development_dependency 'gtk3', '~> 3'
 end
