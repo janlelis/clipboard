@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.2.1
+* Add WSL to autoloaded constants
+
 ## 1.2.0
 * Support WSL (Windows Subsystem for Linux)
 

@@ -12,6 +12,7 @@ module Clipboard
     autoload :Mac,     'clipboard/mac'
     autoload :Java,    'clipboard/java'
     autoload :Cygwin,  'clipboard/cygwin'
+    autoload :Wsl,     'clipboard/wsl'
   end
   autoload :Windows, 'clipboard/windows'
   autoload :File,    'clipboard/file'
