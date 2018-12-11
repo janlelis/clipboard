@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next
+## 1.3.1
 * Prefer xsel over xclip, because it can handle more data
   * See here: https://github.com/janlelis/clipboard/pull/33/files#diff-80752ab4de37ec2dcf1dc85457e09d40R13
 
