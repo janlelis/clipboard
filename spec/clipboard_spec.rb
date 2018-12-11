@@ -1,6 +1,6 @@
 # Please note: cannot test, if it really accesses your platform clipboard.
 
-require File.expand_path('spec/spec_helper')
+require_relative "spec_helper"
 
 os_to_restore = RbConfig::CONFIG['host_os']
 
@@ -18,12 +18,10 @@ describe Clipboard do
     expect( Clipboard.paste ).to eq "FOO\nBAR"
   end
 
-  if RUBY_VERSION >= "1.9"
-    it "can copy & paste with multibyte char" do
-      Encoding.default_external = "utf-8"
-      Clipboard.copy("日本語")
-      expect( Clipboard.paste ).to eq "日本語"
-    end
+  it "can copy & paste with multibyte char" do
+    Encoding.default_external = "utf-8"
+    Clipboard.copy("日本語")
+    expect( Clipboard.paste ).to eq "日本語"
   end
 
   it "returns data on copy" do
@@ -50,27 +48,19 @@ describe Clipboard do
     end
   end
 
-  describe 'Clipboard::File' do
-    before :all do
-      Clipboard.implementation = Clipboard::File
-      cache = Clipboard::File::FILE
-      FileUtils.rm cache if File.exist?(cache)
-    end
+  # See https://github.com/janlelis/clipboard/issues/32 by @orange-kao
+  it "can copy more than 8192 bytes" do
+    # first batch
+    data1 = Random.new.bytes(2**14).unpack("H*").first
+    data2 = Clipboard.copy(data1)
 
-    it "can paste with empty file" do
-      expect( Clipboard.paste ).to eq ''
-    end
+    expect(data2).to eq data1
 
-    it "can copy & paste" do
-      expect( Clipboard.copy('xxx') ).to eq 'xxx'
-      expect( Clipboard.paste ).to eq 'xxx'
-    end
+    # second batch
+    data1 = Random.new.bytes(2**14).unpack("H*").first
+    data2 = Clipboard.copy(data1)
 
-    it "can clear" do
-      expect( Clipboard.copy('xxx') ).to eq 'xxx'
-      Clipboard.clear
-      expect( Clipboard.paste ).to eq ''
-    end
+    expect(data2).to eq data1
   end
 
   describe :implementation do

@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next
+## 1.3.0
 ### Bug Fixes
 * Conditionally read or don't read the output stream of external commands, fixes #32
   * Special thanks to @orange-kao for the bug report + PR
