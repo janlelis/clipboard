@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Clipboard
   # Basic java clipboard access (jruby). No fun to use on X.
   module Java

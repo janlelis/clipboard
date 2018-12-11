@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Ruby-Gnome2 based implementation
 # Requires either the gtk3 or the gtk2 gem
 

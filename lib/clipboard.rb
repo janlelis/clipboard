@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rbconfig'
 require File.dirname(__FILE__) + '/clipboard/version'
 

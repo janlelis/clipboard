@@ -1,7 +1,11 @@
 # CHANGELOG
 
 ## Next
+### New Features
 * Add a GTK based clipboard
+
+### Internal changes
+* Use frozen string literals
 
 ## 1.2.1
 * Add WSL to autoloaded constants

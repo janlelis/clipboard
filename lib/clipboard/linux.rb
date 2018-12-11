@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'open3'
 
 require_relative 'utils'
@@ -10,12 +12,12 @@ module Clipboard
 
     # check which backend to use
     if Utils.executable_installed?('xclip')
-      WriteCommand = 'xclip'.freeze
-      ReadCommand  = 'xclip -o'.freeze
+      WriteCommand = 'xclip'
+      ReadCommand  = 'xclip -o'
       Selection    = proc{ |x| "-selection #{x}" }.freeze
     elsif Utils.executable_installed?('xsel')
-      WriteCommand = 'xsel -i'.freeze
-      ReadCommand  = 'xsel -o'.freeze
+      WriteCommand = 'xsel -i'
+      ReadCommand  = 'xsel -o'
       Selection    = { 'clipboard' => '-b', 'primary' => '-p', 'secondary' => '-s' }.freeze
     else
       raise Clipboard::ClipboardLoadError, "clipboard: Could not find required program xclip or xsel\n" \
