@@ -12,8 +12,8 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/janlelis/clipboard"
   s.license = "MIT"
   s.requirements = [
-    "On Linux (or other X), you will need xclip. On debian/ubuntu this is: sudo apt-get install xclip",
-    "On Windows, you will need the ffi gem.",
+    "Linux: You need xclip or xsel. On debian/ubuntu run: sudo apt-get install xsel",
+    "Windows: You need the ffi gem",
   ]
   s.files = Dir.glob(%w[{lib,spec}/**/*.rb [A-Z]*.txt [A-Z]*.md]) + %w{clipboard.gemspec}
 

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next
+* Prefer xsel over xclip, because it can handle more data
+  * See here: https://github.com/janlelis/clipboard/pull/33/files#diff-80752ab4de37ec2dcf1dc85457e09d40R13
+
 ## 1.3.0
 ### Bug Fixes
 * Conditionally read or don't read the output stream of external commands, fixes #32

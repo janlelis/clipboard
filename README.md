@@ -25,7 +25,7 @@ gem 'clipboard'
 gem 'ffi', :platforms => [:mswin, :mingw]
 ```
 
-- Important note for **Linux** users: The clipboard requires the *xclip* or the *xsel* command-line program. On debian and ubuntu, xclip can be installed with: `sudo apt-get install xclip`
+- Important note for **Linux** users: The clipboard requires the *xclip* or the *xsel* command-line program. On debian and ubuntu, *xsel* can be installed with: `sudo apt-get install xsel`
 
 ## Clipboard Implementations
 
