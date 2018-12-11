@@ -1,6 +1,10 @@
 # CHANGELOG
 
 ## Next
+### Bug Fixes
+* Conditionally read or don't read the output stream of external commands, fixes #32
+  * Special thanks to @orange-kao for the bug report + PR
+
 ### New Features
 * Add a GTK based clipboard
 

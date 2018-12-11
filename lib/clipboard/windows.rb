@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'open3'
+require_relative "utils"
 
 module Clipboard
   module Windows
@@ -78,7 +78,7 @@ module Clipboard
         User32.set( CF_UNICODETEXT, handler )
         User32.close( )
       else # don't touch anything
-        Open3.popen3( 'clip' ){ |input, _, _| input << data_to_copy } # depends on clip (available by default since Vista)
+        Utils.popen "clip", data_to_copy # depends on clip (available by default since Vista)
       end
       paste
     end

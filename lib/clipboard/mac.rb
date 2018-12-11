@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'open3'
+require_relative "utils"
 
 module Clipboard
   module Mac
@@ -11,7 +11,7 @@ module Clipboard
     end
 
     def copy(data)
-      Open3.popen3( 'pbcopy' ){ |input, _, _| input << data }
+      Utils.popen "pbcopy", data
       paste
     end
 

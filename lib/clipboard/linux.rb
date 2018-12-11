@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'open3'
-
-require_relative 'utils'
+require_relative "utils"
 
 module Clipboard
   module Linux
@@ -14,12 +12,14 @@ module Clipboard
     if Utils.executable_installed?('xclip')
       WriteCommand = 'xclip'
       ReadCommand  = 'xclip -o'
+      ReadOutputStream = false
       Selection    = proc{ |x|
         "-selection #{x}"
       }.freeze
     elsif Utils.executable_installed?('xsel')
       WriteCommand = 'xsel -i'
       ReadCommand  = 'xsel -o'
+      ReadOutputStream = true
       Selection    = {
         'clipboard' => '-b',
         'primary' => '-p',
@@ -43,7 +43,7 @@ module Clipboard
 
     def copy(data)
       CLIPBOARDS.each{ |which|
-        Open3.popen3( "#{WriteCommand} #{Selection[which]}" ){ |input, _, _| input << data }
+        Utils.popen "#{WriteCommand} #{Selection[which]}", data, ReadOutputStream
       }
       paste
     end
