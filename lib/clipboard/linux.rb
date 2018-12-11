@@ -14,21 +14,27 @@ module Clipboard
     if Utils.executable_installed?('xclip')
       WriteCommand = 'xclip'
       ReadCommand  = 'xclip -o'
-      Selection    = proc{ |x| "-selection #{x}" }.freeze
+      Selection    = proc{ |x|
+        "-selection #{x}"
+      }.freeze
     elsif Utils.executable_installed?('xsel')
       WriteCommand = 'xsel -i'
       ReadCommand  = 'xsel -o'
-      Selection    = { 'clipboard' => '-b', 'primary' => '-p', 'secondary' => '-s' }.freeze
+      Selection    = {
+        'clipboard' => '-b',
+        'primary' => '-p',
+        'secondary' => '-s'
+      }.freeze
     else
       raise Clipboard::ClipboardLoadError, "clipboard: Could not find required program xclip or xsel\n" \
             "On debian/ubuntu, you can install it with: sudo apt-get install xclip"
     end
 
     def paste(which = nil)
-      if !which || !CLIPBOARDS.include?(which.to_s.downcase)
-        which = CLIPBOARDS.first
+      if !which || !CLIPBOARDS.include?(which_normalized = which.to_s.downcase)
+        which_normalized = CLIPBOARDS.first
       end
-      `#{ReadCommand} #{Selection[which.to_s.downcase]} 2> /dev/null`
+      `#{ReadCommand} #{Selection[which_normalized]} 2> /dev/null`
     end
 
     def clear
@@ -37,7 +43,7 @@ module Clipboard
 
     def copy(data)
       CLIPBOARDS.each{ |which|
-        Open3.popen3( "#{WriteCommand} #{Selection[which.to_s.downcase]}" ){ |input, _, _| input << data }
+        Open3.popen3( "#{WriteCommand} #{Selection[which]}" ){ |input, _, _| input << data }
       }
       paste
     end

@@ -29,12 +29,12 @@ module Clipboard
     end
 
     def paste(which = nil)
-      if !which || !CLIPBOARDS.include?(which_upcase = which.to_s.upcase)
-        which_upcase = CLIPBOARDS.first
+      if !which || !CLIPBOARDS.include?(which_normalized = which.to_s.upcase)
+        which_normalized = CLIPBOARDS.first
       end
 
       ::Gtk::Clipboard.get(
-        Gdk::Selection.const_get(which_upcase)
+        Gdk::Selection.const_get(which_normalized)
       ).wait_for_text || ""
     end
 
