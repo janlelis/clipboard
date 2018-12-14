@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next
+## 1.3.2
 * Windows version actually mutates a string, fix by @scivola
 
 ## 1.3.1
