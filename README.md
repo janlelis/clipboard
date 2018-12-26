@@ -16,6 +16,14 @@ Lets you access the clipboard from everywhere. Currently supported platforms:
 * `Clipboard.paste` - Paste contents from system clipboard as string
 * `Clipboard.clear` - Empties the system clipboard
 
+## Supported Rubies
+
+* **2.6**, **2.5**, **2.4**, **2.3**
+
+Unsupported, but might still work:
+
+* **2.2**, **2.1**, **2.0**, **1.9**
+
 ## Setup
 
 Add the following lines to your `Gemfile`:

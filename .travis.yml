@@ -3,20 +3,22 @@ sudo: false
 
 rvm:
 - ruby-head
-- 2.5.1
-- 2.4.4
-- 2.3.7
+- 2.6.0
+- 2.5.3
+- 2.4.5
+- 2.3.8
 - 2.2
 - 2.1
 - 2.0
 - 1.9.3
 - jruby-head
-- jruby-9.1.16.0
+- jruby-9.2.5.0
 
 matrix:
   allow_failures:
     - rvm: ruby-head
     - rvm: jruby-head
+    - rvm: 2.2
     - rvm: 2.1
     - rvm: 2.0
     - rvm: 1.9.3
