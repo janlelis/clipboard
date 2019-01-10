@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.3.3
+
+* Fix Cygwin implementation to work when File constant is loaded, fix by @ntachino
+
 ## 1.3.2
 * Windows version actually mutates a string, fix by @scivola
 
