@@ -29,11 +29,11 @@ Unsupported, but might still work:
 Add the following lines to your `Gemfile`:
 
 ```ruby
-gem 'clipboard'
-gem 'ffi', :platforms => [:mswin, :mingw]
+gem "clipboard"
+gem "ffi", :platforms => [:mswin, :mingw] # Required by Clipboard on Windows
 ```
 
-- Important note for **Linux** users: The clipboard requires the *xclip* or the *xsel* command-line program. On debian and ubuntu, *xsel* can be installed with: `sudo apt-get install xsel`
+- **Important note for Linux** users: The clipboard requires the *xsel* or the *xclip* command-line program. On debian and ubuntu, *xsel* can be installed with: `sudo apt-get install xsel`
 
 ## Clipboard Implementations
 
