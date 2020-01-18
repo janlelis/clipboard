@@ -1,5 +1,5 @@
 # Relaxed.Ruby.Style
-## Version 2.2
+## Version 2.4
 
 Style/Alias:
   Enabled: false
@@ -65,6 +65,10 @@ Style/NegatedWhile:
   Enabled: false
   StyleGuide: https://relaxed.ruby.style/#stylenegatedwhile
 
+Style/NumericPredicate:
+  Enabled: false
+  StyleGuide: https://relaxed.ruby.style/#stylenumericpredicate
+
 Style/ParallelAssignment:
   Enabled: false
   StyleGuide: https://relaxed.ruby.style/#styleparallelassignment
@@ -120,6 +124,10 @@ Style/TrailingCommaInArrayLiteral:
 Style/TrailingCommaInHashLiteral:
   Enabled: false
   StyleGuide: https://relaxed.ruby.style/#styletrailingcommainhashliteral
+
+Style/SymbolArray:
+  Enabled: false
+  StyleGuide: http://relaxed.ruby.style/#stylesymbolarray
 
 Style/WhileUntilModifier:
   Enabled: false

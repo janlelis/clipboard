@@ -4,16 +4,16 @@ inherit_from:
 Metrics/BlockLength:
   Enabled: false
 
-Style/CaseIndentation:
+Layout/CaseIndentation:
   Enabled: false
 
 Naming/ConstantName:
   Enabled: false
 
-Lint/EndAlignment:
+Layout/EndAlignment:
   Enabled: false
 
-Lint/Eval:
+Security/Eval:
   Enabled: false
 
 Style/ExpandPathArguments:
@@ -34,9 +34,6 @@ Style/RescueStandardError:
 Gemspec/RequiredRubyVersion:
   Enabled: false
 
-Style/SpaceInsideBrackets:
-  Enabled: false
-
 Style/StderrPuts:
   Enabled: false
 
@@ -49,8 +46,17 @@ Layout/SpaceInsideArrayLiteralBrackets:
 Style/SymbolArray:
   Enabled: false
 
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   Enabled: false
 
 Style/YodaCondition:
+  Enabled: false
+
+Layout/ExtraSpacing:
+  Enabled: false
+
+Layout/SpaceAroundOperators:
+  Enabled: false
+
+Lint/SuppressedException:
   Enabled: false

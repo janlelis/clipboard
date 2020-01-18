@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Please note: cannot test, if it really accesses your platform clipboard.
 
 require_relative "spec_helper"
