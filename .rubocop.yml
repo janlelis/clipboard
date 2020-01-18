@@ -1,5 +1,5 @@
 inherit_from:
-- http://relaxed.ruby.style/rubocop.yml
+- https://relaxed.ruby.style/rubocop.yml
 
 Metrics/BlockLength:
   Enabled: false
