@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.3.4
+* Don't break on Ruby 2.1, patch by @grosser
+
 ## 1.3.3
 
 * Fix Cygwin implementation to work when File constant is loaded, fix by @ntachino
