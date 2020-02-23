@@ -35,7 +35,7 @@ module Clipboard
     # Running additional check to detect if running in Microsoft WSL
     if os == :Linux
       require "etc"
-      if Etc.uname[:release] =~ /Microsoft/
+      if Etc.respond_to?(:uname) && Etc.uname[:release] =~ /Microsoft/ # uname was added in ruby 2.2
         os = :Wsl
       end
     end
