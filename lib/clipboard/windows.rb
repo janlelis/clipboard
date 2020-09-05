@@ -42,7 +42,7 @@ module Clipboard
 
     # see http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
     def paste(_ = nil)
-      data = +""
+      data = "".dup
       if 0 != User32.open( 0 )
         hclip = User32.get( CF_UNICODETEXT )
         if hclip && 0 != hclip
