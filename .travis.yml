@@ -13,16 +13,17 @@ rvm:
 - 1.9.3
 - ruby-head
 - jruby-head
-- jruby-9.2.9.0
-- truffleruby
+- jruby-9.2.13.0
+- truffleruby-20.2.0
 
 matrix:
   allow_failures:
     - rvm: ruby-head
     - rvm: jruby-head
+    - rvm: 2.4
     - rvm: 2.3
     - rvm: 2.2
     - rvm: 2.1
     - rvm: 2.0
     - rvm: 1.9.3
-    - rvm: truffleruby
+    - rvm: truffleruby-20.2.0
