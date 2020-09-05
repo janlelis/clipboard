@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.3.5
+* Fix missing String#+@ method on Ruby <2.3, patch by @AaronC81
+
 ## 1.3.4
 * Don't break on Ruby 2.1, patch by @grosser
 
