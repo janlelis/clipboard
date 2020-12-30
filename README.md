@@ -1,4 +1,4 @@
-# Clipboard Ruby Gem [![version](https://badge.fury.io/rb/clipboard.svg)](https://badge.fury.io/rb/clipboard) [<img src="https://travis-ci.org/janlelis/clipboard.svg" />](https://travis-ci.org/janlelis/clipboard)
+# Clipboard Ruby Gem [![version](https://badge.fury.io/rb/clipboard.svg)](https://badge.fury.io/rb/clipboard) [![[ci]](https://github.com/janlelis/clipboard/workflows/Test/badge.svg)](https://github.com/janlelis/clipboard/actions?query=workflow%3ATest)
 
 Lets you access the clipboard from everywhere. Currently supported platforms:
 
