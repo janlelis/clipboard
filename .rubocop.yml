@@ -49,6 +49,9 @@ Layout/SpaceInsideArrayLiteralBrackets:
 Style/SymbolArray:
   Enabled: false
 
+Style/UnpackFirst:
+  Enabled: false
+
 Naming/MethodParameterName:
   Enabled: false
 
