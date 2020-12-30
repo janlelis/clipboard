@@ -10,7 +10,7 @@ Lets you access the clipboard from everywhere. Currently supported platforms:
 - Gtk+ (Cross Platform Widget Toolkit)
 - Java (on JRuby)
 
-Supported Rubies: **2.7**, **2.6**, **2.5**
+Supported Rubies: **3.0**, **2.7**, **2.6**, **2.5**
 
 Unsupported, but might still work: **2.4**, **2.3**, **2.2**, **2.1**, **2.0**
 
