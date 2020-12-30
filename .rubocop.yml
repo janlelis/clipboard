@@ -1,13 +1,13 @@
 inherit_from:
 - https://relaxed.ruby.style/rubocop.yml
 
-AllCops:
-  TargetRubyVersion: 2.5
-
 Metrics/BlockLength:
   Enabled: false
 
 Layout/CaseIndentation:
+  Enabled: false
+
+Lint/ConstantDefinitionInBlock:
   Enabled: false
 
 Naming/ConstantName:
@@ -28,6 +28,9 @@ Lint/InheritException:
 Style/MethodCallWithoutArgsParentheses:
   Enabled: false
 
+Style/OptionalBooleanParameter:
+  Enabled: false
+
 Style/RescueModifier:
   Enabled: false
 
@@ -44,6 +47,9 @@ Layout/SpaceInsideStringInterpolation:
   Enabled: false
 
 Layout/SpaceInsideArrayLiteralBrackets:
+  Enabled: false
+
+Style/StringConcatenation:
   Enabled: false
 
 Style/SymbolArray:
