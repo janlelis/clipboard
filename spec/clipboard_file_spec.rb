@@ -2,6 +2,8 @@
 
 require_relative "spec_helper"
 
+require "fileutils"
+
 describe 'Clipboard::File' do
   before :all do
     Clipboard.implementation = Clipboard::File
