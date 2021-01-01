@@ -88,4 +88,4 @@ Without any arguments, it will just paste the contents of the clipboard.
 
 ### MIT
 
-Copyright (c) 2010-2020 Jan Lelis <https://janlelis.com> released under the MIT license. Contributions by and thanks to Michael Grosser and [all the other contributors!](https://github.com/janlelis/clipboard/graphs/contributors)
+Copyright (c) 2010-2021 Jan Lelis <https://janlelis.com> released under the MIT license. Contributions by and thanks to Michael Grosser and [all the other contributors!](https://github.com/janlelis/clipboard/graphs/contributors)
