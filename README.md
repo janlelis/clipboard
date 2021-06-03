@@ -17,7 +17,7 @@ Unsupported, but might still work: **2.5**, **2.4**, **2.3**, **2.2**, **2.1**, 
 ## Usage
 
 * `Clipboard.copy` - Copies a string to system clipboard
-* `Clipboard.paste` - Paste contents from system clipboard as string
+* `Clipboard.paste` - Paste text contents from system clipboard as string
 * `Clipboard.clear` - Empties the system clipboard
 
 ## Setup
@@ -86,6 +86,13 @@ $ blip FILE_NAME
 
 Without any arguments, it will just paste the contents of the clipboard.
 
-### MIT
+## Further Development
 
-Copyright (c) 2010-2021 Jan Lelis <https://janlelis.com> released under the MIT license. Contributions by and thanks to Michael Grosser and [all the other contributors!](https://github.com/janlelis/clipboard/graphs/contributors)
+This is a list of nice-to-have features - feel free to open a PR or let me know if you want to work on one of these:
+
+- Wayland support (via FFI?)
+- Support clipboard meta data
+
+## MIT
+
+Copyright (c) 2010-2021 Jan Lelis <https://janlelis.com> released under the MIT license. Contributions by and thanks to [Michael Grosser and all the other contributors!](https://github.com/janlelis/clipboard/graphs/contributors)
