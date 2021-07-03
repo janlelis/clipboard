@@ -17,13 +17,13 @@ describe Clipboard do
 
   it "can copy & paste" do
     Clipboard.copy("FOO\nBAR")
-    expect( Clipboard.paste ).to eq "FOO\nBAR"
+    expect( Clipboard.paste.encode(Encoding::UTF_8) ).to eq "FOO\nBAR"
   end
 
   it "can copy & paste with multibyte char" do
     Encoding.default_external = "utf-8"
     Clipboard.copy("日本語")
-    expect( Clipboard.paste ).to eq "日本語"
+    expect( Clipboard.paste.encode(Encoding::UTF_8) ).to eq "日本語"
   end
 
   it "returns data on copy" do
@@ -33,7 +33,7 @@ describe Clipboard do
   it "can clear" do
     Clipboard.copy('xxx')
     Clipboard.clear
-    expect( Clipboard.paste ).to eq ''
+    expect( Clipboard.paste.encode(Encoding::UTF_8) ).to eq ''
   end
 
   describe "when included" do
@@ -44,9 +44,9 @@ describe Clipboard do
     it "can copy & paste & clear" do
       a = A.new
       expect( a.send(:copy, "XXX") ).to eq 'XXX'
-      expect( a.send(:paste) ).to eq "XXX"
+      expect( a.send(:paste).encode(Encoding::UTF_8) ).to eq "XXX"
       a.send(:clear)
-      expect( a.send(:paste) ).to eq ''
+      expect( a.send(:paste).encode(Encoding::UTF_8) ).to eq ''
     end
   end
 
