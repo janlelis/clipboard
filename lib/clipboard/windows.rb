@@ -42,20 +42,16 @@ module Clipboard
 
     # see http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
     def paste(_ = nil)
-      data = String.new
-      if User32.open(nil)
-        hclip = User32.get( CF_UNICODETEXT )
-        unless hclip.null?
-          pointer_to_data = Kernel32.lock( hclip )
-          # Windows Unicode is ended by two null bytes, so get the whole string
-          size = Kernel32.size( hclip )
-          data << pointer_to_data.get_bytes( 0, size - 2 )
-          data.force_encoding(Encoding::UTF_16LE)
-          Kernel32.unlock( hclip )
-        end
-      end
-      data
+      return String.new unless User32.open(nil)
+      hclip = User32.get( CF_UNICODETEXT )
+      return String.new if hclip.null?
+      pointer_to_data = Kernel32.lock( hclip )
+      # Windows Unicode is ended by two null bytes, so get the whole string
+      size = Kernel32.size( hclip )
+      data = pointer_to_data.read_string( size - 2 )
+      data.force_encoding(Encoding::UTF_16LE)
     ensure
+      Kernel32.unlock(hclip) if hclip && !hclip.null?
       User32.close
     end
 
@@ -73,10 +69,13 @@ module Clipboard
         data << 0
         handler = Kernel32.alloc( GMEM_MOVEABLE, data.bytesize )
         pointer_to_data = Kernel32.lock( handler )
-        pointer_to_data.put_bytes( 0, data, 0, data.bytesize )
-        Kernel32.unlock( handler )
+        begin
+          pointer_to_data.write_string( data )
+        ensure
+          Kernel32.unlock( handler )
+        end
         User32.set( CF_UNICODETEXT, handler )
-        data_to_copy
+        data.chop
       else # don't touch anything
         Utils.popen "clip", data_to_copy # depends on clip (available by default since Vista)
         paste
