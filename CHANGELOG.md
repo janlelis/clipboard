@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.3.6
+* Fix Windows implementation (so it works on more recent Windows), patch by @P3t3rU5
+
 ## 1.3.5
 * Fix missing String#+@ method on Ruby <2.3, patch by @AaronC81
 
@@ -7,7 +10,6 @@
 * Don't break on Ruby 2.1, patch by @grosser
 
 ## 1.3.3
-
 * Fix Cygwin implementation to work when File constant is loaded, fix by @ntachino
 
 ## 1.3.2
