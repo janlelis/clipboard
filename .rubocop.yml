@@ -1,6 +1,9 @@
 inherit_from:
 - https://relaxed.ruby.style/rubocop.yml
 
+AllCops:
+  NewCops: enable
+
 Metrics/BlockLength:
   Enabled: false
 
@@ -26,6 +29,9 @@ Lint/InheritException:
   Enabled: false
 
 Style/MethodCallWithoutArgsParentheses:
+  Enabled: false
+
+Style/LambdaCall:
   Enabled: false
 
 Style/OptionalBooleanParameter:

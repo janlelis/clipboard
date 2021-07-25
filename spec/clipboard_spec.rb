@@ -12,7 +12,7 @@ describe Clipboard do
     @is_windows = Clipboard.implementation.name == 'Clipboard::Windows'
   end
 
-  let(:expected) {->(text) { @is_windows ? text.encode(Encoding::UTF_16LE) : text }}
+  let(:expected) { ->(text) { @is_windows ? text.encode(Encoding::UTF_16LE) : text } }
 
   it "has a VERSION" do
     expect( Clipboard::VERSION ).to match /^\d+\.\d+\.\d+$/

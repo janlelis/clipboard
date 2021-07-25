@@ -43,8 +43,10 @@ module Clipboard
     # see http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
     def paste(_ = nil)
       return String.new unless User32.open(nil)
+
       hclip = User32.get( CF_UNICODETEXT )
       return String.new if hclip.null?
+
       pointer_to_data = Kernel32.lock( hclip )
       # Windows Unicode is ended by two null bytes, so get the whole string
       size = Kernel32.size( hclip )
