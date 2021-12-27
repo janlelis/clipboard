@@ -28,6 +28,9 @@ Style/ExpandPathArguments:
 Lint/InheritException:
   Enabled: false
 
+Style/FileWrite:
+  Enabled: false
+
 Style/MethodCallWithoutArgsParentheses:
   Enabled: false
 
