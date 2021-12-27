@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.description = "Access to the clipboard on Linux, MacOS, Windows, and Cygwin: Clipboard.copy, Clipboard.paste, Clipboard.clear"
   s.homepage = "https://github.com/janlelis/clipboard"
   s.license  = "MIT"
+  s.metadata = { "rubygems_mfa_required" => "true" }
   s.requirements = [
     "Linux: You need xclip or xsel. On debian/ubuntu run: sudo apt-get install xsel",
     "Windows: You need the ffi gem",
