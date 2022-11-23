@@ -10,12 +10,13 @@ module Clipboard
   end
 
   unless defined? Ocra # see gh#9
-    autoload :Linux,   'clipboard/linux'
-    autoload :Mac,     'clipboard/mac'
-    autoload :Java,    'clipboard/java'
-    autoload :Cygwin,  'clipboard/cygwin'
-    autoload :Wsl,     'clipboard/wsl'
-    autoload :Gtk,     'clipboard/gtk'
+    autoload :Linux,          'clipboard/linux'
+    autoload :LinuxWayland,   'clipboard/linux_wayland'
+    autoload :Mac,            'clipboard/mac'
+    autoload :Java,           'clipboard/java'
+    autoload :Cygwin,         'clipboard/cygwin'
+    autoload :Wsl,            'clipboard/wsl'
+    autoload :Gtk,            'clipboard/gtk'
   end
   autoload :Windows, 'clipboard/windows'
   autoload :File,    'clipboard/file'
@@ -32,11 +33,15 @@ module Clipboard
       raise ClipboardLoadError, "Your OS(#{ RbConfig::CONFIG['host_os'] }) is not supported, using file-based (fake) clipboard"
     end
 
-    # Running additional check to detect if running in Microsoft WSL
+    # Running additional check to detect if
+    # running in Microsoft WSL
+    # or wayland
     if os == :Linux
       require "etc"
       if Etc.respond_to?(:uname) && Etc.uname[:release] =~ /Microsoft/ # uname was added in ruby 2.2
         os = :Wsl
+      elsif ENV["XDG_SESSION_TYPE"] == "wayland"
+        os = :LinuxWayland
       end
     end
 
