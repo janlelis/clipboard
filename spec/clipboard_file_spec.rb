@@ -8,7 +8,7 @@ describe 'Clipboard::File' do
   before :all do
     Clipboard.implementation = Clipboard::File
     cache = Clipboard::File::FILE
-    FileUtils.rm cache if File.exist?(cache)
+    FileUtils.rm_f cache
   end
 
   it "can paste with empty file" do
