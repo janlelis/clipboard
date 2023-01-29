@@ -95,4 +95,4 @@ This is a list of nice-to-have features - feel free to open a PR or let me know 
 
 ## MIT
 
-Copyright (c) 2010-2021 Jan Lelis <https://janlelis.com> released under the MIT license. Contributions by and thanks to [Michael Grosser and all the other contributors!](https://github.com/janlelis/clipboard/graphs/contributors)
+Copyright (c) 2010-2023 Jan Lelis <https://janlelis.com> released under the MIT license. Contributions by and thanks to [Michael Grosser and all the other contributors!](https://github.com/janlelis/clipboard/graphs/contributors)
