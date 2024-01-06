@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.license  = "MIT"
   s.metadata = { "rubygems_mfa_required" => "true" }
   s.requirements = [
-    "Linux: You need xclip or xsel. On debian/ubuntu run: sudo apt-get install xsel",
+    "Linux: You need xclip / xsel (X11) or wl-copy (Wayland)",
     "Windows: You need the ffi gem",
   ]
   s.files = Dir.glob(%w[{lib,spec}/**/*.rb [A-Z]*.txt [A-Z]*.md]) + %w{clipboard.gemspec}

@@ -2,7 +2,8 @@
 
 Lets you access the clipboard from everywhere. Currently supported platforms:
 
-- Linux
+- Linux (X11)
+- Linux (Wayland)
 - MacOS
 - Windows
 - Cygwin (POSIX environment for Windows)
@@ -29,7 +30,7 @@ gem "clipboard"
 gem "ffi", :platforms => [:mswin, :mingw] # Required by Clipboard on Windows
 ```
 
-- **Important note for Linux** users: The clipboard requires the *xsel* or the *xclip* command-line program. On debian and ubuntu, *xsel* can be installed with: `sudo apt-get install xsel`
+- **Important note for Linux** users: The clipboard requires the *xsel* or the *xclip* command-line program (X11), or the *wl-copy* / *wl-paste* command-line programs (Wayland). On debian and ubuntu, *xsel* can be installed with: `sudo apt-get install xsel` and *wl-copy* / *wl-paste* with `sudo apt-get install wl-clipboard`.
 
 ## Clipboard Implementations
 
@@ -70,7 +71,7 @@ passing it as an argument. The default is *:clipboard*, other options are *:prim
 
 ### Windows: Encoding Info
 
-Windows uses [UTF-16LE](https://en.wikipedia.org/wiki/UTF-16) as its default encoding, so pasted strings will always come in UTF-16. You can then manually convert them to your desired encoding, for example, UTF-8, using the [String#encode](ruby-doc.org/core-2.3.0/String.html#method-i-encode) method:
+Windows uses [UTF-16LE](https://en.wikipedia.org/wiki/UTF-16) as its default encoding, so pasted strings will always come in UTF-16. You can then manually convert them to your desired encoding, for example, UTF-8, using the [String#encode](https://rubyapi.org/o/string#method-i-encode) method:
 
 ```ruby
 Clipboard.paste.encode('UTF-8')
@@ -90,7 +91,8 @@ Without any arguments, it will just paste the contents of the clipboard.
 
 This is a list of nice-to-have features - feel free to open a PR or let me know if you want to work on one of these:
 
-- Wayland support (via FFI?)
+- Native support for clipboard on X11 or Wayland
+- Support more platforms
 - Support clipboard meta data
 
 ## MIT
