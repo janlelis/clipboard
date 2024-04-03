@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 require 'rbconfig'
-require File.dirname(__FILE__) + '/clipboard/version'
+
+require_relative 'clipboard/version'
+require_relative 'clipboard/utils'
 
 module Clipboard
   extend self
@@ -33,14 +35,13 @@ module Clipboard
       raise ClipboardLoadError, "Your OS(#{ RbConfig::CONFIG['host_os'] }) is not supported"
     end
 
-    # Running additional check to detect if
-    # running in Microsoft WSL
-    # or wayland
+    # Running additional check to detect if running in Microsoft WSL or Wayland
     if os == :Linux
       require "etc"
       if Etc.respond_to?(:uname) && Etc.uname[:release] =~ /Microsoft/ # uname was added in ruby 2.2
         os = :Wsl
-      elsif ENV["XDG_SESSION_TYPE"] == "wayland"
+      # Only choose Wayland implementation if wl-copy is found, since xclip / xsel *might* work
+      elsif ENV["XDG_SESSION_TYPE"] == "wayland" && Utils.executable_installed?("wl-copy")
         os = :LinuxWayland
       end
     end
