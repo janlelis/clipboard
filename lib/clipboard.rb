@@ -30,7 +30,7 @@ module Clipboard
     when /mswin|mingw/       then :Windows
     when /cygwin/            then :Cygwin
     else
-      raise ClipboardLoadError, "Your OS(#{ RbConfig::CONFIG['host_os'] }) is not supported, using file-based (fake) clipboard"
+      raise ClipboardLoadError, "Your OS(#{ RbConfig::CONFIG['host_os'] }) is not supported"
     end
 
     # Running additional check to detect if
@@ -47,7 +47,7 @@ module Clipboard
 
     @implementation = Clipboard.const_get(os)
   rescue ClipboardLoadError => e
-    $stderr.puts e.message if $VERBOSE
+    $stderr.puts "#{e.message}\nUsing file-based (fake) clipboard" unless $VERBOSE == nil
     @implementation = Clipboard::File
   end
 

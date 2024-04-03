@@ -74,12 +74,13 @@ describe Clipboard do
 
   describe :implementation do
     before do
-      $VERBOSE = true
+      $VERBOSE = false
       Clipboard.implementation = nil
     end
 
     it "does not warn on normal detection" do
-      if system('which xclip >/dev/null 2>&1') || system('which xsel >/dev/null 2>&1')
+      if ENV["XDG_SESSION_TYPE"] != "wayland" && (system('which xclip >/dev/null 2>&1') || system('which xsel >/dev/null 2>&1') ) ||
+         ENV["XDG_SESSION_TYPE"] == "wayland" && system('which wl-copy >/dev/null 2>&1')
         expect( $stderr ).not_to receive(:puts)
       end
       Clipboard.implementation
@@ -91,8 +92,8 @@ describe Clipboard do
       expect( Clipboard.implementation ).to eq Clipboard::File
     end
 
-    it "does not warn when $VERBOSE is false" do
-      $VERBOSE = false
+    it "does not warn when $VERBOSE is nil" do
+      $VERBOSE = nil
       RbConfig::CONFIG['host_os'] = 'Fooo OS'
       expect( $stderr ).not_to receive(:puts)
       Clipboard.implementation

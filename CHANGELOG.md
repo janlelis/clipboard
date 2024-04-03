@@ -1,7 +1,8 @@
 # CHANGELOG
 
 ## 1.4.0 (unreleased)
-* Add wayland support via `wl-copy`, patch by @cramt
+* Add Wayland support via `wl-copy`, patch by @cramt
+* Only silence clipboard warnings when $VERBOSE is nil
 
 ## 1.3.6
 * Fix Windows implementation (so it works on more recent Windows), patch by @P3t3rU5
