@@ -81,3 +81,9 @@ Layout/SpaceAroundOperators:
 
 Lint/SuppressedException:
   Enabled: false
+
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+
+Style/NilComparison:
+  Enabled: false

@@ -79,8 +79,8 @@ describe Clipboard do
     end
 
     it "does not warn on normal detection" do
-      if ENV["XDG_SESSION_TYPE"] != "wayland" && (system('which xclip >/dev/null 2>&1') || system('which xsel >/dev/null 2>&1') ) ||
-         ENV["XDG_SESSION_TYPE"] == "wayland" && system('which wl-copy >/dev/null 2>&1')
+      if ( ENV["XDG_SESSION_TYPE"] != "wayland" && (system('which xclip >/dev/null 2>&1') || system('which xsel >/dev/null 2>&1') ) ) ||
+         ( ENV["XDG_SESSION_TYPE"] == "wayland" && system('which wl-copy >/dev/null 2>&1') )
         expect( $stderr ).not_to receive(:puts)
       end
       Clipboard.implementation
