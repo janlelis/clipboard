@@ -14,8 +14,12 @@ module Clipboard
                                            "Please install it or try a different implementation"
     end
 
-    def paste(_ = nil)
-      `#{READ_COMMAND}`
+    def paste(might_select_primary_clipboard = nil)
+      if might_select_primary_clipboard == "primary"
+        `#{READ_COMMAND} -p`
+      else
+        `#{READ_COMMAND}`
+      end
     end
 
     def copy(data)
