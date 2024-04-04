@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.4.1 (unreleased)
+## 1.4.1
 * Always use plaintext mimetype for wl-clipboard
 * Do not include newline when pasting from wl-clipboard
 * Internal: Let ClipboardLoadError inherit from StandardError, not Exception
