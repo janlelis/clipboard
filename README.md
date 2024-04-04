@@ -13,7 +13,7 @@ Lets you access the clipboard from everywhere. Currently supported platforms:
 
 Supported Rubies: **3.3**, **3.2**, **3.1**, **3.0**
 
-Unsupported, but might still work: **2.7**, **2.6**, **2.5**, **2.4**, **2.3**, **2.X**
+Unsupported, but might still work: **2.X**
 
 ## Usage
 
