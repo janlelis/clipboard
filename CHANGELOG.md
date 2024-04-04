@@ -3,6 +3,7 @@
 ## 1.4.1 (unreleased)
 * Always use plaintext mimetype for wl-clipboard
 * Do not include newline when pasting from wl-clipboard
+* Internal: Let ClipboardLoadError inherit from StandardError, not Exception
 
 ## 1.4.0
 * Add Wayland support via `wl-copy`, patch by @cramt

@@ -8,7 +8,7 @@ require_relative 'clipboard/utils'
 module Clipboard
   extend self
 
-  class ClipboardLoadError < Exception
+  class ClipboardLoadError < StandardError
   end
 
   unless defined? Ocra # see gh#9
