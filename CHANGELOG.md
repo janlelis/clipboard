@@ -7,6 +7,7 @@
 
 ### Refactorings / Minor API Changes
 * All implementations are now based on `Clipboard::Implementation`
+* Move implementation detection to `utils.rb`
 
 ## 1.4.1
 * Always use plaintext mimetype for wl-clipboard
