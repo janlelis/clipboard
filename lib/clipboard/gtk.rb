@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
-# Ruby-Gnome2 based implementation
-# Requires either the gtk3 or the gtk2 gem
+require_relative "implementation"
 
 module Clipboard
+# Ruby-Gnome2 based implementation
+# Requires either the gtk3 or the gtk2 gem
   module Gtk
+    include Implementation
     extend self
 
     CLIPBOARDS = %w[CLIPBOARD PRIMARY SECONDARY].freeze

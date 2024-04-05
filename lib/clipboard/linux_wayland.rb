@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+require_relative "implementation"
 require_relative "utils"
 
 module Clipboard
   module LinuxWayland
+    include Implementation
     extend self
 
     TEST_COMMAND  = "wl-copy"

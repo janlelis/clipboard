@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+require_relative "implementation"
 require_relative "utils"
 
 module Clipboard
   module Mac
+    include Implementation
     extend self
 
     def paste(_ = nil)
@@ -13,10 +15,6 @@ module Clipboard
     def copy(data)
       Utils.popen "pbcopy", data
       paste
-    end
-
-    def clear
-      copy ''
     end
   end
 end

@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
+require_relative "implementation"
+
 module Clipboard
   module File
+    include Implementation
     extend self
 
     FILE = ::File.expand_path("~/.clipboard")
@@ -13,10 +16,6 @@ module Clipboard
 
     def paste(_ = nil)
       ::File.read(FILE) rescue ''
-    end
-
-    def clear
-      copy ''
     end
   end
 end

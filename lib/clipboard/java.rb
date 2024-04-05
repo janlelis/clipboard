@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
+require_relative "implementation"
+
 module Clipboard
   # Basic java clipboard access (jruby). No fun to use on X.
   module Java
+    include Implementation
     extend self
 
     FLAVOR = ::Java::JavaAwtDatatransfer::DataFlavor.stringFlavor
@@ -17,10 +20,6 @@ module Clipboard
       ::Java::JavaAwt::Toolkit.default_toolkit.system_clipboard.get_data(FLAVOR)
     rescue
       ''
-    end
-
-    def clear
-      copy ''
     end
   end
 end

@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
+require_relative "implementation"
+
 module Clipboard
   module Cygwin
+    include Implementation
     extend self
 
     def paste(_ = nil)
@@ -11,10 +14,6 @@ module Clipboard
     def copy(data)
       ::File.open("/dev/clipboard", "w"){ |f| f.write(data) }
       paste
-    end
-
-    def clear
-      copy ''
     end
   end
 end

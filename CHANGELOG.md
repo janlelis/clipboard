@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.0 (unreleased)
+
+### Refactorings / Minor API Changes
+* All implementations are now based on `Clipboard::Implementation`
+
 ## 1.4.1
 * Always use plaintext mimetype for wl-clipboard
 * Do not include newline when pasting from wl-clipboard

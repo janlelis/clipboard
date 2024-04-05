@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+require_relative "implementation"
 require_relative "utils"
 
 module Clipboard
   module Linux
+    include Implementation
     extend self
 
     CLIPBOARDS = %w[clipboard primary secondary].freeze
@@ -38,9 +40,6 @@ module Clipboard
       `#{ReadCommand} #{Selection[which_normalized]} 2> /dev/null`
     end
 
-    def clear
-      copy ''
-    end
 
     def copy(data)
       CLIPBOARDS.each{ |which|
