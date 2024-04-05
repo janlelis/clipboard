@@ -11,7 +11,8 @@ module Clipboard
 
     def copy(text)
       ::File.open(FILE, 'w', 0o0600) { |f| f.write(text) } rescue ''
-      paste
+
+      true
     end
 
     def paste(_ = nil)

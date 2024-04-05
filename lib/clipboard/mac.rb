@@ -14,7 +14,8 @@ module Clipboard
 
     def copy(data)
       Utils.popen "pbcopy", data
-      paste
+
+      true
     end
   end
 end

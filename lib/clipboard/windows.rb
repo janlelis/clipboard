@@ -61,7 +61,8 @@ module Clipboard
 
     def clear
       User32.empty if User32.open(nil)
-      paste
+
+      true
     ensure
       User32.close
     end
@@ -79,11 +80,11 @@ module Clipboard
           Kernel32.unlock( handler )
         end
         User32.set( CF_UNICODETEXT, handler )
-        data.chop
       else # don't touch anything
         Utils.popen "clip", data_to_copy # depends on clip (available by default since Vista)
-        paste
       end
+
+      true
     ensure
       User32.close
     end

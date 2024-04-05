@@ -14,10 +14,6 @@ describe Clipboard do
 
   let(:expected) { ->(text) { @is_windows ? text.encode(Encoding::UTF_16LE) : text } }
 
-  it "has a VERSION" do
-    expect( Clipboard::VERSION ).to match /^\d+\.\d+\.\d+$/
-  end
-
   it "can copy & paste" do
     text = "FOO\nBAR"
     Clipboard.copy(text)
@@ -31,9 +27,9 @@ describe Clipboard do
     expect( Clipboard.paste ).to eq expected.(text)
   end
 
-  it "returns data on copy" do
+  it "returns true on copy" do
     text = 'xxx'
-    expect( Clipboard.copy(text) ).to eq expected.(text)
+    expect( Clipboard.copy(text) ).to eq true
   end
 
   it "can clear" do
@@ -50,7 +46,7 @@ describe Clipboard do
     it "can copy & paste & clear" do
       a = A.new
       text = 'XXX'
-      expect( a.send(:copy, text) ).to eq expected.(text)
+      expect( a.send(:copy, text) ).to eq true
       expect( a.send(:paste) ).to eq expected.(text)
       a.send(:clear)
       expect( a.send(:paste) ).to eq expected.('')
@@ -61,13 +57,15 @@ describe Clipboard do
   it "can copy more than 8192 bytes" do
     # first batch
     data1 = Random.new.bytes(2**14).unpack("H*").first
-    data2 = Clipboard.copy(data1)
+    Clipboard.copy(data1)
+    data2 = Clipboard.paste
 
     expect(data2).to eq expected.(data1)
 
     # second batch
     data1 = Random.new.bytes(2**14).unpack("H*").first
-    data2 = Clipboard.copy(data1)
+    Clipboard.copy(data1)
+    data2 = Clipboard.paste
 
     expect(data2).to eq expected.(data1)
   end

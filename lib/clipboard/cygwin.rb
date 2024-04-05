@@ -13,7 +13,8 @@ module Clipboard
 
     def copy(data)
       ::File.open("/dev/clipboard", "w"){ |f| f.write(data) }
-      paste
+
+      true
     end
   end
 end

@@ -16,12 +16,13 @@ describe 'Clipboard::File' do
   end
 
   it "can copy & paste" do
-    expect( Clipboard.copy('xxx') ).to eq 'xxx'
+    expect( Clipboard.copy('xxx') ).to eq true
     expect( Clipboard.paste ).to eq 'xxx'
   end
 
   it "can clear" do
-    expect( Clipboard.copy('xxx') ).to eq 'xxx'
+    expect( Clipboard.copy('xxx') ).to eq true
+    expect( Clipboard.paste ).to eq 'xxx'
     Clipboard.clear
     expect( Clipboard.paste ).to eq ''
   end

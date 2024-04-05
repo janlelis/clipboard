@@ -2,6 +2,9 @@
 
 ## 2.0.0 (unreleased)
 
+### Major Changes
+* `Clipboard.copy` and `.clear` now always return true instead of the pasted string
+
 ### Refactorings / Minor API Changes
 * All implementations are now based on `Clipboard::Implementation`
 

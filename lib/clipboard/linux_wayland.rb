@@ -27,11 +27,14 @@ module Clipboard
 
     def copy(data)
       Utils.popen WRITE_COMMAND, data
-      paste
+
+      true
     end
 
     def clear
       `#{WRITE_COMMAND} --clear`
+
+      true
     end
   end
 end

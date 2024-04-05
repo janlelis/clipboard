@@ -14,7 +14,8 @@ module Clipboard
 
     def copy(data)
       Utils.popen "clip.exe", data
-      paste
+
+      true
     end
   end
 end

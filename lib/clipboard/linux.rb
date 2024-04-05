@@ -45,7 +45,8 @@ module Clipboard
       CLIPBOARDS.each{ |which|
         Utils.popen "#{WriteCommand} #{Selection[which]}", data, ReadOutputStream
       }
-      paste
+
+      true
     end
   end
 end

@@ -27,7 +27,8 @@ module Clipboard
       CLIPBOARDS.each{ |which|
         ::Gtk::Clipboard.get(Gdk::Selection.const_get(which)).set_text(text).store
       }
-      paste
+
+      true
     end
 
     def paste(which = nil)
@@ -44,6 +45,8 @@ module Clipboard
       CLIPBOARDS.each{ |which|
         ::Gtk::Clipboard.get(Gdk::Selection.const_get(which)).clear
       }
+
+      true
     end
   end
 end
