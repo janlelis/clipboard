@@ -21,6 +21,7 @@ module Clipboard
 
   def self.implementation
     return @implementation if @implementation
+
     @implementation = Clipboard.const_get(Utils.autodetect_implementation)
   rescue ClipboardLoadError => e
     $stderr.puts "#{e.message}\nUsing file-based (fake) clipboard" unless $VERBOSE == nil

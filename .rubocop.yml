@@ -13,9 +13,6 @@ Layout/CaseIndentation:
 Lint/ConstantDefinitionInBlock:
   Enabled: false
 
-Naming/ConstantName:
-  Enabled: false
-
 Layout/EndAlignment:
   Enabled: false
 

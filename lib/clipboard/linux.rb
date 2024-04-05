@@ -43,7 +43,6 @@ module Clipboard
       `#{READ_COMMAND} #{SELECTION[which_normalized]} 2> /dev/null`
     end
 
-
     def copy(data)
       CLIPBOARDS.each{ |which|
         Utils.popen "#{WRITE_COMMAND} #{SELECTION[which]}", data, READ_OUTPUT_STREAM
