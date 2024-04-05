@@ -2,6 +2,7 @@
 
 require_relative "spec_helper"
 
+require 'clipboard/file'
 require "fileutils"
 
 describe 'Clipboard::File' do
