@@ -12,21 +12,23 @@ module Clipboard
 
     # check which backend to use
     if Utils.executable_installed? "xsel"
-      WriteCommand = 'xsel -i'
-      ReadCommand  = 'xsel -o'
-      ReadOutputStream = true
-      Selection    = {
+      WRITE_COMMAND = 'xsel -i'
+      READ_COMMAND = 'xsel -o'
+      READ_OUTPUT_STREAM = true
+      SELECTION = {
         'clipboard' => '-b',
         'primary' => '-p',
         'secondary' => '-s'
       }.freeze
+
     elsif Utils.executable_installed? "xclip"
-      WriteCommand = 'xclip'
-      ReadCommand  = 'xclip -o'
-      ReadOutputStream = false
-      Selection    = proc{ |x|
+      WRITE_COMMAND = 'xclip'
+      READ_COMMAND = 'xclip -o'
+      READ_OUTPUT_STREAM = false
+      SELECTION = proc{ |x|
         "-selection #{x}"
       }.freeze
+
     else
       raise Clipboard::ClipboardLoadError, "clipboard: Could not find required program xclip or xsel\n" \
                                            "On debian/ubuntu, you can install it with: sudo apt-get install xsel\n" \
@@ -37,13 +39,14 @@ module Clipboard
       if !which || !CLIPBOARDS.include?(which_normalized = which.to_s.downcase)
         which_normalized = CLIPBOARDS.first
       end
-      `#{ReadCommand} #{Selection[which_normalized]} 2> /dev/null`
+
+      `#{READ_COMMAND} #{SELECTION[which_normalized]} 2> /dev/null`
     end
 
 
     def copy(data)
       CLIPBOARDS.each{ |which|
-        Utils.popen "#{WriteCommand} #{Selection[which]}", data, ReadOutputStream
+        Utils.popen "#{WRITE_COMMAND} #{SELECTION[which]}", data, READ_OUTPUT_STREAM
       }
 
       true
