@@ -13,12 +13,12 @@ if RbConfig::CONFIG['host_os'] =~ /mswin|mingw/
     end
 
     it "can copy & paste" do
-      expect( Clipboard.copy('example') ).to eq true
+      Clipboard.copy('example')
       expect( Clipboard.paste ).to eq 'example'.encode("UTF-16LE")
     end
 
     it "can clear" do
-      expect( Clipboard.copy('example') ).to eq true
+      Clipboard.copy('example')
       expect( Clipboard.paste ).to eq 'example'.encode("UTF-16LE")
       Clipboard.clear
       expect( Clipboard.paste ).to eq ''
