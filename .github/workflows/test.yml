@@ -23,12 +23,10 @@ jobs:
       with:
         ruby-version: ${{matrix.ruby}}
         bundler-cache: true
-    - name: Install xsel
-      run: sudo apt install xsel
+    - name: Install xsel and friends
+      run: sudo apt install xsel xvfb x11-xserver-utils
     - name: Run tests
-      uses: coactions/setup-xvfb@v1
-      with:
-        run: bundle exec rake
+      run: xvfb-run bundle exec rake
 
   test-mac:
     name: Ruby ${{ matrix.ruby }} (Mac)
