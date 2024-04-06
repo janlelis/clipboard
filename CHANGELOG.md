@@ -9,6 +9,9 @@
 * All implementations are now based on `Clipboard::Implementation`
 * Move implementation detection to `utils.rb`
 
+### Other
+* Add more specs and run them on GitHub Actions CI
+
 ## 1.4.1
 * Always use plaintext mimetype for wl-clipboard
 * Do not include newline when pasting from wl-clipboard
