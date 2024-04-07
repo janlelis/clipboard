@@ -10,6 +10,7 @@ Lets you access the clipboard from everywhere. Currently supported platforms:
 - WSL (Windows Subsystem for Linux)
 - Gtk+ (Cross Platform Widget Toolkit)
 - Java (on JRuby)
+- *Experimental:* OSC52 (ANSI escape sequence) **only copying**
 
 Supported Rubies: **3.3**, **3.2**, **3.1**, **3.0**
 

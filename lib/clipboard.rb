@@ -15,6 +15,7 @@ module Clipboard
     autoload :Cygwin,         'clipboard/cygwin'
     autoload :Wsl,            'clipboard/wsl'
     autoload :Gtk,            'clipboard/gtk'
+    autoload :Osc52,          'clipboard/osc52'
   end
   autoload :Windows, 'clipboard/windows'
   autoload :File,    'clipboard/file'
@@ -32,16 +33,16 @@ module Clipboard
     @implementation = val
   end
 
-  def paste(*args)
-    Clipboard.implementation.paste(*args)
+  def paste(...)
+    Clipboard.implementation.paste(...)
   end
 
-  def clear(*args)
-    Clipboard.implementation.clear(*args)
+  def clear(...)
+    Clipboard.implementation.clear(...)
   end
 
-  def copy(*args)
-    Clipboard.implementation.copy(*args)
+  def copy(...)
+    Clipboard.implementation.copy(...)
   end
 end
 

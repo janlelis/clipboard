@@ -6,6 +6,9 @@
 * Set required Ruby to 3.0
 * `Clipboard.copy` and `.clear` now always return true instead of the pasted string
 
+## New Features
+* Add expiremental OSC52 implementation (only `Clipboard.copy`)
+
 ### Refactorings / Minor API Changes
 * All implementations are now based on `Clipboard::Implementation`
 * Move implementation detection to `utils.rb`
