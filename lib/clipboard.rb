@@ -24,13 +24,23 @@ module Clipboard
     return @implementation if @implementation
 
     @implementation = Clipboard.const_get(Utils.autodetect_implementation)
-  rescue ClipboardLoadError => e
+  rescue ClipboardLoadError, NameError => e
     $stderr.puts "#{e.message}\nUsing file-based (fake) clipboard" unless $VERBOSE == nil
     @implementation = Clipboard::File
   end
 
-  def self.implementation=(val)
-    @implementation = val
+  def self.implementation=(implementation)
+    if !implementation
+      @implementation = nil
+    elsif implementation.is_a? Module
+      @implementation = implementation
+    else
+      camel_cased_implementation_name = implementation.to_s.gsub(/(?:^|_)([a-z])/) do $1.upcase end
+      @implementation = Clipboard.const_get(camel_cased_implementation_name)
+    end
+  rescue ClipboardLoadError, NameError => e
+    $stderr.puts "#{e.message}\nUsing file-based (fake) clipboard" unless $VERBOSE == nil
+    @implementation = Clipboard::File
   end
 
   def paste(...)

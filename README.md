@@ -45,13 +45,13 @@ There are two implementations included in this gem, which are not used by defaul
 
 #### Java
 
-Activate with: `Clipboard.implementation = Clipboard::Java`
+Activate with: `Clipboard.implementation = :java`
 
 This is an option for [JRuby users](https://www.jruby.org/) which will use the clipboard functionality from the Java standard library.
 
 #### GTK+
 
-Activate with: `Clipboard.implementation = Clipboard::Gtk`
+Activate with: `Clipboard.implementation = :gtk`
 
 This utilizes the **GTK+** library. See [Ruby-GNOME2](https://github.com/ruby-gnome2/ruby-gnome2#ruby-gnome2) for more info.
 

@@ -96,5 +96,16 @@ describe Clipboard do
       expect( $stderr ).not_to receive(:puts)
       Clipboard.implementation
     end
+
+    it "can be set with camel case" do
+      Clipboard.implementation = "linux_wayland"
+      expect( Clipboard.implementation ).to eq Clipboard::LinuxWayland
+    end
+
+    it "warns when unknown implementation name is given" do
+      expect( $stderr ).to receive(:puts)
+      Clipboard.implementation = "unknown"
+      expect( Clipboard.implementation ).to eq Clipboard::File
+    end
   end
 end

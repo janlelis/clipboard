@@ -5,6 +5,8 @@
 ### Major Changes
 * Set required Ruby to 3.0
 * `Clipboard.copy` and `.clear` now always return true instead of the pasted string
+* Allow setting clipboard implementation with camel-cased symbol/string:
+  `Clipboard.implementation = :linux_wayland`
 
 ## New Features
 * Add expiremental OSC52 implementation (only `Clipboard.copy`)
