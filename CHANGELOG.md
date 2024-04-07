@@ -3,12 +3,15 @@
 ## 2.0.0 (unreleased)
 
 ### Major Changes
-* Set required Ruby to 3.0
+* Required Ruby to 3.0
 * `Clipboard.copy` and `.clear` now always return true instead of the pasted string
-* Allow setting clipboard implementation with camel-cased symbol/string:
+* Linux-based `Clipboard .copy` methods now take a clipboard argument `clipboard:`
+  to choose which clipboard to copy to (default is "all").
+  For example: `Clipboard.copy("data", clipboard: "primary")` copies only to primary clipboard
+* Allow choosing clipboard implementation with camel-cased symbol/string:
   `Clipboard.implementation = :linux_wayland`
 
-## New Features
+### New Features
 * Add expiremental OSC52 implementation (only `Clipboard.copy`)
 
 ### Refactorings / Minor API Changes

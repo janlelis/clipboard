@@ -10,15 +10,15 @@ module Clipboard
 
     CLIPBOARDS = %w[clipboard primary secondary].freeze
 
-    # check which backend to use
+    # First check for xsel, fallback to xclip
     if Utils.executable_installed? "xsel"
       WRITE_COMMAND = 'xsel -i'
       READ_COMMAND = 'xsel -o'
       READ_OUTPUT_STREAM = true
       SELECTION = {
-        'clipboard' => '-b',
-        'primary' => '-p',
-        'secondary' => '-s'
+        'clipboard' => '--clipboard',
+        'primary' => '--primary',
+        'secondary' => '--secondary'
       }.freeze
 
     elsif Utils.executable_installed? "xclip"
@@ -35,7 +35,7 @@ module Clipboard
                                            "If your system is Wayland-based, please install wl-clipboard"
     end
 
-    def paste(which = nil)
+    def paste(which = nil, **)
       if !which || !CLIPBOARDS.include?(which_normalized = which.to_s.downcase)
         which_normalized = CLIPBOARDS.first
       end
@@ -43,9 +43,10 @@ module Clipboard
       `#{READ_COMMAND} #{SELECTION[which_normalized]} 2> /dev/null`
     end
 
-    def copy(data)
-      CLIPBOARDS.each{ |which|
-        Utils.popen "#{WRITE_COMMAND} #{SELECTION[which]}", data, READ_OUTPUT_STREAM
+    def copy(data, clipboard: "all")
+      selections = clipboard.to_s == "all" ? CLIPBOARDS : [clipboard]
+      selections.each{ |selection|
+        Utils.popen "#{WRITE_COMMAND} #{SELECTION[selection]}", data, READ_OUTPUT_STREAM
       }
 
       true

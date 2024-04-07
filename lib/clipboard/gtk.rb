@@ -9,7 +9,7 @@ module Clipboard
     include Implementation
     extend self
 
-    CLIPBOARDS = %w[CLIPBOARD PRIMARY SECONDARY].freeze
+    CLIPBOARDS = %w[clipboard primary secondary].freeze
 
     unless defined? ::Gtk
       begin
@@ -23,27 +23,29 @@ module Clipboard
       end
     end
 
-    def copy(text, **)
-      CLIPBOARDS.each{ |which|
-        ::Gtk::Clipboard.get(Gdk::Selection.const_get(which)).set_text(text).store
+    def paste(which = nil, **)
+      if !which || !CLIPBOARDS.include?(which.to_s.downcase)
+        which = CLIPBOARDS.first
+      end
+
+      ::Gtk::Clipboard.get(
+        Gdk::Selection.const_get(which.to_s.upcase)
+      ).wait_for_text || ""
+    end
+
+    def copy(data, clipboard: "all")
+      selections = clipboard.to_s == "all" ? CLIPBOARDS : [clipboard]
+      selections.each{ |selection|
+        ::Gtk::Clipboard.get(Gdk::Selection.const_get(selection.to_s.upcase)).set_text(data).store
       }
 
       true
     end
 
-    def paste(which = nil, **)
-      if !which || !CLIPBOARDS.include?(which_normalized = which.to_s.upcase)
-        which_normalized = CLIPBOARDS.first
-      end
-
-      ::Gtk::Clipboard.get(
-        Gdk::Selection.const_get(which_normalized)
-      ).wait_for_text || ""
-    end
-
-    def clear(**)
-      CLIPBOARDS.each{ |which|
-        ::Gtk::Clipboard.get(Gdk::Selection.const_get(which)).clear
+    def clear(clipboard: "all")
+      selections = clipboard.to_s == "all" ? CLIPBOARDS : [clipboard]
+      selections.each{ |selection|
+        ::Gtk::Clipboard.get(Gdk::Selection.const_get(selection.to_s.upcase)).clear
       }
 
       true

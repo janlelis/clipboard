@@ -10,7 +10,7 @@ Lets you access the clipboard from everywhere. Currently supported platforms:
 - WSL (Windows Subsystem for Linux)
 - Gtk+ (Cross Platform Widget Toolkit)
 - Java (on JRuby)
-- *Experimental:* OSC52 (ANSI escape sequence) **only copying** - also see note below
+- *Experimental:* OSC52 (ANSI escape sequence) **only copying** - see note below
 
 Supported Rubies: **3.3**, **3.2**, **3.1**, **3.0**
 
@@ -59,7 +59,7 @@ Requires the `gtk3` or `gtk2` gem to be installed.
 
 #### OSC52
 
-Activate with: Clipboard.implementation = :osc52
+Activate with: `Clipboard.implementation = :osc52`
 
 OSC52 is an ANSI escape sequence that some terminals support to access the system clipboard. One advantage of using this clipboard proider is that it is possible to copy from remote ssh sessions to your system clipboard.
 
@@ -71,13 +71,17 @@ As of the current version, only **copy** and **clear** commands are supported (n
 
 ### Linux: Using Clipboard via SSH
 
-To be able to use the clipboard through SSH, you need to install `xauth` on your server and connect via `ssh -X` or `ssh -Y`. Please note that some server settings restrict this feature.
+To be able to use the clipboard through SSH (using the `xsel`/`xclip` based implementation), you need to install `xauth` on your server and connect via `ssh -X` or `ssh -Y`. Please note that some server settings restrict this feature.
 
-### Linux: Paste From Specific X11 Selection
+### Linux: Copy To or Paste From Specific Clipboard / Selection
 
-The clipboard on Linux is divided into multiple clipboard selections. You can choose from which clipboard you want to `paste` from by passing it as an argument. The default is *:clipboard*, other options are *:primary* and *:secondary*.
+The clipboard on Linux is divided into multiple clipboard selections. You can choose from which clipboard you want to `paste` from by passing it as the first argument. The default is *:clipboard*, other options are *:primary* and, for some implementations, *:secondary*.
 
-`Clipboard.copy` always copies to all three clipboards.
+`Clipboard.copy` will copy to all available clipboards, except if you specifiy a clipboard using the `clipboard:` keyword argument:
+
+```ruby
+Clipboard.copy("only goes to primary clipboard", clipboard: "primary")
+```
 
 ### Windows: Encoding Info
 
@@ -96,14 +100,6 @@ $ blip FILE_NAME
 ```
 
 Without any arguments, it will just paste the contents of the clipboard.
-
-## Further Development
-
-This is a list of nice-to-have features - feel free to open a PR or let me know if you want to work on one of these:
-
-- Native support for clipboard on X11 or Wayland
-- Support more platforms
-- Support clipboard meta data
 
 ## MIT
 

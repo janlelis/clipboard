@@ -18,8 +18,8 @@ module Clipboard
 
     # Can be used to add a native clear implementation
     # Should return true
-    def clear(...)
-      copy('', ...)
+    def clear(**kwargs)
+      copy('', **kwargs)
 
       true
     end

@@ -8,6 +8,8 @@ module Clipboard
     include Implementation
     extend self
 
+    CLIPBOARDS = %w[clipboard primary].freeze
+
     TEST_COMMAND  = "wl-copy"
     WRITE_COMMAND = "wl-copy --type text/plain"
     READ_COMMAND  = "wl-paste --type text/plain --no-newline"
@@ -17,16 +19,19 @@ module Clipboard
                                            "Please install it or try a different implementation"
     end
 
-    def paste(might_select_primary_clipboard = nil, **)
-      if might_select_primary_clipboard == "primary"
+    def paste(which = nil, **)
+      if which == "primary"
         `#{READ_COMMAND} --primary`
       else
         `#{READ_COMMAND}`
       end
     end
 
-    def copy(data, **)
-      Utils.popen WRITE_COMMAND, data
+    def copy(data, clipboard: "all")
+      selections = clipboard.to_s == "all" ? CLIPBOARDS : [clipboard]
+      selections.each{ |selection|
+        Utils.popen WRITE_COMMAND + selection == "primary" ? "primary" : "", data
+      }
 
       true
     end

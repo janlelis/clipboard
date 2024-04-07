@@ -7,14 +7,14 @@ module Clipboard
     include Implementation
     extend self
 
-    SELECTIONS = ["clipboard", "primary"].freeze
+    CLIPBOARDS = ["clipboard", "primary"].freeze
     OSC52 = "]52;%<selection_option>s;%<data_base64>s"
 
     def copy(data, clipboard: "all")
-      selections = clipboard == "all" ? SELECTIONS : [clipboard]
+      selections = clipboard.to_s == "all" ? CLIPBOARDS : [clipboard]
       selections.each{ |selection|
         print OSC52 % {
-          selection_option: clipboard == "primary" ? "p" : "c",
+          selection_option: selection == "primary" ? "p" : "c",
           data_base64: [data].pack("m0"),
         }
       }
@@ -23,10 +23,10 @@ module Clipboard
     end
 
     def clear(clipboard: "all")
-      selections = clipboard == "all" ? SELECTIONS : [clipboard]
+      selections = clipboard.to_s == "all" ? CLIPBOARDS : [clipboard]
       selections.each{ |selection|
         print OSC52 % {
-          selection_option: clipboard == "primary" ? "p" : "c",
+          selection_option: selection == "primary" ? "p" : "c",
           data_base64: ?! # anything non-base64 / question mark clears
         }
       }
