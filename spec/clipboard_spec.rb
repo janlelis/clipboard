@@ -98,8 +98,10 @@ describe Clipboard do
     end
 
     it "can be set with camel case" do
-      Clipboard.implementation = "linux_wayland"
-      expect( Clipboard.implementation ).to eq Clipboard::LinuxWayland
+      module Clipboard::TestImplementation
+      end
+      Clipboard.implementation = "test_implementation"
+      expect( Clipboard.implementation ).to eq Clipboard::TestImplementation
     end
 
     it "warns when unknown implementation name is given" do
