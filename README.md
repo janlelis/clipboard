@@ -10,7 +10,7 @@ Lets you access the clipboard from everywhere. Currently supported platforms:
 - WSL (Windows Subsystem for Linux)
 - Gtk+ (Cross Platform Widget Toolkit)
 - Java (on JRuby)
-- *Experimental:* OSC52 (ANSI escape sequence) **only copying**
+- *Experimental:* OSC52 (ANSI escape sequence) **only copying** - also see note below
 
 Supported Rubies: **3.3**, **3.2**, **3.1**, **3.0**
 
@@ -41,7 +41,7 @@ You can check the implementation used with: `Clipboard.implementation`
 
 ### Alternative Clipboard Providers
 
-There are two implementations included in this gem, which are not used by default. You can opt-in to use them if you think they are a better fit for your application environment:
+There are more implementations included in this gem, which are not activated by default. You can opt-in to use them if you think they are a better fit for your application environment:
 
 #### Java
 
@@ -57,6 +57,16 @@ This utilizes the **GTK+** library. See [Ruby-GNOME2](https://github.com/ruby-gn
 
 Requires the `gtk3` or `gtk2` gem to be installed.
 
+#### OSC52
+
+Activate with: Clipboard.implementation = :osc52
+
+OSC52 is an ANSI escape sequence that some terminals support to access the system clipboard. One advantage of using this clipboard proider is that it is possible to copy from remote ssh sessions to your system clipboard.
+
+As of the current version, only **copy** and **clear** commands are supported (no **paste**).
+
+**Please note**: Even if your terminal includes OSC52 functionality, the feature could be (partially) disabled to prevent malicious scripts from accessing (or setting) your clipboard.
+
 ## Tips & Tricks
 
 ### Linux: Using Clipboard via SSH
@@ -65,8 +75,7 @@ To be able to use the clipboard through SSH, you need to install `xauth` on your
 
 ### Linux: Paste From Specific X11 Selection
 
-The clipboard on Linux is divided into multiple clipboard selections. You can choose from which clipboard you want to `paste` from by
-passing it as an argument. The default is *:clipboard*, other options are *:primary* and *:secondary*.
+The clipboard on Linux is divided into multiple clipboard selections. You can choose from which clipboard you want to `paste` from by passing it as an argument. The default is *:clipboard*, other options are *:primary* and *:secondary*.
 
 `Clipboard.copy` always copies to all three clipboards.
 
