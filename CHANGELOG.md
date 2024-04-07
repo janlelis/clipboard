@@ -12,7 +12,7 @@
   `Clipboard.implementation = :linux_wayland`
 
 ### New Features
-* Add expiremental OSC52 implementation (only `Clipboard.copy`)
+* Add experimental OSC52 implementation (only `Clipboard.copy`)
 
 ### Refactorings / Minor API Changes
 * Change `copy`, `paste`, and `clear` to always accept keyword arguments

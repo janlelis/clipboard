@@ -19,25 +19,27 @@ module Clipboard
                                            "Please install it or try a different implementation"
     end
 
-    def paste(which = nil, **)
-      if which == "primary"
-        `#{READ_COMMAND} --primary`
-      else
-        `#{READ_COMMAND}`
-      end
+    def paste(selection = nil, **)
+      primary_flag = selection == "primary" ? " --primary" : ""
+      `#{READ_COMMAND}#{primary_flag}`
     end
 
     def copy(data, clipboard: "all")
       selections = clipboard.to_s == "all" ? CLIPBOARDS : [clipboard]
       selections.each{ |selection|
-        Utils.popen WRITE_COMMAND + selection == "primary" ? "primary" : "", data
+        primary_flag = selection == "primary" ? " --primary" : ""
+        Utils.popen("#{WRITE_COMMAND}#{primary_flag}", data)
       }
 
       true
     end
 
-    def clear(**)
-      `#{WRITE_COMMAND} --clear`
+    def clear(clipboard: "all")
+      selections = clipboard.to_s == "all" ? CLIPBOARDS : [clipboard]
+      selections.each{ |selection|
+        primary_flag = selection.to_s == "primary" ? " --primary" : ""
+        `#{WRITE_COMMAND}#{primary_flag} --clear`
+      }
 
       true
     end
