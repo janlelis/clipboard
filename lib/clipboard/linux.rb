@@ -35,17 +35,18 @@ module Clipboard
                                            "If your system is Wayland-based, please install wl-clipboard"
     end
 
-    def paste(which = nil, **)
-      if !which || !CLIPBOARDS.include?(which_normalized = which.to_s.downcase)
-        which_normalized = CLIPBOARDS.first
-      end
+    def paste(which = nil, clipboard: "clipboard")
+      selection = which || clipboard
+      raise ArgumentError, "unknown clipboard selection" unless CLIPBOARDS.include?(selection)
 
-      `#{READ_COMMAND} #{SELECTION[which_normalized]} 2> /dev/null`
+      `#{READ_COMMAND} #{SELECTION[selection]} 2> /dev/null`
     end
 
     def copy(data, clipboard: "all")
       selections = clipboard.to_s == "all" ? CLIPBOARDS : [clipboard]
       selections.each{ |selection|
+        raise ArgumentError, "unknown clipboard selection" unless CLIPBOARDS.include?(selection)
+
         Utils.popen "#{WRITE_COMMAND} #{SELECTION[selection]}", data, READ_OUTPUT_STREAM
       }
 

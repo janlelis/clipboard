@@ -23,19 +23,20 @@ module Clipboard
       end
     end
 
-    def paste(which = nil, **)
-      if !which || !CLIPBOARDS.include?(which.to_s.downcase)
-        which = CLIPBOARDS.first
-      end
+    def paste(which = nil, clipboard: "clipboard")
+      selection = which || clipboard
+      raise ArgumentError, "unknown clipboard selection" unless CLIPBOARDS.include?(selection)
 
       ::Gtk::Clipboard.get(
-        Gdk::Selection.const_get(which.to_s.upcase)
+        Gdk::Selection.const_get(selection.to_s.upcase)
       ).wait_for_text || ""
     end
 
     def copy(data, clipboard: "all")
       selections = clipboard.to_s == "all" ? CLIPBOARDS : [clipboard]
       selections.each{ |selection|
+        raise ArgumentError, "unknown clipboard selection" unless CLIPBOARDS.include?(selection)
+
         ::Gtk::Clipboard.get(Gdk::Selection.const_get(selection.to_s.upcase)).set_text(data).store
       }
 
@@ -45,6 +46,8 @@ module Clipboard
     def clear(clipboard: "all")
       selections = clipboard.to_s == "all" ? CLIPBOARDS : [clipboard]
       selections.each{ |selection|
+        raise ArgumentError, "unknown clipboard selection" unless CLIPBOARDS.include?(selection)
+
         ::Gtk::Clipboard.get(Gdk::Selection.const_get(selection.to_s.upcase)).clear
       }
 
