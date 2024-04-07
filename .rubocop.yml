@@ -84,3 +84,12 @@ Gemspec/DevelopmentDependencies:
 
 Style/NilComparison:
   Enabled: false
+
+Style/SingleLineDoEndBlock:
+  Enabled: false
+
+Style/CharacterLiteral:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
