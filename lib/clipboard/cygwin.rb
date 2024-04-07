@@ -7,11 +7,11 @@ module Clipboard
     include Implementation
     extend self
 
-    def paste(_ = nil)
+    def paste(_ = nil, **)
       ::File.read("/dev/clipboard")
     end
 
-    def copy(data)
+    def copy(data, **)
       ::File.open("/dev/clipboard", "w"){ |f| f.write(data) }
 
       true

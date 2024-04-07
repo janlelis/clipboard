@@ -10,14 +10,14 @@ module Clipboard
 
     FLAVOR = ::Java::JavaAwtDatatransfer::DataFlavor.stringFlavor
 
-    def copy(text)
-      selection_string = ::Java::JavaAwtDatatransfer::StringSelection.new text
+    def copy(data, **)
+      selection_string = ::Java::JavaAwtDatatransfer::StringSelection.new data
       ::Java::JavaAwt::Toolkit.default_toolkit.system_clipboard.set_contents selection_string, nil
 
       true
     end
 
-    def paste(_ = nil)
+    def paste(_ = nil, **)
       ::Java::JavaAwt::Toolkit.default_toolkit.system_clipboard.get_data(FLAVOR)
     rescue
       ''

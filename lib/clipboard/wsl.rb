@@ -8,11 +8,11 @@ module Clipboard
     include Implementation
     extend self
 
-    def paste(_ = nil)
+    def paste(_ = nil, **)
       `powershell.exe -Command Get-Clipboard`
     end
 
-    def copy(data)
+    def copy(data, **)
       Utils.popen "clip.exe", data
 
       true

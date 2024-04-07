@@ -17,7 +17,7 @@ module Clipboard
                                            "Please install it or try a different implementation"
     end
 
-    def paste(might_select_primary_clipboard = nil)
+    def paste(might_select_primary_clipboard = nil, **)
       if might_select_primary_clipboard == "primary"
         `#{READ_COMMAND} --primary`
       else
@@ -25,13 +25,13 @@ module Clipboard
       end
     end
 
-    def copy(data)
+    def copy(data, **)
       Utils.popen WRITE_COMMAND, data
 
       true
     end
 
-    def clear
+    def clear(**)
       `#{WRITE_COMMAND} --clear`
 
       true

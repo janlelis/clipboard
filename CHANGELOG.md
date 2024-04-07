@@ -12,6 +12,7 @@
 * Add expiremental OSC52 implementation (only `Clipboard.copy`)
 
 ### Refactorings / Minor API Changes
+* Change `copy`, `paste`, and `clear` to always accept keyword arguments
 * All implementations are now based on `Clipboard::Implementation`
 * Move implementation detection to `utils.rb`
 

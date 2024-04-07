@@ -9,13 +9,13 @@ module Clipboard
 
     FILE = ::File.expand_path("~/.clipboard")
 
-    def copy(text)
-      ::File.open(FILE, 'w', 0o0600) { |f| f.write(text) } rescue ''
+    def copy(data, **)
+      ::File.open(FILE, 'w', 0o0600) { |f| f.write(data) } rescue ''
 
       true
     end
 
-    def paste(_ = nil)
+    def paste(_ = nil, **)
       ::File.read(FILE) rescue ''
     end
   end

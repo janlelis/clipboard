@@ -23,7 +23,7 @@ module Clipboard
       end
     end
 
-    def copy(text)
+    def copy(text, **)
       CLIPBOARDS.each{ |which|
         ::Gtk::Clipboard.get(Gdk::Selection.const_get(which)).set_text(text).store
       }
@@ -31,7 +31,7 @@ module Clipboard
       true
     end
 
-    def paste(which = nil)
+    def paste(which = nil, **)
       if !which || !CLIPBOARDS.include?(which_normalized = which.to_s.upcase)
         which_normalized = CLIPBOARDS.first
       end
@@ -41,7 +41,7 @@ module Clipboard
       ).wait_for_text || ""
     end
 
-    def clear
+    def clear(**)
       CLIPBOARDS.each{ |which|
         ::Gtk::Clipboard.get(Gdk::Selection.const_get(which)).clear
       }

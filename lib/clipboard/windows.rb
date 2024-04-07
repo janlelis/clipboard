@@ -43,7 +43,7 @@ module Clipboard
     end
 
     # see http://www.codeproject.com/KB/clipboard/archerclipboard1.aspx
-    def paste(_ = nil)
+    def paste(_ = nil, **)
       return String.new unless User32.open(nil)
 
       hclip = User32.get( CF_UNICODETEXT )
@@ -59,7 +59,7 @@ module Clipboard
       User32.close
     end
 
-    def clear
+    def clear(**)
       User32.empty if User32.open(nil)
 
       true
@@ -67,7 +67,7 @@ module Clipboard
       User32.close
     end
 
-    def copy(data_to_copy)
+    def copy(data_to_copy, **)
       if User32.open(nil)
         User32.empty
         data = data_to_copy.encode(Encoding::UTF_16LE) # TODO: catch bad encodings
