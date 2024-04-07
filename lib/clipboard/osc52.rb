@@ -13,11 +13,9 @@ module Clipboard
     def copy(data, clipboard: "all")
       selections = clipboard == "all" ? SELECTIONS : [clipboard]
       selections.each{ |selection|
-        selection_option = clipboard == "primary" ? "p" : "c"
-        data_base64 = [data].pack("m0")
         print OSC52 % {
-          selection_option: "selection_option",
-          data_base64: "data_base64",
+          selection_option: clipboard == "primary" ? "p" : "c",
+          data_base64: [data].pack("m0"),
         }
       }
 
@@ -27,9 +25,8 @@ module Clipboard
     def clear(clipboard: "all")
       selections = clipboard == "all" ? SELECTIONS : [clipboard]
       selections.each{ |selection|
-        selection_option = clipboard == "primary" ? "p" : "c"
         print OSC52 % {
-          selection_option: selection_option,
+          selection_option: clipboard == "primary" ? "p" : "c",
           data_base64: ?! # anything non-base64 / question mark clears
         }
       }
