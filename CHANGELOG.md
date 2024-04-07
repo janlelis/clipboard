@@ -3,25 +3,25 @@
 ## 2.0.0 (unreleased)
 
 ### Major Changes
-* Required Ruby to 3.0
+* Requires Ruby 3.0
 * `Clipboard.copy` and `.clear` now always return true instead of the pasted string
+
+### New Features
+* Add experimental OSC52 implementation (only `Clipboard.copy`)
 * Linux-based `Clipboard.copy` methods now take a clipboard argument `clipboard:`
   to choose which clipboard to copy to (default is "all").
   For example: `Clipboard.copy("data", clipboard: "primary")` copies only to primary clipboard
 * Linux-based `Clipboard.paste` methods use either the `clipboard:` keyword argument or the
-  positional argument for choosing the clipboard to paste from
-* Allow choosing clipboard implementation with camel-cased symbol/string:
+  single positional argument for choosing the clipboard to paste from
+* Allow setting the clipboard implementation with snake-cased symbol/string:
   `Clipboard.implementation = :linux_wayland`
-
-### New Features
-* Add experimental OSC52 implementation (only `Clipboard.copy`)
 
 ### Refactorings / Minor API Changes
 * Change `copy`, `paste`, and `clear` to always accept keyword arguments
 * All implementations are now based on `Clipboard::Implementation`
 * Move implementation detection to `utils.rb`
-* Be sure to pass a valid lowercase clipboard selection name (or "all") when choosing clipboard,
-  will now raise `ArgumentError` if clipboard name is not supported
+* Be sure to pass a valid lowercase clipboard selection name (or `"all"`) when choosing clipboards,
+  it will now raise an `ArgumentError` if the clipboard name is not supported by the implementation
 
 ### Other
 * Add more specs and run them on GitHub Actions CI

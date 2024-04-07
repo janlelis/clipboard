@@ -15,8 +15,8 @@ module Clipboard
     READ_COMMAND  = "wl-paste --type text/plain --no-newline"
 
     if !Utils.executable_installed?(TEST_COMMAND)
-      raise Clipboard::ClipboardLoadError, "clipboard: Could not find required program wl-copy\n" \
-                                           "Please install it or try a different implementation"
+      raise Clipboard::ClipboardLoadError,
+            "clipboard: Could not find required program wl-clipboard"
     end
 
     def paste(which = nil, clipboard: "clipboard")

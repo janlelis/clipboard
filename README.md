@@ -1,6 +1,6 @@
-# Clipboard Ruby Gem [![version](https://badge.fury.io/rb/clipboard.svg)](https://badge.fury.io/rb/clipboard) [![[ci]](https://github.com/janlelis/clipboard/workflows/Test/badge.svg)](https://github.com/janlelis/clipboard/actions?query=workflow%3ATest)
+# Clipboard Ruby Gem 📋︎ [![version](https://badge.fury.io/rb/clipboard.svg)](https://badge.fury.io/rb/clipboard) [![[ci]](https://github.com/janlelis/clipboard/workflows/Test/badge.svg)](https://github.com/janlelis/clipboard/actions?query=workflow%3ATest)
 
-Lets you access the clipboard from everywhere. Currently supported platforms:
+Lets you access the system clipboard from everywhere. Currently supported platforms:
 
 - Linux (X11)
 - Linux (Wayland)
@@ -24,20 +24,24 @@ Unsupported, but might still work: **2.X** (use clipboard gem version 1.x)
 
 ## Setup
 
-Add the following lines to your `Gemfile`:
+Run `gem install clipboard` (and `gem install ffi` on Windows) or add the following lines to your `Gemfile`:
 
 ```ruby
 gem "clipboard"
-gem "ffi", :platforms => [:mswin, :mingw] # Required by Clipboard on Windows
+gem "ffi", :platforms => [:mswin, :mingw] # Necessary on Windows
 ```
 
-- **Important note for Linux** users: The clipboard requires the *xsel* or the *xclip* command-line program (X11), or the *wl-copy* / *wl-paste* command-line programs (Wayland). On debian and ubuntu, *xsel* can be installed with: `sudo apt-get install xsel` and *wl-copy* / *wl-paste* with `sudo apt-get install wl-clipboard`.
+**Important note for Linux** users: The clipboard gem requires additional programs to be available:
+
+- On X11: **xsel** or **xclip**
+- On Wayland: **wl-copy** and **wl-paste** (wl-clipboard) - depending on your system, just having **xsel** / **xclip** might also work
+
 
 ## Clipboard Implementations
 
 In most environments, the appropriate clipboard implementation can be detected automatically. If none is found, the gem will fallback to a file based one, which will just write to/read from `~/.clipboard` instead of the system clipboard.
 
-You can check the implementation used with: `Clipboard.implementation`
+You can check the implementation used with `Clipboard.implementation` or set a specific implementation with `Clipboard.implementation = ...`
 
 ### Alternative Clipboard Providers
 
@@ -75,7 +79,12 @@ To be able to use the clipboard through SSH (using the `xsel`/`xclip` based impl
 
 ### Linux: Copy To or Paste From Specific Clipboard / Selection
 
-The clipboard on Linux is divided into multiple clipboard selections. You can choose from which clipboard you want to `paste` from by passing it as the first argument. The default is *:clipboard*, other options are *:primary* and, for some implementations, *:secondary*.
+The clipboard on Linux is divided into multiple clipboard selections. You can choose from which clipboard you want to `paste` from by passing it as the first argument. The default is *:clipboard*, other options are *:primary* and, for some implementations, *:secondary*:
+
+```ruby
+Clipboard.paste("primary") # or
+Clipboard.paste(clipboard: "primary")
+```
 
 `Clipboard.copy` will copy to all available clipboards, except if you specifiy a clipboard using the `clipboard:` keyword argument:
 
@@ -93,7 +102,7 @@ Clipboard.paste.encode('UTF-8')
 
 ### CLI Utility: blip
 
-The [blip gem]((https://gist.github.com/janlelis/781835)) is a handy command-line wrapper for the clipboard gem. It lets you quickly copy file content to your clipboard:
+The [blip gem](https://rubygems.org/gems/blip) is a handy command-line wrapper for the clipboard gem. It lets you quickly copy a file's content to your clipboard:
 
 ```
 $ blip FILE_NAME

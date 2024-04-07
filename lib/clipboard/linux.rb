@@ -30,9 +30,8 @@ module Clipboard
       }.freeze
 
     else
-      raise Clipboard::ClipboardLoadError, "clipboard: Could not find required program xclip or xsel\n" \
-                                           "On debian/ubuntu, you can install it with: sudo apt-get install xsel\n" \
-                                           "If your system is Wayland-based, please install wl-clipboard"
+      raise Clipboard::ClipboardLoadError,
+            "clipboard: Could not find required program xsl or xclip (X11) or wl-clipboard (Wayland)"
     end
 
     def paste(which = nil, clipboard: "clipboard")

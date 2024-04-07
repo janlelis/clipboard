@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# Please note: cannot test, if it really accesses your platform clipboard.
-
 require_relative "spec_helper"
 
 os_to_restore = RbConfig::CONFIG['host_os']
@@ -97,7 +95,7 @@ describe Clipboard do
       Clipboard.implementation
     end
 
-    it "can be set with camel case" do
+    it "is possible to set implementation with snake-cased string" do
       module Clipboard::TestImplementation
       end
       Clipboard.implementation = "test_implementation"

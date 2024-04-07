@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.version  = Clipboard::VERSION
   s.authors  = ["Jan Lelis"]
   s.email    = ["hi@ruby.consulting"]
-  s.summary  = "Access the clipboard on Linux, MacOS, Windows, WSL, Cygwin, GTK, or Java."
-  s.description = "Access the clipboard on Linux, MacOS, Windows, WSL, Cygwin, GTK, or Java. Usage is as simple as calling Clipboard.copy or Clipboard.paste!"
+  s.summary  = "Access the system clipboard 📋︎ on Linux, MacOS, Windows, WSL, Cygwin, GTK, or Java."
+  s.description = "Access the system clipboard 📋︎ on Linux, MacOS, Windows, WSL, Cygwin, GTK, or Java. Usage is as simple as calling Clipboard.copy or Clipboard.paste!"
   s.homepage = "https://github.com/janlelis/clipboard"
   s.license  = "MIT"
   s.metadata = { "rubygems_mfa_required" => "true" }

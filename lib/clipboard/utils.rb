@@ -23,7 +23,7 @@ module Clipboard
       # Running additional check to detect if running in Microsoft WSL or Wayland
       if os == :Linux
         require "etc"
-        if Etc.respond_to?(:uname) && Etc.uname[:release] =~ /Microsoft/ # uname was added in ruby 2.2
+        if Etc.uname[:release] =~ /Microsoft/
           os = :Wsl
         # Only choose Wayland implementation if wl-copy is found, since xclip / xsel *might* work
         elsif ENV["XDG_SESSION_TYPE"] == "wayland" && executable_installed?("wl-copy")
