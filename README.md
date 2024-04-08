@@ -65,7 +65,7 @@ Requires the `gtk3` or `gtk2` gem to be installed.
 
 Activate with: `Clipboard.implementation = :osc52`
 
-OSC52 is an ANSI escape sequence that some terminals support to access the system clipboard. One advantage of using this clipboard proider is that it is possible to copy from remote ssh sessions to your system clipboard.
+OSC52 is an ANSI escape sequence that some terminals support to access the system clipboard. One advantage of using this clipboard provider is that it is possible to copy from remote ssh sessions to your system clipboard.
 
 As of the current version, only **copy** and **clear** commands are supported (no **paste**).
 
