@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-$:.unshift File.expand_path("../lib", __FILE__)
-require 'clipboard/version'
+require_relative 'lib/clipboard/version'
 
 Gem::Specification.new do |s|
   s.name     = 'clipboard'
@@ -18,7 +17,7 @@ Gem::Specification.new do |s|
     "Linux-Wayland: wl-clipboard",
     "Windows: ffi gem",
   ]
-  s.files = Dir.glob(%w[{lib,spec}/**/*.rb [A-Z]*.txt [A-Z]*.md]) + %w{clipboard.gemspec}
+  s.files = Dir.glob(%w[{lib,spec}/**/*.rb [A-Z]*.txt [A-Z]*.md]) + %w[clipboard.gemspec Gemfile Rakefile]
 
   s.required_ruby_version = '>= 3.0'
   s.add_development_dependency 'rake', '~> 13.2'

@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 2.0.0 (unreleased)
+## 2.0.0
 
 ### Major Changes
 * Requires Ruby 3.0
