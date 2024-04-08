@@ -11,13 +11,13 @@ if RUBY_ENGINE === "jruby"
     end
 
     it "can copy & paste" do
-      Clipboard.copy('example')
-      expect( Clipboard.paste ).to eq 'example'
+      Clipboard.copy('123java')
+      expect( Clipboard.paste ).to eq '123java'
     end
 
     it "can clear" do
-      Clipboard.copy('example')
-      expect( Clipboard.paste ).to eq 'example'
+      Clipboard.copy('123java')
+      expect( Clipboard.paste ).to eq '123java'
       Clipboard.clear
       expect( Clipboard.paste ).to eq ''
     end

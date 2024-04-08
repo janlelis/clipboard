@@ -13,13 +13,13 @@ if RbConfig::CONFIG['host_os'] =~ /mac|darwin/
     end
 
     it "can copy & paste" do
-      Clipboard.copy('example')
-      expect( Clipboard.paste ).to eq 'example'
+      Clipboard.copy('123mac')
+      expect( Clipboard.paste ).to eq '123mac'
     end
 
     it "can clear" do
-      Clipboard.copy('example')
-      expect( Clipboard.paste ).to eq 'example'
+      Clipboard.copy('123mac')
+      expect( Clipboard.paste ).to eq '123mac'
       Clipboard.clear
       expect( Clipboard.paste ).to eq ''
     end

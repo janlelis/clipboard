@@ -5,6 +5,10 @@ require_relative "spec_helper"
 os_to_restore = RbConfig::CONFIG['host_os']
 
 describe Clipboard do
+  before :all do
+    Clipboard.implementation = Clipboard::Utils.autodetect_implementation
+  end
+
   before do
     RbConfig::CONFIG['host_os'] = os_to_restore
     @is_windows = Clipboard.implementation.name == 'Clipboard::Windows'
@@ -32,7 +36,7 @@ describe Clipboard do
 
   it "can clear" do
     Clipboard.copy('xxx')
-    Clipboard.clear
+    expect( Clipboard.clear ).to eq true
     expect( Clipboard.paste ).to eq expected.('')
   end
 
