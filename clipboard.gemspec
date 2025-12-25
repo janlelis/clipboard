@@ -20,6 +20,8 @@ Gem::Specification.new do |s|
   s.files = Dir.glob(%w[{lib,spec}/**/*.rb [A-Z]*.txt [A-Z]*.md]) + %w[clipboard.gemspec Gemfile Rakefile]
 
   s.required_ruby_version = '>= 3.0'
+  s.add_dependency 'open3'
+  s.add_dependency 'etc'
   s.add_development_dependency 'rake', '~> 13.2'
   s.add_development_dependency 'rspec', '~> 3'
   s.add_development_dependency 'rubocop', '~> 1.6'
