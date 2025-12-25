@@ -12,7 +12,7 @@ Lets you access the system clipboard from everywhere. Currently supported platfo
 - Java (on JRuby)
 - *Experimental:* OSC52 (ANSI escape sequence) **only copying** - see note below
 
-Supported Rubies: **3.x**
+Supported Rubies: **4.x**, **3.x**
 
 Unsupported, but might still work: **2.x** (use clipboard gem version 1.x)
 
