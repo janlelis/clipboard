@@ -9,6 +9,7 @@ jobs:
     strategy:
       matrix:
         ruby:
+        - '4.0'
         - '3.4'
         - '3.3'
         - '3.2'
@@ -18,7 +19,7 @@ jobs:
         - truffleruby
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
@@ -35,6 +36,7 @@ jobs:
     strategy:
       matrix:
         ruby:
+        #- '4.0'
         - '3.4'
         - '3.3'
         - '3.2'
@@ -44,7 +46,7 @@ jobs:
         - truffleruby
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
